@@ -1,0 +1,232 @@
+---
+import ContactCard from "../components/ContactCard.astro";
+import CTASection from "../components/CTASection.astro";
+import Layout from "../components/Layout.astro";
+import PageHero from "../components/PageHero.astro";
+import SectionIntro from "../components/SectionIntro.astro";
+
+const contactOptions = [
+	{
+		title: "Patient inquiries",
+		copy: "Start here for assessment interest, program fit, or general questions about care pathways.",
+		label: "Start assessment",
+	},
+	{
+		title: "Speaking / media",
+		copy: "Use this destination for podcast, event, interview, and physician education inquiries.",
+		label: "Send inquiry",
+	},
+	{
+		title: "General inquiries",
+		copy: "For other professional or practice-related questions, use the static form layout below.",
+		label: "Contact practice",
+	},
+];
+---
+
+<Layout
+	title="Contact | Dr. Lisa Koche"
+	description="Static contact page concept for patient inquiries, speaking and media requests, and general practice questions."
+	currentPath="/contact"
+>
+	<PageHero
+		title="Start the conversation with a clearer next step."
+		copy="Use this static concept page to route patient, speaking, media, and general inquiries without adding backend processing."
+		primaryHref="#contact-form"
+		primaryLabel="Contact the Practice"
+		secondaryHref="/programs"
+		secondaryLabel="Explore Programs"
+		mediaLabel="Contact Imagery Placeholder"
+	/>
+
+	<section class="section" aria-labelledby="options-title">
+		<div class="container">
+			<SectionIntro
+				id="options-title"
+				eyebrow="Contact Options"
+				title="Choose the inquiry that best fits."
+				copy="These static cards establish future routing without adding automation or backend systems."
+			/>
+			<div class="contact-grid">
+				{contactOptions.map((option) => <ContactCard {...option} href="#contact-form" />)}
+			</div>
+		</div>
+	</section>
+
+	<section class="section section-soft" id="contact-form" aria-labelledby="form-title">
+		<div class="container contact-layout">
+			<div>
+				<p class="eyebrow">Inquiry</p>
+				<h2 id="form-title">A simple static form layout.</h2>
+				<p>
+					This form is intentionally not connected to processing, storage, email automation, or patient
+					systems in this local concept.
+				</p>
+				<!-- Final HIPAA, privacy, consent, and inquiry-handling language should be approved before production. -->
+			</div>
+			<form class="contact-form" action="#" method="get">
+				<label>
+					Name
+					<input type="text" name="name" autocomplete="name" />
+				</label>
+				<label>
+					Email
+					<input type="email" name="email" autocomplete="email" />
+				</label>
+				<label>
+					Inquiry type
+					<select name="inquiry">
+						<option>Patient inquiry</option>
+						<option>Speaking / media</option>
+						<option>General inquiry</option>
+					</select>
+				</label>
+				<label>
+					Message
+					<textarea name="message" rows="5"></textarea>
+				</label>
+				<button class="button button-primary" type="submit">Send Static Inquiry</button>
+			</form>
+		</div>
+	</section>
+
+	<section class="section" aria-labelledby="practice-title">
+		<div class="container practice-panel">
+			<div>
+				<p class="eyebrow">Practice Information</p>
+				<h2 id="practice-title">Final practice details belong here.</h2>
+			</div>
+			<div>
+				<p>
+					Placeholder for clinic location, approved contact email, scheduling guidance, hours, and
+					appropriate medical disclaimers.
+				</p>
+				<p>
+					This concept does not include urgent care instructions, patient portal functionality, or
+					protected health information workflows.
+				</p>
+				<!-- Replace with final approved clinic/practice information and legal copy. -->
+			</div>
+		</div>
+	</section>
+
+	<CTASection
+		title="Prefer to understand the pathways first?"
+		copy="Return to the program overview to compare the static flagship programs before reaching out."
+		primaryHref="/programs"
+		primaryLabel="Explore Programs"
+		secondaryHref="/about"
+		secondaryLabel="Meet Dr. Koche"
+	/>
+</Layout>
+
+<style>
+	.contact-grid {
+		display: grid;
+		gap: var(--space-lg);
+		margin-top: var(--space-2xl);
+	}
+
+	.contact-layout,
+	.practice-panel {
+		display: grid;
+		gap: clamp(2rem, 6vw, 5rem);
+		align-items: start;
+	}
+
+	.contact-layout h2,
+	.practice-panel h2 {
+		margin: 0;
+		font-family: var(--font-display);
+		font-size: clamp(2.2rem, 5vw, 4.6rem);
+		font-weight: 400;
+		line-height: 1;
+	}
+
+	.contact-layout p,
+	.practice-panel p {
+		color: var(--color-muted);
+	}
+
+	.contact-form {
+		display: grid;
+		gap: var(--space-md);
+		padding: clamp(1.25rem, 3vw, 2rem);
+		border: 1px solid var(--color-border);
+		border-radius: var(--radius-xl);
+		background:
+			linear-gradient(180deg, rgba(255, 255, 255, 0.84), rgba(255, 255, 255, 0.68)),
+			var(--gradient-spectrum-soft);
+		box-shadow: var(--shadow-spectrum);
+	}
+
+	label {
+		display: grid;
+		gap: var(--space-xs);
+		color: var(--color-spectra-teal);
+		font-size: 0.84rem;
+		font-weight: 800;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+	}
+
+	input,
+	select,
+	textarea {
+		width: 100%;
+		border: 1px solid var(--color-border);
+		border-radius: var(--radius-sm);
+		background: rgba(255, 255, 255, 0.78);
+		color: var(--color-text);
+		font-size: 1rem;
+		letter-spacing: 0;
+		text-transform: none;
+	}
+
+	input:focus,
+	select:focus,
+	textarea:focus {
+		border-color: rgba(216, 76, 159, 0.42);
+		box-shadow: 0 0 0 4px rgba(80, 166, 163, 0.16);
+		outline: none;
+	}
+
+	input,
+	select {
+		min-height: 3rem;
+		padding: 0 0.9rem;
+	}
+
+	textarea {
+		padding: 0.8rem 0.9rem;
+		resize: vertical;
+	}
+
+	.contact-form .button {
+		width: fit-content;
+		margin-top: var(--space-sm);
+	}
+
+	.practice-panel {
+		padding: clamp(1.5rem, 4vw, 3rem);
+		border: 1px solid var(--color-border);
+		border-radius: var(--radius-xl);
+		background:
+			linear-gradient(150deg, rgba(255, 255, 255, 0.78), rgba(220, 239, 238, 0.48)),
+			radial-gradient(circle at 88% 18%, rgba(244, 201, 93, 0.16), transparent 14rem);
+		box-shadow: var(--shadow-card);
+	}
+
+	@media (min-width: 760px) {
+		.contact-grid {
+			grid-template-columns: repeat(3, 1fr);
+		}
+	}
+
+	@media (min-width: 900px) {
+		.contact-layout,
+		.practice-panel {
+			grid-template-columns: 0.8fr 1fr;
+		}
+	}
+</style>

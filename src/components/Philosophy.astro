@@ -1,0 +1,59 @@
+<section class="section" id="about" aria-labelledby="philosophy-title">
+	<div class="container two-column philosophy-grid">
+		<div>
+			<p class="eyebrow">Philosophy</p>
+			<h2 class="section-heading" id="philosophy-title">Care that looks beyond the loudest symptom.</h2>
+			<p class="section-copy">
+				The work begins by understanding how sleep, stress chemistry, immune signaling, hormones,
+				metabolism, toxins, inflammation, nutrition, and lived experience influence one another.
+				The goal is not to chase isolated complaints. It is to reveal the physiological pattern and
+				build a protocol that helps the body recover its own intelligence.
+			</p>
+		</div>
+		<aside class="quote-panel" aria-label="Philosophy quote">
+			<p>
+				“When we understand the whole system, care becomes more precise, more humane, and more
+				sustainable.”
+			</p>
+			<span>Placeholder brand quote for final copy review</span>
+		</aside>
+	</div>
+</section>
+
+<style>
+	.philosophy-grid {
+		align-items: stretch;
+	}
+
+	.quote-panel {
+		display: grid;
+		align-content: end;
+		min-height: 25rem;
+		padding: clamp(1.5rem, 4vw, 2.5rem);
+		border: 1px solid rgba(80, 166, 163, 0.34);
+		border-radius: var(--radius-xl);
+		background:
+			radial-gradient(circle at 18% 22%, rgba(80, 166, 163, 0.32), transparent 12rem),
+			radial-gradient(circle at 82% 18%, rgba(216, 76, 159, 0.22), transparent 13rem),
+			radial-gradient(circle at 80% 82%, rgba(244, 201, 93, 0.18), transparent 12rem),
+			var(--gradient-evergreen-spectrum);
+		color: var(--color-warm-clinical-white);
+		box-shadow: var(--shadow-spectrum);
+	}
+
+	.quote-panel p {
+		margin: 0;
+		font-family: var(--font-display);
+		font-size: clamp(1.75rem, 3vw, 2.8rem);
+		line-height: 1.08;
+	}
+
+	.quote-panel span {
+		display: block;
+		margin-top: var(--space-lg);
+		color: rgba(247, 248, 245, 0.66);
+		font-size: 0.76rem;
+		letter-spacing: 0.12em;
+		text-transform: uppercase;
+	}
+</style>

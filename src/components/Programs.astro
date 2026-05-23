@@ -1,0 +1,144 @@
+---
+const programs = [
+	{
+		title: "Longevity Optimization",
+		copy: "A strategic view of biological resilience, prevention, performance, and healthy aging.",
+		accent: "gold",
+		href: "/programs/longevity-optimization",
+	},
+	{
+		title: "Nervous System Recovery",
+		copy: "Support for burnout, stress physiology, sleep disruption, and adaptive capacity.",
+		accent: "blue",
+		href: "/programs/nervous-system-recovery",
+	},
+	{
+		title: "Women's Metabolic & Hormonal Health",
+		copy: "Thoughtful care for hormonal shifts, metabolic patterns, energy, and body composition.",
+		accent: "lavender",
+		href: "/programs/womens-metabolic-hormonal-health",
+	},
+	{
+		title: "Precision Preventive Care",
+		copy: "Advanced insight for early risk detection, root-cause patterning, and long-range planning.",
+		accent: "coral",
+		href: "/programs/precision-preventive-care",
+	},
+];
+---
+
+<section class="section section-soft" id="programs" aria-labelledby="programs-title">
+	<div class="container">
+		<div class="section-intro">
+			<p class="eyebrow">Programs</p>
+			<h2 class="section-heading" id="programs-title">Personalized pathways for long-term health.</h2>
+			<p class="section-copy">
+				Each program is built to connect advanced diagnostics with deeply individualized clinical
+				strategy, so the plan feels precise without becoming overwhelming.
+			</p>
+		</div>
+		<div class="program-grid">
+			{programs.map((program) => (
+				<article class={`card program-card accent-${program.accent}`}>
+					<span class="program-mark" aria-hidden="true"></span>
+					<h3>{program.title}</h3>
+					<p>{program.copy}</p>
+					<a href={program.href} aria-label={`Explore ${program.title}`}>Explore this pathway</a>
+				</article>
+			))}
+		</div>
+	</div>
+</section>
+
+<style>
+	.section-intro {
+		max-width: 50rem;
+	}
+
+	.program-grid {
+		display: grid;
+		gap: var(--space-lg);
+		margin-top: var(--space-2xl);
+	}
+
+	.program-card {
+		position: relative;
+		display: flex;
+		min-height: 20rem;
+		flex-direction: column;
+		align-items: flex-start;
+		padding: clamp(1.35rem, 3vw, 2rem);
+		overflow: hidden;
+	}
+
+	.program-card::after {
+		position: absolute;
+		inset: auto -3rem -4rem auto;
+		width: 11rem;
+		aspect-ratio: 1;
+		border-radius: 50%;
+		background:
+			radial-gradient(circle, var(--accent-color), transparent 68%);
+		content: "";
+		opacity: 0.34;
+	}
+
+	.program-mark {
+		width: 2.5rem;
+		aspect-ratio: 1;
+		border: 1px solid color-mix(in srgb, var(--accent-color), var(--color-deep-evergreen) 20%);
+		border-radius: 50%;
+		background:
+			radial-gradient(circle at 34% 32%, rgba(255, 255, 255, 0.82) 0 18%, transparent 19%),
+			linear-gradient(135deg, var(--accent-color), color-mix(in srgb, var(--accent-color), var(--color-spectra-teal) 34%));
+		box-shadow: 0 10px 22px color-mix(in srgb, var(--accent-color), transparent 62%);
+	}
+
+	.program-card h3 {
+		margin: var(--space-xl) 0 0;
+		font-family: var(--font-display);
+		font-size: clamp(1.55rem, 2.5vw, 2.2rem);
+		font-weight: 400;
+		line-height: 1.08;
+	}
+
+	.program-card p {
+		margin: var(--space-md) 0 var(--space-xl);
+		color: var(--color-muted);
+	}
+
+	.program-card a {
+		margin-top: auto;
+		color: color-mix(in srgb, var(--accent-color), var(--color-deep-evergreen) 58%);
+		font-size: 0.88rem;
+		font-weight: 800;
+	}
+
+	.accent-gold {
+		--accent-color: var(--color-spectra-sun);
+	}
+
+	.accent-blue {
+		--accent-color: var(--color-oxygen-blue);
+	}
+
+	.accent-lavender {
+		--accent-color: var(--color-recovery-lavender);
+	}
+
+	.accent-coral {
+		--accent-color: var(--color-warm-vitality-coral);
+	}
+
+	@media (min-width: 720px) {
+		.program-grid {
+			grid-template-columns: repeat(2, 1fr);
+		}
+	}
+
+	@media (min-width: 1100px) {
+		.program-grid {
+			grid-template-columns: repeat(4, 1fr);
+		}
+	}
+</style>

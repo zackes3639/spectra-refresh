@@ -1,0 +1,47 @@
+---
+interface Props {
+	title: string;
+	copy: string;
+}
+
+const { title, copy } = Astro.props;
+---
+
+<article class="topic-card">
+	<span aria-hidden="true"></span>
+	<h3>{title}</h3>
+	<p>{copy}</p>
+</article>
+
+<style>
+	.topic-card {
+		display: grid;
+		gap: var(--space-sm);
+		padding: clamp(1.15rem, 3vw, 1.6rem);
+		border-top: 1px solid rgba(80, 166, 163, 0.28);
+		background:
+			linear-gradient(90deg, rgba(255, 255, 255, 0.72), transparent),
+			var(--gradient-spectrum-soft);
+	}
+
+	span {
+		width: 1.8rem;
+		aspect-ratio: 1;
+		border: 1px solid rgba(80, 166, 163, 0.24);
+		border-radius: 50%;
+		background: var(--gradient-spectrum);
+	}
+
+	h3 {
+		margin: 0;
+		font-family: var(--font-display);
+		font-size: clamp(1.35rem, 2vw, 1.8rem);
+		font-weight: 400;
+		line-height: 1.12;
+	}
+
+	p {
+		margin: 0;
+		color: var(--color-muted);
+	}
+</style>

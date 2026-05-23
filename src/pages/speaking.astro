@@ -1,0 +1,184 @@
+---
+import CTASection from "../components/CTASection.astro";
+import Layout from "../components/Layout.astro";
+import PageHero from "../components/PageHero.astro";
+import SectionIntro from "../components/SectionIntro.astro";
+import TopicCard from "../components/TopicCard.astro";
+
+const topics = [
+	["Longevity Medicine", "Practical physician-led insight on prevention, resilience, and long-term vitality."],
+	["Root-Cause Health", "A clear explanation of how symptoms can connect across physiological systems."],
+	["Nervous System & Resilience", "Education on stress physiology, sleep, recovery, and adaptive capacity."],
+	["Women’s Health Optimization", "A whole-person lens on hormones, metabolism, energy, and midlife transitions."],
+	["Metabolic Health", "Grounded teaching on blood sugar, inflammation, body composition, and prevention."],
+];
+
+const credibility = [
+	"Major stage placeholder",
+	"Conference keynote placeholder",
+	"Podcast interview placeholder",
+	"Media feature placeholder",
+];
+---
+
+<Layout
+	title="Speaking & Media | Dr. Lisa Koche"
+	description="Speaking and media concept page for physician-led education on longevity, resilience, metabolic health, and whole-person care."
+	currentPath="/speaking"
+>
+	<PageHero
+		title="Physician-led education on longevity, health performance, and resilience."
+		copy="Dr. Koche translates complex physiology into practical, grounded conversations for audiences seeking a more intelligent health framework."
+		primaryHref="/contact"
+		primaryLabel="Invite Dr. Koche to Speak"
+		secondaryHref="/insights"
+		secondaryLabel="Explore Insights"
+		mediaLabel="Portrait or Stage Photography Placeholder"
+		mediaType="stage"
+	/>
+
+	<section class="section" aria-labelledby="topics-title">
+		<div class="container">
+			<SectionIntro
+				id="topics-title"
+				eyebrow="Topics"
+				title="Talks that make complex health easier to understand."
+				copy="Topic descriptions are restrained placeholders for future approved speaking materials."
+			/>
+			<div class="topic-grid">
+				{topics.map(([title, copy]) => <TopicCard title={title} copy={copy} />)}
+			</div>
+		</div>
+	</section>
+
+	<section class="section section-soft" aria-labelledby="credibility-title">
+		<div class="container two-column credibility-grid">
+			<div>
+				<p class="eyebrow">Experience</p>
+				<h2 id="credibility-title">Credibility without clutter.</h2>
+				<p>
+					This area can later hold approved logos, stages, conferences, programs, podcasts, and media
+					features without turning the page into a noisy proof wall.
+				</p>
+				<!-- Replace these placeholders with final approved media, stage, podcast, and publication references. -->
+			</div>
+			<ul>
+				{credibility.map((item) => <li>{item}</li>)}
+			</ul>
+		</div>
+	</section>
+
+	<section class="section" aria-labelledby="appearance-title">
+		<div class="container appearance-panel">
+			<div class="video-placeholder" aria-label="Featured appearance video placeholder">
+				<!-- Replace with final approved video embed or media artwork. -->
+				<span aria-hidden="true"></span>
+				<p class="placeholder-note">Featured Appearance Placeholder</p>
+			</div>
+			<div>
+				<p class="eyebrow">Featured Appearance</p>
+				<h2 id="appearance-title">A calm media moment for a clear physician voice.</h2>
+				<p>
+					This static module demonstrates how a future talk, podcast, or media feature could be
+					presented once final assets and permissions are available.
+				</p>
+			</div>
+		</div>
+	</section>
+
+	<CTASection
+		eyebrow="Booking"
+		title="Invite Dr. Koche to speak."
+		copy="Use the static contact destination for speaking, podcast, and media inquiries. No booking backend is connected in this concept."
+		primaryHref="/contact"
+		primaryLabel="Invite Dr. Koche to Speak"
+	/>
+</Layout>
+
+<style>
+	.topic-grid {
+		display: grid;
+		gap: var(--space-md);
+		margin-top: var(--space-2xl);
+	}
+
+	.credibility-grid {
+		align-items: start;
+	}
+
+	.credibility-grid h2,
+	.appearance-panel h2 {
+		margin: 0;
+		font-family: var(--font-display);
+		font-size: clamp(2.2rem, 5vw, 4.6rem);
+		font-weight: 400;
+		line-height: 1;
+	}
+
+	.credibility-grid p:not(.eyebrow),
+	.appearance-panel p:not(.eyebrow, .placeholder-note) {
+		color: var(--color-muted);
+	}
+
+	.credibility-grid ul {
+		display: grid;
+		gap: var(--space-md);
+		padding: 0;
+		margin: 0;
+		list-style: none;
+	}
+
+	.credibility-grid li {
+		padding: var(--space-lg);
+		border: 1px solid var(--color-border);
+		border-radius: var(--radius-md);
+		background: rgba(255, 255, 255, 0.62);
+		color: var(--color-muted);
+	}
+
+	.appearance-panel {
+		display: grid;
+		gap: clamp(2rem, 6vw, 5rem);
+		align-items: center;
+	}
+
+	.video-placeholder {
+		position: relative;
+		display: grid;
+		min-height: 24rem;
+		place-items: center;
+		overflow: hidden;
+		border: 1px solid var(--color-border);
+		border-radius: var(--radius-xl);
+		background:
+			linear-gradient(145deg, rgba(49, 70, 58, 0.96), rgba(30, 36, 33, 0.98)),
+			radial-gradient(circle at 72% 18%, rgba(215, 196, 140, 0.2), transparent 13rem);
+		box-shadow: var(--shadow-soft);
+	}
+
+	.video-placeholder span {
+		width: 4.5rem;
+		aspect-ratio: 1;
+		border: 1px solid rgba(247, 248, 245, 0.44);
+		border-radius: 50%;
+		background: rgba(247, 248, 245, 0.1);
+	}
+
+	.video-placeholder .placeholder-note {
+		position: absolute;
+		bottom: var(--space-lg);
+		color: rgba(247, 248, 245, 0.64);
+	}
+
+	@media (min-width: 760px) {
+		.topic-grid {
+			grid-template-columns: repeat(2, 1fr);
+		}
+	}
+
+	@media (min-width: 940px) {
+		.appearance-panel {
+			grid-template-columns: minmax(22rem, 0.85fr) 1fr;
+		}
+	}
+</style>

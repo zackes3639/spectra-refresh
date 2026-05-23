@@ -1,0 +1,98 @@
+---
+const insights = [
+	{
+		category: "Longevity",
+		title: "Why longevity care begins with better physiological context",
+		copy: "A thoughtful primer on moving from isolated markers to meaningful clinical patterns.",
+	},
+	{
+		category: "Recovery",
+		title: "The recovery signals that can change how we understand fatigue",
+		copy: "How sleep, stress chemistry, and nervous system load shape the body's repair capacity.",
+	},
+	{
+		category: "Hormones",
+		title: "Hormonal health is metabolic health, immune health, and brain health",
+		copy: "An editorial look at the connected systems behind common midlife transitions.",
+	},
+];
+---
+
+<section class="section section-soft" id="insights" aria-labelledby="insights-title">
+	<div class="container">
+		<div class="insights-header">
+			<div>
+				<p class="eyebrow">Insights</p>
+				<h2 class="section-heading" id="insights-title">Editorial thinking for informed patients.</h2>
+			</div>
+			<a class="button button-secondary" href="/insights">View Future Library</a>
+		</div>
+		<div class="insight-grid">
+			{insights.map((insight) => (
+				<article class="card insight-card">
+					<p>{insight.category}</p>
+					<h3>{insight.title}</h3>
+					<span>{insight.copy}</span>
+				</article>
+			))}
+		</div>
+	</div>
+</section>
+
+<style>
+	.insights-header {
+		display: grid;
+		gap: var(--space-lg);
+		align-items: end;
+	}
+
+	.insights-header .button {
+		width: fit-content;
+	}
+
+	.insight-grid {
+		display: grid;
+		gap: var(--space-lg);
+		margin-top: var(--space-2xl);
+	}
+
+	.insight-card {
+		display: grid;
+		align-content: start;
+		min-height: 19rem;
+		padding: clamp(1.35rem, 3vw, 2rem);
+	}
+
+	.insight-card p {
+		margin: 0 0 var(--space-xl);
+		color: var(--color-botanical-sage);
+		font-size: 0.75rem;
+		font-weight: 800;
+		letter-spacing: 0.12em;
+		text-transform: uppercase;
+	}
+
+	.insight-card h3 {
+		margin: 0;
+		font-family: var(--font-display);
+		font-size: clamp(1.45rem, 2.4vw, 2rem);
+		font-weight: 400;
+		line-height: 1.12;
+	}
+
+	.insight-card span {
+		display: block;
+		margin-top: var(--space-md);
+		color: var(--color-muted);
+	}
+
+	@media (min-width: 760px) {
+		.insights-header {
+			grid-template-columns: 1fr auto;
+		}
+
+		.insight-grid {
+			grid-template-columns: repeat(3, 1fr);
+		}
+	}
+</style>

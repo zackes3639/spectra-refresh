@@ -1,0 +1,11 @@
+---
+import ProgramDetail from "../../components/ProgramDetail.astro";
+import { getProgram } from "../../data/programs";
+
+const program = getProgram("womens-metabolic-hormonal-health");
+if (!program) {
+	throw new Error("Missing Women's Metabolic & Hormonal Health program data.");
+}
+---
+
+<ProgramDetail program={program} />

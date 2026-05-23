@@ -1,0 +1,94 @@
+---
+const steps = [
+	{
+		number: "01",
+		title: "Understand",
+		copy: "Map the full clinical story with advanced diagnostics, history, lifestyle, and physiology.",
+	},
+	{
+		number: "02",
+		title: "Personalize",
+		copy: "Translate patterns into a targeted protocol that respects the person, not just the data.",
+	},
+	{
+		number: "03",
+		title: "Optimize",
+		copy: "Refine over time as symptoms shift, markers change, and resilience improves.",
+	},
+];
+---
+
+<section class="section" id="approach" aria-labelledby="approach-title">
+	<div class="container approach-layout">
+		<div class="approach-intro">
+			<p class="eyebrow">Approach</p>
+			<h2 class="section-heading" id="approach-title">A measured process for better signal.</h2>
+			<p class="section-copy">
+				The experience is designed to make complex physiology understandable, actionable, and
+				easier to sustain.
+			</p>
+		</div>
+		<div class="steps" aria-label="Three-step care process">
+			{steps.map((step) => (
+				<article class="step-card">
+					<span>{step.number}</span>
+					<h3>{step.title}</h3>
+					<p>{step.copy}</p>
+				</article>
+			))}
+		</div>
+	</div>
+</section>
+
+<style>
+	.approach-layout {
+		display: grid;
+		gap: var(--space-2xl);
+	}
+
+	.approach-intro {
+		max-width: 44rem;
+	}
+
+	.steps {
+		display: grid;
+		gap: var(--space-md);
+	}
+
+	.step-card {
+		display: grid;
+		gap: var(--space-sm);
+		padding: clamp(1.25rem, 3vw, 1.8rem);
+		border-top: 1px solid rgba(80, 166, 163, 0.26);
+		background:
+			linear-gradient(90deg, rgba(255, 255, 255, 0.7), transparent),
+			var(--gradient-spectrum-soft);
+	}
+
+	.step-card span {
+		color: var(--color-spectra-teal);
+		font-family: var(--font-display);
+		font-size: 1rem;
+	}
+
+	.step-card h3 {
+		margin: 0;
+		font-family: var(--font-display);
+		font-size: clamp(1.75rem, 3vw, 2.7rem);
+		font-weight: 400;
+		line-height: 1;
+	}
+
+	.step-card p {
+		max-width: 34rem;
+		margin: 0;
+		color: var(--color-muted);
+	}
+
+	@media (min-width: 900px) {
+		.approach-layout {
+			grid-template-columns: 0.8fr 1fr;
+			align-items: start;
+		}
+	}
+</style>

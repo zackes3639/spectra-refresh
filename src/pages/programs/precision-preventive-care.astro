@@ -1,0 +1,11 @@
+---
+import ProgramDetail from "../../components/ProgramDetail.astro";
+import { getProgram } from "../../data/programs";
+
+const program = getProgram("precision-preventive-care");
+if (!program) {
+	throw new Error("Missing Precision Preventive Care program data.");
+}
+---
+
+<ProgramDetail program={program} />

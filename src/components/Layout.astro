@@ -1,0 +1,36 @@
+---
+import "../styles/global.css";
+
+import Footer from "./Footer.astro";
+import Header from "./Header.astro";
+
+interface Props {
+	title: string;
+	description: string;
+	currentPath?: string;
+}
+
+const { title, description, currentPath = Astro.url.pathname } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="icon" href="/favicon.ico" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="generator" content={Astro.generator} />
+		<meta name="description" content={description} />
+		<title>{title}</title>
+	</head>
+	<body>
+		<div class="site-shell">
+			<Header currentPath={currentPath} />
+			<main>
+				<slot />
+			</main>
+			<Footer />
+		</div>
+	</body>
+</html>

@@ -1,0 +1,56 @@
+---
+interface Props {
+	category: string;
+	title: string;
+	copy: string;
+	featured?: boolean;
+}
+
+const { category, title, copy, featured = false } = Astro.props;
+---
+
+<article class={`card insight-card ${featured ? "featured" : ""}`}>
+	<p>{category}</p>
+	<h3>{title}</h3>
+	<span>{copy}</span>
+</article>
+
+<style>
+	.insight-card {
+		display: grid;
+		align-content: start;
+		min-height: 18rem;
+		padding: clamp(1.35rem, 3vw, 2rem);
+	}
+
+	.featured {
+		min-height: 22rem;
+		background:
+			linear-gradient(160deg, rgba(255, 255, 255, 0.82), rgba(220, 239, 238, 0.56)),
+			radial-gradient(circle at 86% 12%, rgba(244, 201, 93, 0.22), transparent 10rem),
+			radial-gradient(circle at 12% 90%, rgba(216, 76, 159, 0.12), transparent 10rem);
+	}
+
+	p {
+		margin: 0 0 var(--space-xl);
+		color: var(--color-spectra-teal);
+		font-size: 0.75rem;
+		font-weight: 800;
+		letter-spacing: 0.12em;
+		text-transform: uppercase;
+	}
+
+	h3 {
+		margin: 0;
+		font-family: var(--font-display);
+		font-size: clamp(1.45rem, 2.4vw, 2rem);
+		font-weight: 400;
+		line-height: 1.12;
+	}
+
+	span {
+		display: block;
+		margin-top: var(--space-md);
+		color: var(--color-muted);
+	}
+</style>

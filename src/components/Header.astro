@@ -1,0 +1,168 @@
+---
+interface Props {
+	currentPath?: string;
+}
+
+const { currentPath = "/" } = Astro.props;
+
+const navItems = [
+	{ label: "About", href: "/about" },
+	{ label: "Programs", href: "/programs" },
+	{ label: "Approach", href: "/approach" },
+	{ label: "Insights", href: "/insights" },
+	{ label: "Speaking", href: "/speaking" },
+	{ label: "Contact", href: "/contact" },
+];
+
+const normalizePath = (path: string) => path.replace(/\/$/, "") || "/";
+const activePath = normalizePath(currentPath);
+const isActive = (href: string) =>
+	href === "/programs"
+		? activePath === "/programs" || activePath.startsWith("/programs/")
+		: activePath === href;
+---
+
+<header class="site-header" aria-label="Primary navigation">
+	<div class="container header-inner">
+		<a class="brand" href="/" aria-label="Dr. Lisa Koche home">
+			<span class="brand-mark" aria-hidden="true">LK</span>
+			<span>
+				<strong>Dr. Lisa Koche</strong>
+				<small>Longevity Medicine</small>
+			</span>
+		</a>
+		<nav class="nav-links" aria-label="Main menu">
+			{
+				navItems.map((item) => (
+					<a href={item.href} aria-current={isActive(item.href) ? "page" : undefined}>
+						{item.label}
+					</a>
+				))
+			}
+		</nav>
+		<a class="button button-primary header-cta" href="/contact">Start Assessment</a>
+	</div>
+</header>
+
+<style>
+	.site-header {
+		position: sticky;
+		top: 0;
+		z-index: 10;
+		background:
+			linear-gradient(90deg, rgba(255, 255, 255, 0.9), rgba(247, 255, 251, 0.88)),
+			var(--gradient-spectrum-soft);
+		border-bottom: 1px solid rgba(80, 166, 163, 0.18);
+		backdrop-filter: blur(18px);
+	}
+
+	.header-inner {
+		display: grid;
+		grid-template-columns: 1fr;
+		gap: var(--space-md);
+		align-items: center;
+		padding-block: 1rem;
+	}
+
+	.brand {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.75rem;
+		width: fit-content;
+	}
+
+	.brand-mark {
+		position: relative;
+		display: grid;
+		width: 2.55rem;
+		aspect-ratio: 1;
+		place-items: center;
+		border: 1px solid rgba(80, 166, 163, 0.28);
+		border-radius: 50%;
+		background:
+			linear-gradient(white, white) padding-box,
+			var(--gradient-spectrum) border-box;
+		color: var(--color-deep-evergreen);
+		font-family: var(--font-display);
+		font-size: 0.92rem;
+		box-shadow: 0 10px 24px rgba(80, 166, 163, 0.18);
+	}
+
+	.brand-mark::before {
+		position: absolute;
+		inset: -0.28rem;
+		z-index: -1;
+		border-radius: inherit;
+		background:
+			radial-gradient(circle at 20% 24%, var(--color-spectra-sun) 0 0.25rem, transparent 0.28rem),
+			radial-gradient(circle at 78% 22%, var(--color-spectra-pink) 0 0.25rem, transparent 0.28rem),
+			radial-gradient(circle at 18% 76%, var(--color-spectra-teal) 0 0.25rem, transparent 0.28rem),
+			radial-gradient(circle at 78% 76%, var(--color-spectra-violet) 0 0.25rem, transparent 0.28rem);
+		content: "";
+		opacity: 0.9;
+	}
+
+	.brand strong,
+	.brand small {
+		display: block;
+	}
+
+	.brand strong {
+		font-family: var(--font-display);
+		font-size: 1.08rem;
+		font-weight: 400;
+		line-height: 1.1;
+	}
+
+	.brand small {
+		color: var(--color-subtle);
+		font-size: 0.72rem;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+	}
+
+	.nav-links {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.35rem 1rem;
+		align-items: center;
+		color: rgba(30, 36, 33, 0.72);
+		font-size: 0.88rem;
+	}
+
+	.nav-links a {
+		padding-block: 0.25rem;
+		transition: color var(--transition);
+	}
+
+	.nav-links a:hover {
+		color: var(--color-deep-evergreen);
+	}
+
+	.nav-links a[aria-current="page"] {
+		color: var(--color-deep-evergreen);
+	}
+
+	.nav-links a[aria-current="page"]::after {
+		display: block;
+		width: 100%;
+		height: 2px;
+		margin-top: 0.2rem;
+		background: var(--gradient-spectrum);
+		content: "";
+	}
+
+	.header-cta {
+		width: fit-content;
+	}
+
+	@media (min-width: 940px) {
+		.header-inner {
+			grid-template-columns: auto 1fr auto;
+		}
+
+		.nav-links {
+			justify-content: center;
+		}
+	}
+</style>

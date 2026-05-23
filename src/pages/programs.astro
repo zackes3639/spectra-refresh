@@ -1,0 +1,195 @@
+---
+import CTASection from "../components/CTASection.astro";
+import Layout from "../components/Layout.astro";
+import PageHero from "../components/PageHero.astro";
+import ProgramCard from "../components/ProgramCard.astro";
+import SectionIntro from "../components/SectionIntro.astro";
+import { programs } from "../data/programs";
+---
+
+<Layout
+	title="Programs | Dr. Lisa Koche"
+	description="Explore static concept programs for personalized longevity, recovery, hormonal health, and preventive care."
+	currentPath="/programs"
+>
+	<PageHero
+		title="Personalized programs for healing, resilience, and longevity."
+		copy="Care is organized around outcomes and individualized physiology, not a scattered menu of disconnected services."
+		primaryHref="/contact"
+		primaryLabel="Start Your Health Assessment"
+		secondaryHref="#program-list"
+		secondaryLabel="View Programs"
+		mediaLabel="Programs Brand Imagery Placeholder"
+	/>
+
+	<section class="section" aria-labelledby="program-intro-title">
+		<div class="container intro-panel">
+			<p class="eyebrow">Overview</p>
+			<h2 id="program-intro-title">A clearer structure for long-term optimization.</h2>
+			<p>
+				Each pathway is designed to connect diagnostics, health history, symptoms, lifestyle, and goals
+				into a more coherent plan. The emphasis is careful personalization and education, with language
+				that avoids guaranteed claims.
+			</p>
+		</div>
+	</section>
+
+	<section class="section section-soft" id="program-list" aria-labelledby="program-list-title">
+		<div class="container">
+			<SectionIntro
+				id="program-list-title"
+				eyebrow="Flagship Programs"
+				title="Choose the path that best matches the conversation you need to start."
+				copy="These program pages are static concept templates and can later be expanded with final approved details."
+			/>
+			<div class="program-grid">
+				{
+					programs.map((program) => (
+						<ProgramCard
+							title={program.title}
+							copy={program.summary}
+							href={`/programs/${program.slug}`}
+							accent={program.accent}
+							items={program.benefits}
+						/>
+					))
+				}
+			</div>
+		</div>
+	</section>
+
+	<section class="section" aria-labelledby="path-title">
+		<div class="container path-panel">
+			<div>
+				<p class="eyebrow">Which path is right for you?</p>
+				<h2 id="path-title">Start with the pattern you most want to understand.</h2>
+			</div>
+			<div class="path-grid">
+				{programs.map((program) => (
+					<a class={`path-item accent-${program.accent}`} href={`/programs/${program.slug}`}>
+						<span aria-hidden="true"></span>
+						<strong>{program.title}</strong>
+						<small>{program.benefits[0]}</small>
+					</a>
+				))}
+			</div>
+		</div>
+	</section>
+
+	<CTASection
+		title="Start with the assessment conversation."
+		copy="If you are unsure which pathway fits, begin with a simple static contact destination and clarify the next right step."
+		primaryHref="/contact"
+		primaryLabel="Start Your Health Assessment"
+	/>
+</Layout>
+
+<style>
+	.intro-panel {
+		max-width: 58rem;
+	}
+
+	.intro-panel h2,
+	.path-panel h2 {
+		margin: 0;
+		font-family: var(--font-display);
+		font-size: clamp(2.2rem, 5vw, 4.8rem);
+		font-weight: 400;
+		line-height: 1;
+	}
+
+	.intro-panel p:not(.eyebrow) {
+		max-width: 48rem;
+		margin: var(--space-lg) 0 0;
+		color: var(--color-muted);
+		font-size: clamp(1rem, 1.5vw, 1.15rem);
+	}
+
+	.program-grid {
+		display: grid;
+		gap: var(--space-lg);
+		margin-top: var(--space-2xl);
+	}
+
+	.path-panel {
+		display: grid;
+		gap: var(--space-2xl);
+		padding: clamp(1.5rem, 4vw, 3rem);
+		border: 1px solid var(--color-border);
+		border-radius: var(--radius-xl);
+		background:
+			linear-gradient(150deg, rgba(255, 255, 255, 0.78), rgba(220, 239, 238, 0.5)),
+			radial-gradient(circle at 90% 18%, rgba(216, 76, 159, 0.12), transparent 16rem),
+			radial-gradient(circle at 12% 88%, rgba(244, 201, 93, 0.16), transparent 15rem);
+		box-shadow: var(--shadow-spectrum);
+	}
+
+	.path-grid {
+		display: grid;
+		gap: var(--space-md);
+	}
+
+	.path-item {
+		display: grid;
+		grid-template-columns: auto 1fr;
+		gap: 0.2rem var(--space-md);
+		align-items: center;
+		padding-block: var(--space-md);
+		border-top: 1px solid rgba(80, 166, 163, 0.18);
+	}
+
+	.path-item span {
+		grid-row: span 2;
+		width: 1rem;
+		aspect-ratio: 1;
+		border-radius: 50%;
+		background: var(--accent-color);
+	}
+
+	.path-item strong {
+		font-family: var(--font-display);
+		font-size: 1.25rem;
+		font-weight: 400;
+		line-height: 1.1;
+	}
+
+	.path-item small {
+		color: var(--color-muted);
+		font-size: 0.88rem;
+	}
+
+	.accent-gold {
+		--accent-color: var(--color-spectra-sun);
+	}
+
+	.accent-blue {
+		--accent-color: var(--color-oxygen-blue);
+	}
+
+	.accent-lavender {
+		--accent-color: var(--color-recovery-lavender);
+	}
+
+	.accent-coral {
+		--accent-color: var(--color-warm-vitality-coral);
+	}
+
+	@media (min-width: 760px) {
+		.program-grid {
+			grid-template-columns: repeat(2, 1fr);
+		}
+	}
+
+	@media (min-width: 980px) {
+		.path-panel {
+			grid-template-columns: 0.9fr 1fr;
+			align-items: start;
+		}
+	}
+
+	@media (min-width: 1180px) {
+		.program-grid {
+			grid-template-columns: repeat(4, 1fr);
+		}
+	}
+</style>

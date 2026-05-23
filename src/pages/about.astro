@@ -1,0 +1,188 @@
+---
+import CredentialCard from "../components/CredentialCard.astro";
+import CTASection from "../components/CTASection.astro";
+import Layout from "../components/Layout.astro";
+import PageHero from "../components/PageHero.astro";
+import SectionIntro from "../components/SectionIntro.astro";
+
+const credentials = [
+	{
+		title: "Triple Board Certified",
+		copy: "A physician-led perspective that brings clinical rigor to personalized longevity and optimization care.",
+	},
+	{
+		title: "Founder of Spectra Wellness",
+		copy: "A practice platform centered on root-cause thinking, prevention, and whole-person health strategy.",
+	},
+	{
+		title: "Speaker / Educator",
+		copy: "A clear physician voice for audiences seeking practical, grounded health education.",
+	},
+	{
+		title: "Research-Driven Clinician",
+		copy: "A data-informed approach that translates evolving science into careful, individualized care planning.",
+	},
+];
+---
+
+<Layout
+	title="About Dr. Lisa Koche | Longevity Medicine"
+	description="Learn about Dr. Lisa Koche's physician-led longevity, root-cause, and whole-person care philosophy."
+	currentPath="/about"
+>
+	<PageHero
+		title="A physician-led voice for personalized longevity medicine."
+		copy="Dr. Lisa Koche brings triple-board-certified clinical expertise to personalized, data-informed, whole-person care designed to help people better understand their physiology."
+		primaryHref="/contact"
+		primaryLabel="Start Assessment"
+		secondaryHref="/programs"
+		secondaryLabel="Explore Programs"
+		mediaLabel="Dr. Lisa Koche Portrait Placeholder"
+		mediaType="portrait"
+	/>
+
+	<section class="section" aria-labelledby="bio-title">
+		<div class="container two-column bio-grid">
+			<div>
+				<SectionIntro
+					id="bio-title"
+					eyebrow="Bio"
+					title="Clinical leadership with a wider lens."
+					copy="Dr. Koche’s work sits at the intersection of advanced diagnostics, functional medicine, prevention, and human-centered health optimization."
+				/>
+			</div>
+			<div class="editorial-copy">
+				<!-- Final approved biography and board-certification language should be inserted here. -->
+				<p>
+					Her care philosophy is built around the idea that symptoms rarely exist in isolation. Sleep,
+					stress chemistry, hormones, metabolism, inflammation, nutrition, and lived experience all
+					influence the way the body adapts.
+				</p>
+				<p>
+					This concept site positions that clinical perspective with a calm, editorial brand presence:
+					credible, precise, and grounded in the experience of the person receiving care.
+				</p>
+			</div>
+		</div>
+	</section>
+
+	<section class="section section-soft" aria-labelledby="story-title">
+		<div class="container story-panel">
+			<p class="eyebrow">Personal Story</p>
+			<h2 id="story-title">A personal health journey shaped a deeper kind of care.</h2>
+			<p>
+				Dr. Koche’s perspective has been shaped by both clinical training and personal experience with
+				health complexity. The emphasis is not drama; it is empathy, pattern recognition, and a belief
+				that people deserve care that looks beneath the surface.
+			</p>
+			<!-- Final personal-story copy should be reviewed by Dr. Koche and legal/compliance advisors. -->
+		</div>
+	</section>
+
+	<section class="section" aria-labelledby="mission-title">
+		<div class="container two-column mission-grid">
+			<div>
+				<p class="eyebrow">Mission & Philosophy</p>
+				<h2 id="mission-title">Help people understand their physiology and address root causes.</h2>
+			</div>
+			<div class="mission-list">
+				<p>Look for patterns across systems instead of chasing isolated complaints.</p>
+				<p>Translate complex data into care plans that feel clear, humane, and practical.</p>
+				<p>Support long-term health through prevention, resilience, and thoughtful optimization.</p>
+			</div>
+		</div>
+	</section>
+
+	<section class="section section-soft" aria-labelledby="credentials-title">
+		<div class="container">
+			<SectionIntro
+				id="credentials-title"
+				eyebrow="Authority"
+				title="Credentials with a human-centered purpose."
+				copy="These placeholders establish the authority grid for the concept site and should be replaced with approved final credential language."
+			/>
+			<div class="credential-grid">
+				{credentials.map((credential) => <CredentialCard title={credential.title} copy={credential.copy} />)}
+			</div>
+		</div>
+	</section>
+
+	<CTASection
+		title="Begin with clarity, not overwhelm."
+		copy="Explore the programs or start an assessment conversation to see which pathway may fit your current health goals."
+		primaryHref="/contact"
+		primaryLabel="Start Assessment"
+		secondaryHref="/programs"
+		secondaryLabel="Explore Programs"
+	/>
+</Layout>
+
+<style>
+	.bio-grid,
+	.mission-grid {
+		align-items: start;
+	}
+
+	.editorial-copy {
+		display: grid;
+		gap: var(--space-md);
+		color: var(--color-muted);
+		font-size: clamp(1rem, 1.4vw, 1.1rem);
+	}
+
+	.editorial-copy p,
+	.story-panel p,
+	.mission-list p {
+		margin: 0;
+	}
+
+	.story-panel {
+		max-width: 58rem;
+	}
+
+	.story-panel h2,
+	.mission-grid h2 {
+		margin: 0;
+		font-family: var(--font-display);
+		font-size: clamp(2.2rem, 5vw, 4.6rem);
+		font-weight: 400;
+		line-height: 1;
+	}
+
+	.story-panel p {
+		max-width: 46rem;
+		margin-top: var(--space-lg);
+		color: var(--color-muted);
+		font-size: clamp(1rem, 1.5vw, 1.15rem);
+	}
+
+	.mission-list {
+		display: grid;
+		gap: var(--space-md);
+	}
+
+	.mission-list p {
+		padding: var(--space-lg);
+		border-top: 1px solid var(--color-border-strong);
+		color: var(--color-muted);
+		background: linear-gradient(90deg, rgba(255, 255, 255, 0.52), transparent);
+	}
+
+	.credential-grid {
+		display: grid;
+		gap: var(--space-lg);
+		margin-top: var(--space-2xl);
+	}
+
+	@media (min-width: 760px) {
+		.credential-grid {
+			grid-template-columns: repeat(2, 1fr);
+		}
+	}
+
+	@media (min-width: 1100px) {
+		.credential-grid {
+			grid-template-columns: repeat(4, 1fr);
+		}
+	}
+</style>

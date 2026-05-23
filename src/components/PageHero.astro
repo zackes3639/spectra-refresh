@@ -1,0 +1,165 @@
+---
+interface Props {
+	title: string;
+	copy: string;
+	primaryHref?: string;
+	primaryLabel?: string;
+	secondaryHref?: string;
+	secondaryLabel?: string;
+	mediaLabel?: string;
+	mediaType?: "portrait" | "stage" | "abstract";
+}
+
+const {
+	title,
+	copy,
+	primaryHref,
+	primaryLabel,
+	secondaryHref,
+	secondaryLabel,
+	mediaLabel = "Brand Imagery Placeholder",
+	mediaType = "abstract",
+} = Astro.props;
+---
+
+<section class={`page-hero media-${mediaType}`} aria-labelledby="page-hero-title">
+	<div class="container page-hero-grid">
+		<div class="page-hero-copy">
+			<h1 id="page-hero-title">{title}</h1>
+			<p>{copy}</p>
+			{
+				(primaryHref || secondaryHref) && (
+					<div class="page-hero-actions">
+						{primaryHref && primaryLabel && <a class="button button-primary" href={primaryHref}>{primaryLabel}</a>}
+						{secondaryHref && secondaryLabel && <a class="button button-secondary" href={secondaryHref}>{secondaryLabel}</a>}
+					</div>
+				)
+			}
+		</div>
+		<aside class="page-hero-media" aria-label={mediaLabel}>
+			<!-- Replace this placeholder with final approved brand photography or page-specific imagery. -->
+			<div class="media-art" aria-hidden="true">
+				<span></span>
+			</div>
+			<p class="placeholder-note">{mediaLabel}</p>
+		</aside>
+	</div>
+</section>
+
+<style>
+	.page-hero {
+		padding: clamp(4rem, 8vw, 7.5rem) 0 var(--space-2xl);
+	}
+
+	.page-hero-grid {
+		display: grid;
+		gap: clamp(2.5rem, 7vw, 5.5rem);
+		align-items: center;
+	}
+
+	.page-hero-copy {
+		max-width: 52rem;
+	}
+
+	h1 {
+		margin: 0;
+		font-family: var(--font-display);
+		font-size: clamp(3rem, 7vw, 6.4rem);
+		font-weight: 400;
+		letter-spacing: 0;
+		line-height: 0.98;
+	}
+
+	.page-hero-copy p {
+		max-width: 42rem;
+		margin: var(--space-lg) 0 0;
+		color: var(--color-muted);
+		font-size: clamp(1.05rem, 1.8vw, 1.28rem);
+		line-height: 1.65;
+	}
+
+	.page-hero-actions {
+		display: flex;
+		flex-wrap: wrap;
+		gap: var(--space-sm);
+		margin-top: var(--space-xl);
+	}
+
+	.page-hero-media {
+		position: relative;
+		display: grid;
+		min-height: clamp(24rem, 45vw, 36rem);
+		place-items: center;
+		overflow: hidden;
+		border: 1px solid rgba(80, 166, 163, 0.26);
+		border-radius: var(--radius-xl);
+		background:
+			linear-gradient(150deg, rgba(255, 255, 255, 0.84), rgba(220, 239, 238, 0.62)),
+			radial-gradient(circle at 76% 18%, rgba(216, 76, 159, 0.18), transparent 14rem),
+			radial-gradient(circle at 18% 82%, rgba(80, 166, 163, 0.25), transparent 13rem),
+			radial-gradient(circle at 42% 18%, rgba(244, 201, 93, 0.18), transparent 12rem);
+		box-shadow: var(--shadow-spectrum);
+	}
+
+	.page-hero-media::before {
+		position: absolute;
+		inset: 0 0 auto;
+		height: 0.34rem;
+		background: var(--gradient-spectrum);
+		content: "";
+	}
+
+	.media-stage .page-hero-media {
+		background:
+			var(--gradient-evergreen-spectrum),
+			radial-gradient(circle at 80% 15%, rgba(244, 201, 93, 0.24), transparent 14rem);
+	}
+
+	.media-art {
+		display: grid;
+		width: min(62%, 19rem);
+		aspect-ratio: 0.78;
+		place-items: center;
+		border: 1px solid rgba(80, 166, 163, 0.2);
+		border-radius: 48% 48% 42% 42%;
+		background:
+			linear-gradient(180deg, rgba(255, 255, 255, 0.68), rgba(80, 166, 163, 0.18)),
+			radial-gradient(circle at 52% 25%, rgba(244, 201, 93, 0.38), transparent 6rem),
+			radial-gradient(circle at 78% 68%, rgba(216, 76, 159, 0.18), transparent 5rem);
+	}
+
+	.media-stage .media-art {
+		border-color: rgba(247, 248, 245, 0.22);
+		background:
+			linear-gradient(180deg, rgba(247, 248, 245, 0.22), rgba(80, 166, 163, 0.2)),
+			radial-gradient(circle at 50% 22%, rgba(244, 201, 93, 0.28), transparent 7rem),
+			radial-gradient(circle at 75% 72%, rgba(216, 76, 159, 0.18), transparent 6rem);
+	}
+
+	.media-art span {
+		width: 46%;
+		aspect-ratio: 1;
+		border: 1px solid rgba(49, 70, 58, 0.18);
+		border-radius: 50%;
+		background: rgba(255, 255, 255, 0.34);
+	}
+
+	.page-hero-media .placeholder-note {
+		position: absolute;
+		right: var(--space-lg);
+		bottom: var(--space-lg);
+		left: var(--space-lg);
+		margin: 0;
+		text-align: center;
+	}
+
+	.media-stage .placeholder-note {
+		color: rgba(247, 248, 245, 0.64);
+	}
+
+	@media (min-width: 900px) {
+		.page-hero-grid {
+			grid-template-columns: minmax(0, 1fr) minmax(22rem, 0.72fr);
+		}
+	}
+ </style>

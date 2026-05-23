@@ -1,0 +1,32 @@
+---
+interface Props {
+	id?: string;
+	eyebrow?: string;
+	title: string;
+	copy?: string;
+	align?: "left" | "center";
+}
+
+const { id, eyebrow, title, copy, align = "left" } = Astro.props;
+---
+
+<div class={`section-intro align-${align}`}>
+	{eyebrow && <p class="eyebrow">{eyebrow}</p>}
+	<h2 class="section-heading" id={id}>{title}</h2>
+	{copy && <p class="section-copy">{copy}</p>}
+</div>
+
+<style>
+	.section-intro {
+		max-width: 52rem;
+	}
+
+	.align-center {
+		margin-inline: auto;
+		text-align: center;
+	}
+
+	.align-center .section-copy {
+		margin-inline: auto;
+	}
+</style>

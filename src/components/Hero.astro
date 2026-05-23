@@ -1,0 +1,168 @@
+<section class="hero" id="assessment" aria-labelledby="hero-title">
+	<div class="container hero-grid">
+		<div class="hero-copy">
+			<h1 id="hero-title">Modern Longevity Medicine, Rooted in Human Physiology</h1>
+			<p>
+				Personalized, data-informed care for people who want to understand the deeper patterns
+				behind energy, resilience, metabolism, recovery, and long-term health.
+			</p>
+			<div class="hero-actions" aria-label="Hero actions">
+				<a class="button button-primary" href="/contact">Start Your Health Assessment</a>
+				<a class="button button-secondary" href="/approach">Explore the Approach</a>
+			</div>
+		</div>
+
+		<div class="portrait-frame" aria-label="Portrait placeholder for Dr. Lisa Koche">
+			<!-- Replace this placeholder with final Dr. Lisa Koche portrait photography. -->
+			<div class="portrait-art">
+				<div class="portrait-orb"></div>
+				<div class="portrait-line"></div>
+				<p class="placeholder-note">Portrait Photography Placeholder</p>
+			</div>
+			<div class="portrait-caption">
+				<span>Physician-led longevity strategy</span>
+				<strong>Clinical care designed for the full physiological picture.</strong>
+			</div>
+		</div>
+	</div>
+</section>
+
+<style>
+	.hero {
+		padding: clamp(4rem, 9vw, 8.5rem) 0 var(--space-3xl);
+	}
+
+	.hero-grid {
+		display: grid;
+		gap: clamp(2.5rem, 7vw, 6rem);
+		align-items: center;
+	}
+
+	.hero-copy {
+		max-width: 49rem;
+	}
+
+	h1 {
+		margin: 0;
+		font-family: var(--font-display);
+		font-size: clamp(3.1rem, 8vw, 7rem);
+		font-weight: 400;
+		letter-spacing: 0;
+		line-height: 0.96;
+	}
+
+	.hero-copy p {
+		margin: var(--space-lg) 0 0;
+		max-width: 40rem;
+		color: var(--color-muted);
+		font-size: clamp(1.05rem, 1.8vw, 1.35rem);
+		line-height: 1.65;
+	}
+
+	.hero-actions {
+		display: flex;
+		flex-wrap: wrap;
+		gap: var(--space-sm);
+		margin-top: var(--space-xl);
+	}
+
+	.portrait-frame {
+		position: relative;
+		min-height: clamp(28rem, 54vw, 42rem);
+		overflow: hidden;
+		border: 1px solid rgba(80, 166, 163, 0.26);
+		border-radius: var(--radius-xl);
+		background:
+			linear-gradient(150deg, rgba(255, 255, 255, 0.88), rgba(220, 239, 238, 0.56)),
+			radial-gradient(circle at 78% 16%, rgba(216, 76, 159, 0.24), transparent 15rem),
+			radial-gradient(circle at 20% 80%, rgba(80, 166, 163, 0.3), transparent 14rem),
+			radial-gradient(circle at 45% 20%, rgba(244, 201, 93, 0.24), transparent 11rem);
+		box-shadow: var(--shadow-spectrum);
+	}
+
+	.portrait-frame::before {
+		position: absolute;
+		inset: 0 0 auto;
+		height: 0.38rem;
+		background: var(--gradient-spectrum);
+		content: "";
+	}
+
+	.portrait-art {
+		position: absolute;
+		inset: 1rem;
+		display: grid;
+		place-items: center;
+		border: 1px solid rgba(80, 166, 163, 0.16);
+		border-radius: calc(var(--radius-xl) - 0.55rem);
+	}
+
+	.portrait-orb {
+		width: min(70%, 22rem);
+		aspect-ratio: 0.78;
+		border: 1px solid rgba(49, 70, 58, 0.14);
+		border-radius: 48% 48% 42% 42%;
+		background:
+			linear-gradient(180deg, rgba(255, 255, 255, 0.68), rgba(80, 166, 163, 0.2)),
+			radial-gradient(circle at 52% 28%, rgba(244, 201, 93, 0.44), transparent 7rem),
+			radial-gradient(circle at 80% 66%, rgba(216, 76, 159, 0.2), transparent 6rem);
+	}
+
+	.portrait-line {
+		position: absolute;
+		right: 14%;
+		bottom: 24%;
+		width: 36%;
+		height: 1px;
+		background: var(--gradient-spectrum);
+		transform: rotate(-18deg);
+	}
+
+	.portrait-art .placeholder-note {
+		position: absolute;
+		bottom: var(--space-lg);
+		left: 50%;
+		width: min(82%, 20rem);
+		margin: 0;
+		text-align: center;
+		transform: translateX(-50%);
+	}
+
+	.portrait-caption {
+		position: absolute;
+		right: var(--space-md);
+		bottom: var(--space-md);
+		left: var(--space-md);
+		display: grid;
+		gap: 0.35rem;
+		padding: var(--space-md);
+		border: 1px solid rgba(255, 255, 255, 0.58);
+		border-radius: var(--radius-md);
+		background:
+			linear-gradient(180deg, rgba(255, 255, 255, 0.82), rgba(247, 255, 251, 0.76)),
+			var(--gradient-spectrum-soft);
+		backdrop-filter: blur(16px);
+	}
+
+	.portrait-caption span {
+		color: var(--color-spectra-teal);
+		font-size: 0.72rem;
+		font-weight: 800;
+		letter-spacing: 0.12em;
+		text-transform: uppercase;
+	}
+
+	.portrait-caption strong {
+		max-width: 26rem;
+		font-family: var(--font-display);
+		font-size: clamp(1.25rem, 2vw, 1.8rem);
+		font-weight: 400;
+		line-height: 1.14;
+	}
+
+	@media (min-width: 900px) {
+		.hero-grid {
+			grid-template-columns: minmax(0, 1fr) minmax(22rem, 0.72fr);
+		}
+	}
+</style>
