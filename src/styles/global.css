@@ -11,16 +11,16 @@ html {
 body {
 	margin: 0;
 	background:
-		radial-gradient(circle at 9% 7%, rgba(244, 201, 93, 0.28), transparent 25rem),
-		radial-gradient(circle at 80% 12%, rgba(80, 166, 163, 0.24), transparent 29rem),
-		radial-gradient(circle at 94% 40%, rgba(216, 76, 159, 0.12), transparent 24rem),
-		radial-gradient(circle at 15% 62%, rgba(169, 132, 214, 0.12), transparent 26rem),
-		radial-gradient(circle at 78% 88%, rgba(125, 183, 217, 0.16), transparent 30rem),
+		radial-gradient(circle at 8% 8%, rgba(243, 204, 114, 0.2), transparent 25rem),
+		radial-gradient(circle at 84% 14%, rgba(40, 156, 176, 0.2), transparent 29rem),
+		radial-gradient(circle at 91% 40%, rgba(226, 96, 151, 0.09), transparent 23rem),
+		radial-gradient(circle at 17% 64%, rgba(154, 136, 219, 0.1), transparent 24rem),
+		radial-gradient(circle at 76% 90%, rgba(113, 168, 216, 0.14), transparent 30rem),
 		var(--color-warm-clinical-white);
 	color: var(--color-text);
 	font-family: var(--font-body);
-	font-size: 16px;
-	line-height: 1.6;
+	font-size: clamp(15px, 0.22vw + 14.2px, 18px);
+	line-height: 1.65;
 	text-rendering: optimizeLegibility;
 }
 
@@ -89,7 +89,7 @@ select {
 .section-heading {
 	margin: 0;
 	font-family: var(--font-display);
-	font-size: clamp(2rem, 4vw, 4.1rem);
+	font-size: clamp(1.9rem, 3.8vw, 4.1rem);
 	font-weight: 400;
 	letter-spacing: 0;
 	line-height: 1.02;
@@ -99,7 +99,21 @@ select {
 	margin: var(--space-md) 0 0;
 	max-width: 42rem;
 	color: var(--color-muted);
-	font-size: clamp(1rem, 1.4vw, 1.125rem);
+	font-size: clamp(1rem, 1.25vw, 1.125rem);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	text-wrap: balance;
+}
+
+p,
+li {
+	text-wrap: pretty;
 }
 
 .button {
@@ -107,10 +121,10 @@ select {
 	align-items: center;
 	justify-content: center;
 	min-height: 2.85rem;
-	padding: 0.78rem 1.25rem;
+	padding: 0.8rem 1.32rem;
 	border: 1px solid transparent;
 	border-radius: var(--radius-pill);
-	font-size: 0.9rem;
+	font-size: clamp(0.84rem, 0.32vw + 0.72rem, 0.94rem);
 	font-weight: 700;
 	line-height: 1;
 	transition:
@@ -126,9 +140,9 @@ select {
 }
 
 .button-primary {
-	background: linear-gradient(135deg, var(--color-spectra-teal), var(--color-spectra-mint));
+	background: linear-gradient(130deg, var(--color-spectra-teal), var(--color-oxygen-blue));
 	color: var(--color-warm-clinical-white);
-	box-shadow: 0 14px 28px rgba(80, 166, 163, 0.22);
+	box-shadow: 0 14px 28px rgba(40, 156, 176, 0.22);
 }
 
 .button-primary:hover {
@@ -137,9 +151,9 @@ select {
 }
 
 .button-secondary {
-	border-color: rgba(80, 166, 163, 0.42);
+	border-color: rgba(40, 156, 176, 0.42);
 	color: var(--color-deep-evergreen);
-	background: rgba(255, 255, 255, 0.44);
+	background: rgba(255, 255, 255, 0.62);
 }
 
 .button-secondary:hover {
@@ -151,10 +165,11 @@ select {
 	position: relative;
 	overflow: hidden;
 	background:
-		linear-gradient(180deg, rgba(255, 255, 255, 0.88), rgba(255, 255, 255, 0.72)),
+		linear-gradient(180deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.76)),
 		var(--gradient-spectrum-soft);
 	border: 1px solid var(--color-border);
 	border-radius: var(--radius-lg);
+	backdrop-filter: blur(4px);
 	box-shadow: var(--shadow-card);
 	transition:
 		transform var(--transition),
@@ -174,7 +189,7 @@ select {
 	height: 0.24rem;
 	background: var(--gradient-spectrum);
 	content: "";
-	opacity: 0.72;
+	opacity: 0.55;
 }
 
 .spectrum-mark {
@@ -224,6 +239,17 @@ select {
 @media (min-width: 760px) {
 	.two-column {
 		grid-template-columns: minmax(0, 1fr) minmax(20rem, 0.82fr);
+	}
+}
+
+@media (max-width: 760px) {
+	.section {
+		padding-block: clamp(2rem, 6.5vw, 2.85rem);
+	}
+
+	.container,
+	.container-narrow {
+		width: min(100% - (var(--gutter) * 1.4), var(--container));
 	}
 }
 

@@ -7,16 +7,26 @@ interface Props {
 	primaryLabel: string;
 	secondaryHref?: string;
 	secondaryLabel?: string;
+	singleLineTitle?: boolean;
 }
 
-const { eyebrow = "Begin", title, copy, primaryHref, primaryLabel, secondaryHref, secondaryLabel } = Astro.props;
+const {
+	eyebrow = "Begin",
+	title,
+	copy,
+	primaryHref,
+	primaryLabel,
+	secondaryHref,
+	secondaryLabel,
+	singleLineTitle = false,
+} = Astro.props;
 ---
 
 <section class="final-cta" aria-labelledby="cta-title">
-	<div class="container final-cta-panel">
+	<div class:list={["container final-cta-panel", singleLineTitle && "single-line-layout"]}>
 		<div>
 			<p class="eyebrow">{eyebrow}</p>
-			<h2 id="cta-title">{title}</h2>
+			<h2 class:list={[singleLineTitle && "single-line-title"]} id="cta-title">{title}</h2>
 			<p>{copy}</p>
 		</div>
 		<div class="final-actions">
@@ -55,9 +65,16 @@ const { eyebrow = "Begin", title, copy, primaryHref, primaryLabel, secondaryHref
 		max-width: 46rem;
 		margin: 0;
 		font-family: var(--font-display);
-		font-size: clamp(2.3rem, 5vw, 5rem);
+		font-size: clamp(2.1rem, 4.3vw, 4.6rem);
 		font-weight: 400;
-		line-height: 1;
+		line-height: 1.02;
+	}
+
+	h2.single-line-title {
+		max-width: none;
+		font-size: clamp(2rem, 3.6vw, 3.65rem);
+		white-space: normal;
+		text-wrap: balance;
 	}
 
 	p {
@@ -72,6 +89,17 @@ const { eyebrow = "Begin", title, copy, primaryHref, primaryLabel, secondaryHref
 		gap: var(--space-sm);
 	}
 
+	.final-cta-panel.single-line-layout .final-actions {
+		margin-top: var(--space-sm);
+		justify-content: flex-start;
+	}
+
+	.final-cta-panel.single-line-layout p {
+		max-width: 56rem;
+		font-size: clamp(1rem, 1.22vw, 1.2rem);
+		line-height: 1.55;
+	}
+
 	.final-cta .button-secondary {
 		border-color: rgba(247, 248, 245, 0.28);
 		color: var(--color-warm-clinical-white);
@@ -84,6 +112,27 @@ const { eyebrow = "Begin", title, copy, primaryHref, primaryLabel, secondaryHref
 	@media (min-width: 900px) {
 		.final-cta-panel {
 			grid-template-columns: 1fr auto;
+		}
+
+		.final-cta-panel.single-line-layout {
+			grid-template-columns: 1fr;
+		}
+	}
+
+	@media (min-width: 1100px) {
+		h2.single-line-title {
+			white-space: nowrap;
+		}
+	}
+
+	@media (max-width: 720px) {
+		h2.single-line-title {
+			font-size: clamp(1.95rem, 8vw, 2.6rem);
+			white-space: normal;
+		}
+
+		.final-actions .button {
+			flex: 1 1 100%;
 		}
 	}
 </style>

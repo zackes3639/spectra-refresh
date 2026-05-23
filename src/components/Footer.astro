@@ -1,64 +1,149 @@
 ---
-const links = [
+import BrandLogo from "./BrandLogo.astro";
+
+const exploreLinks = [
 	{ label: "About", href: "/about" },
-	{ label: "Programs", href: "/programs" },
 	{ label: "Approach", href: "/approach" },
 	{ label: "Insights", href: "/insights" },
 	{ label: "Speaking", href: "/speaking" },
+];
+const careLinks = [
+	{ label: "Programs", href: "/programs" },
 	{ label: "Contact", href: "/contact" },
 ];
-const legal = ["Privacy Placeholder", "Terms Placeholder", "Medical Disclaimer Placeholder"];
-const social = ["LinkedIn", "Instagram", "YouTube"];
+const legal = [
+	{ label: "Privacy Policy", href: "/privacy" },
+	{ label: "Terms of Service", href: "/terms" },
+	{ label: "Medical Disclaimer", href: "/disclaimer" },
+];
+const social = [
+	{ label: "LinkedIn", href: "https://www.linkedin.com/in/lisa-koche-m-d-64a43a100/" },
+	{ label: "Instagram", href: "https://www.instagram.com/drlisaskoche/" },
+	{ label: "YouTube", href: "https://www.youtube.com/@spectrawellness" },
+];
 ---
 
 <footer class="site-footer" aria-label="Site footer">
+	<div class="footer-glow" aria-hidden="true"></div>
 	<div class="container footer-grid">
-		<div>
-			<a class="footer-brand" href="/">Dr. Lisa Koche</a>
-			<p>
-				A local-first static concept for a premium longevity medicine and physician authority brand.
-			</p>
+		<div class="footer-intro">
+			<a class="footer-brand" href="/" aria-label="Dr. Lisa Koche home">
+				<BrandLogo size="sm" showTagline={false} loading="lazy" />
+			</a>
+			<div class="footer-actions" aria-label="Footer calls to action">
+				<a href="/contact">Begin with clarity</a>
+				<a href="/programs">Explore care pathways</a>
+			</div>
 		</div>
 		<nav aria-label="Footer site links">
-			<h2>Site</h2>
-			{links.map((link) => <a href={link.href}>{link.label}</a>)}
+			<h2>Explore</h2>
+			{exploreLinks.map((link) => <a href={link.href}>{link.label}</a>)}
+		</nav>
+		<nav aria-label="Care pathway links">
+			<h2>Care</h2>
+			{careLinks.map((link) => <a href={link.href}>{link.label}</a>)}
 		</nav>
 		<nav aria-label="Professional and legal links">
-			<h2>Professional</h2>
-			{legal.map((link) => <a href="/contact">{link}</a>)}
+			<h2>Legal</h2>
+			{legal.map((link) => <a href={link.href}>{link.label}</a>)}
 		</nav>
 		<nav aria-label="Social links">
-			<h2>Social</h2>
-			{social.map((link) => <a href="/contact">{link}</a>)}
+			<h2>Connect</h2>
+			{
+				social.map((link) => (
+					<a href={link.href} target="_blank" rel="noopener noreferrer">
+						{link.label}
+					</a>
+				))
+			}
 		</nav>
 	</div>
 	<div class="container footer-bottom">
-		<p>© 2026 Dr. Lisa Koche. Concept site only.</p>
-		<p>Final legal, compliance, and medical review required before production.</p>
+		<p>© 2026 Dr. Lisa Koche.</p>
 	</div>
 </footer>
 
 <style>
 	.site-footer {
+		position: relative;
+		overflow: hidden;
 		padding: var(--space-2xl) 0 var(--space-xl);
 		border-top: 1px solid var(--color-border);
-		background: rgba(255, 255, 255, 0.42);
+		background:
+			linear-gradient(180deg, rgba(255, 255, 255, 0.72), rgba(248, 253, 254, 0.92)),
+			radial-gradient(circle at 16% 18%, rgba(215, 239, 244, 0.7), transparent 32%);
+	}
+
+	.footer-glow {
+		position: absolute;
+		inset: 0;
+		pointer-events: none;
+		background:
+			radial-gradient(circle at 78% 18%, rgba(226, 96, 151, 0.08), transparent 25%),
+			linear-gradient(90deg, rgba(40, 156, 176, 0), rgba(40, 156, 176, 0.16), rgba(222, 184, 94, 0));
+		mask-image: linear-gradient(to bottom, black 0, transparent 54%);
 	}
 
 	.footer-grid {
+		position: relative;
 		display: grid;
-		gap: var(--space-xl);
+		gap: clamp(var(--space-md), 2.4vw, var(--space-xl));
 	}
 
 	.footer-brand {
-		font-family: var(--font-display);
-		font-size: 1.5rem;
+		display: inline-flex;
+		align-items: center;
+		width: min(24rem, 100%);
+		max-width: 100%;
 	}
 
-	.footer-grid p {
-		max-width: 24rem;
-		margin: var(--space-sm) 0 0;
-		color: var(--color-muted);
+	:global(.site-footer .footer-brand .brand-logo),
+	:global(.site-footer .footer-brand .brand-logo picture) {
+		width: 100%;
+	}
+
+	:global(.site-footer .footer-brand .brand-logo.brand-logo-sm img) {
+		width: 100%;
+		max-height: none;
+		mix-blend-mode: multiply;
+	}
+
+	.footer-intro {
+		display: grid;
+		gap: var(--space-md);
+	}
+
+	.footer-actions {
+		display: flex;
+		flex-wrap: wrap;
+		gap: var(--space-xs);
+	}
+
+	.footer-actions a {
+		display: inline-flex;
+		align-items: center;
+		min-height: 2.75rem;
+		padding: 0.7rem 1rem;
+		border: 1px solid transparent;
+		border-radius: var(--radius-pill);
+		background: linear-gradient(130deg, var(--color-spectra-teal), var(--color-oxygen-blue));
+		box-shadow: 0 12px 24px rgba(40, 156, 176, 0.2);
+		color: var(--color-warm-clinical-white);
+		font-size: clamp(0.82rem, 0.3vw + 0.72rem, 0.9rem);
+		font-weight: 600;
+		max-width: 100%;
+		transition:
+			background var(--transition),
+			border-color var(--transition),
+			box-shadow var(--transition),
+			transform var(--transition),
+			color var(--transition);
+	}
+
+	.footer-actions a:hover {
+		background: var(--gradient-spectrum);
+		box-shadow: var(--shadow-spectrum);
+		transform: translateY(-1px);
 	}
 
 	nav {
@@ -77,7 +162,7 @@ const social = ["LinkedIn", "Instagram", "YouTube"];
 
 	nav a {
 		color: var(--color-muted);
-		font-size: 0.92rem;
+		font-size: clamp(0.9rem, 0.3vw + 0.8rem, 0.98rem);
 		transition: color var(--transition);
 	}
 
@@ -101,9 +186,63 @@ const social = ["LinkedIn", "Instagram", "YouTube"];
 		margin: 0;
 	}
 
-	@media (min-width: 780px) {
+	@media (min-width: 700px) and (max-width: 999px) {
 		.footer-grid {
-			grid-template-columns: 1.4fr repeat(3, 1fr);
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
+
+		.footer-intro {
+			grid-column: 1 / -1;
+		}
+	}
+
+	@media (min-width: 1000px) {
+		.footer-grid {
+			grid-template-columns: minmax(15rem, 1.4fr) repeat(4, minmax(0, 0.72fr));
+			align-items: start;
+		}
+	}
+
+	@media (max-width: 699px) {
+		.site-footer {
+			padding-top: var(--space-xl);
+		}
+
+		.footer-grid {
+			gap: var(--space-lg);
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
+
+		.footer-intro {
+			grid-column: 1 / -1;
+		}
+
+		.footer-actions {
+			display: grid;
+		}
+
+		.footer-actions a {
+			width: 100%;
+		}
+
+		nav {
+			gap: clamp(0.45rem, 2.4vw, 0.75rem);
+		}
+
+		h2 {
+			margin-bottom: clamp(0.4rem, 2.6vw, 0.75rem);
+			font-size: clamp(0.8rem, 3.2vw, 0.95rem);
+		}
+
+		nav a {
+			font-size: clamp(1.08rem, 5vw, 1.45rem);
+			line-height: 1.22;
+		}
+	}
+
+	@media (max-width: 380px) {
+		.footer-grid {
+			grid-template-columns: 1fr;
 		}
 	}
 </style>

@@ -1,26 +1,275 @@
 ---
-import Approach from "../components/Approach.astro";
-import AuthorityStrip from "../components/AuthorityStrip.astro";
-import FinalCTA from "../components/FinalCTA.astro";
-import Hero from "../components/Hero.astro";
-import InsightsPreview from "../components/InsightsPreview.astro";
+import CTASection from "../components/CTASection.astro";
 import Layout from "../components/Layout.astro";
-import MediaPreview from "../components/MediaPreview.astro";
-import Philosophy from "../components/Philosophy.astro";
-import Programs from "../components/Programs.astro";
+import PageHero from "../components/PageHero.astro";
 ---
 
 <Layout
-	title="Dr. Lisa Koche | Modern Longevity Medicine"
-	description="A premium static homepage concept for Dr. Lisa Koche, focused on longevity medicine, clinical intelligence, and personalized physiology-informed care."
+	title="Dr. Lisa Koche | Longevity Medicine"
+	description="Modern physician-led longevity medicine by Dr. Lisa Koche, founder of Spectra Wellness."
 	currentPath="/"
 >
-	<Hero />
-	<AuthorityStrip />
-	<Philosophy />
-	<Programs />
-	<Approach />
-	<InsightsPreview />
-	<MediaPreview />
-	<FinalCTA />
+	<PageHero
+		title="Understand. Advocate. Heal."
+		titleLines={["Understand.", "Advocate.", "Heal."]}
+		copy="Science, wisdom, and spiritual alignment to help you understand your body, advocate for yourself, and begin true root-cause healing"
+		copyHtml="Science, wisdom, and spiritual alignment to help you understand your body, advocate for yourself, and begin true <strong class='hero-emphasis'>root-cause healing</strong>"
+		primaryHref="/contact"
+		primaryLabel="Book Consultation"
+		secondaryHref="/programs"
+		secondaryLabel="Explore Programs"
+		mediaLabel="Dr. Lisa Koche Portrait"
+		imageSrc="/images/dr-lisa-koche-headshot.jpeg"
+		imageAlt="Dr. Lisa Koche, physician and longevity thought leader"
+		mediaType="portrait"
+	/>
+
+	<section class="section" aria-labelledby="mission-title">
+		<div class="container mission-shell">
+			<div class="mission-intro">
+				<p class="eyebrow">My Mission</p>
+				<h2 id="mission-title">
+					Empower you with <span class="mission-science">science</span>,
+					<span class="mission-wisdom">wisdom</span>, and
+					<span class="mission-alignment">spiritual alignment</span>
+				</h2>
+				<p>
+					Understand your body, advocate for yourself, and begin true root-cause healing with
+					physician-led clarity
+				</p>
+			</div>
+			<ol class="mission-flow" aria-label="Mission flow">
+				<li>
+					<span class="flow-icon flow-icon-understanding" aria-hidden="true">
+						<svg viewBox="0 0 24 24">
+							<circle cx="12" cy="12" r="7"></circle>
+							<circle cx="12" cy="12" r="2.3"></circle>
+						</svg>
+					</span>
+					<div>
+						<strong>Understanding</strong>
+						<p>Decode your patterns</p>
+					</div>
+				</li>
+				<li>
+					<span class="flow-icon flow-icon-advocating" aria-hidden="true">
+						<svg viewBox="0 0 24 24">
+							<path d="M6 7H18V17H6Z"></path>
+							<path d="M8.5 11.5H15.5"></path>
+						</svg>
+					</span>
+					<div>
+						<strong>Self-Advocating</strong>
+						<p>Ask better questions</p>
+					</div>
+				</li>
+				<li>
+					<span class="flow-icon flow-icon-healing" aria-hidden="true">
+						<svg viewBox="0 0 24 24">
+							<path d="M12 19.2C8.2 16.6 6 14.4 6 11.6C6 9.5 7.6 8 9.8 8C10.9 8 12 8.5 12.7 9.3C13.4 8.5 14.5 8 15.6 8C17.8 8 19.4 9.5 19.4 11.6C19.4 14.4 17.2 16.6 13.4 19.2L12.7 19.7Z"></path>
+						</svg>
+					</span>
+					<div>
+						<strong>Healing</strong>
+						<p>Follow a root-cause plan</p>
+					</div>
+				</li>
+			</ol>
+		</div>
+	</section>
+
+	<CTASection
+		eyebrow="Next Step"
+		title="Write your longevity plan today"
+		singleLineTitle={true}
+		copy="Book an initial consultation or explore programs to find the right entry point into your personalized longevity strategy."
+		primaryHref="/contact"
+		primaryLabel="Book Consultation"
+		secondaryHref="/programs"
+		secondaryLabel="Explore Programs"
+	/>
 </Layout>
+
+<style>
+	.mission-shell {
+		display: grid;
+		gap: clamp(1.1rem, 2.4vw, 1.65rem);
+		align-items: start;
+		padding: clamp(1.35rem, 3vw, 2.35rem);
+		border: 1px solid var(--color-border);
+		border-radius: var(--radius-xl);
+		background:
+			radial-gradient(circle at 8% 18%, rgba(40, 156, 176, 0.14), transparent 16rem),
+			radial-gradient(circle at 94% 78%, rgba(226, 96, 151, 0.1), transparent 18rem),
+			linear-gradient(180deg, rgba(255, 255, 255, 0.84), rgba(255, 255, 255, 0.66));
+		box-shadow: var(--shadow-soft);
+	}
+
+	.mission-intro {
+		display: grid;
+		gap: 0.25rem;
+		max-width: none;
+		width: 100%;
+	}
+
+	.mission-intro h2 {
+		margin: 0;
+		font-family: var(--font-display);
+		font-size: clamp(2.05rem, 4.4vw, 3.9rem);
+		line-height: 1.03;
+		max-width: none;
+		letter-spacing: -0.012em;
+		text-wrap: balance;
+	}
+
+	.mission-intro p:not(.eyebrow) {
+		margin: var(--space-sm) 0 0;
+		color: var(--color-muted);
+		max-width: 70ch;
+		font-size: clamp(0.98rem, 1.15vw, 1.1rem);
+		line-height: 1.5;
+	}
+
+	.mission-science {
+		color: var(--color-spectra-teal);
+	}
+
+	.mission-wisdom {
+		color: var(--color-oxygen-blue);
+	}
+
+	.mission-alignment {
+		color: var(--color-spectra-pink);
+	}
+
+	.mission-flow {
+		display: grid;
+		gap: clamp(1.35rem, 2.8vw, 1.7rem);
+		padding: 0;
+		margin: 0;
+		list-style: none;
+	}
+
+	.mission-flow li {
+		display: grid;
+		grid-template-columns: auto 1fr;
+		gap: 0.8rem;
+		align-items: center;
+		padding: 0.95rem 1.05rem;
+		min-height: 5.25rem;
+		border: 1px solid var(--color-border);
+		border-radius: var(--radius-md);
+		background: rgba(255, 255, 255, 0.76);
+		color: var(--color-muted);
+		position: relative;
+	}
+
+	.mission-flow li:not(:last-child)::before {
+		content: "";
+		position: absolute;
+		left: 2.1rem;
+		top: calc(100% + 0.08rem);
+		width: 2px;
+		height: 0.55rem;
+		background: linear-gradient(180deg, rgba(40, 156, 176, 0.5), rgba(226, 96, 151, 0.48));
+	}
+
+	.mission-flow li:not(:last-child)::after {
+		content: "";
+		position: absolute;
+		left: 1.82rem;
+		top: calc(100% + 0.48rem);
+		width: 0.5rem;
+		height: 0.5rem;
+		border-right: 2px solid rgba(226, 96, 151, 0.72);
+		border-bottom: 2px solid rgba(226, 96, 151, 0.72);
+		transform: rotate(45deg);
+	}
+
+	.flow-icon {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		min-width: 2.2rem;
+		height: 2.2rem;
+		border: 1px solid rgba(40, 156, 176, 0.28);
+		border-radius: var(--radius-pill);
+		background: var(--gradient-spectrum-soft);
+		color: var(--color-deep-evergreen);
+	}
+
+	.flow-icon svg {
+		width: 1rem;
+		height: 1rem;
+		fill: none;
+		stroke-width: 1.9;
+		stroke-linecap: round;
+		stroke-linejoin: round;
+	}
+
+	.flow-icon-understanding svg {
+		stroke: var(--color-spectra-teal);
+	}
+
+	.flow-icon-advocating svg {
+		stroke: var(--color-oxygen-blue);
+	}
+
+	.flow-icon-healing svg {
+		stroke: var(--color-spectra-pink);
+	}
+
+	.mission-flow li strong {
+		color: var(--color-deep-evergreen);
+		display: block;
+		font-size: clamp(1rem, 0.72vw + 0.78rem, 1.12rem);
+		line-height: 1.08;
+	}
+
+	.mission-flow li p {
+		margin: 0.2rem 0 0;
+		font-size: clamp(0.9rem, 0.64vw + 0.72rem, 1rem);
+		line-height: 1.34;
+	}
+
+	@media (min-width: 960px) {
+		.mission-flow {
+			grid-template-columns: repeat(3, minmax(0, 1fr));
+			gap: 1rem;
+		}
+
+		.mission-flow li:not(:last-child)::before {
+			content: "";
+			position: absolute;
+			left: auto;
+			right: -1.05rem;
+			top: 50%;
+			width: 0.92rem;
+			height: 2px;
+			background: linear-gradient(90deg, rgba(40, 156, 176, 0.5), rgba(226, 96, 151, 0.52));
+			transform: translateY(-50%);
+		}
+
+		.mission-flow li:not(:last-child)::after {
+			content: "";
+			left: auto;
+			right: -1.14rem;
+			top: calc(50% - 0.26rem);
+			width: 0.38rem;
+			height: 0.38rem;
+			border-right: 2px solid rgba(226, 96, 151, 0.72);
+			border-bottom: 2px solid rgba(226, 96, 151, 0.72);
+			transform: rotate(-45deg);
+		}
+	}
+
+	@media (max-width: 959px) {
+		.mission-intro h2 {
+			text-wrap: pretty;
+		}
+
+		.mission-flow li {
+			padding: 0.88rem 0.95rem;
+		}
+	}
+</style>

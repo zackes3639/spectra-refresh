@@ -14,10 +14,10 @@ const topics = [
 ];
 
 const credibility = [
-	"Major stage placeholder",
-	"Conference keynote placeholder",
-	"Podcast interview placeholder",
-	"Media feature placeholder",
+	"Major stage feature",
+	"Conference keynote feature",
+	"Podcast interview feature",
+	"Media feature",
 ];
 ---
 
@@ -43,7 +43,7 @@ const credibility = [
 				id="topics-title"
 				eyebrow="Topics"
 				title="Talks that make complex health easier to understand."
-				copy="Topic descriptions are restrained placeholders for future approved speaking materials."
+				copy="Topic descriptions are restrained drafts for future approved speaking materials."
 			/>
 			<div class="topic-grid">
 				{topics.map(([title, copy]) => <TopicCard title={title} copy={copy} />)}
@@ -73,7 +73,7 @@ const credibility = [
 			<div class="video-placeholder" aria-label="Featured appearance video placeholder">
 				<!-- Replace with final approved video embed or media artwork. -->
 				<span aria-hidden="true"></span>
-				<p class="placeholder-note">Featured Appearance Placeholder</p>
+				<p class="placeholder-note">Featured Appearance</p>
 			</div>
 			<div>
 				<p class="eyebrow">Featured Appearance</p>

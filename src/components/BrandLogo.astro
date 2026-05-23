@@ -1,0 +1,58 @@
+---
+interface Props {
+	size?: "sm" | "md";
+	showTagline?: boolean;
+	loading?: "eager" | "lazy";
+}
+
+const { size = "md", loading = "lazy" } = Astro.props;
+---
+
+<span class={`brand-logo brand-logo-${size}`}>
+	<picture>
+		<source srcset="/brand/dr-lisa-koche-logo-white-bg.webp" type="image/webp" />
+		<img
+			src="/brand/dr-lisa-koche-logo-white-bg.png"
+			width="1387"
+			height="407"
+			alt="Dr. Lisa Koche Longevity Medicine"
+			loading={loading}
+			decoding="async"
+		/>
+	</picture>
+</span>
+
+<style>
+	.brand-logo {
+		display: inline-flex;
+		align-items: center;
+	}
+
+	.brand-logo picture {
+		display: inline-flex;
+		align-items: center;
+		max-width: 100%;
+	}
+
+	.brand-logo img {
+		display: block;
+		width: auto;
+		height: auto;
+		max-width: 100%;
+		object-fit: contain;
+	}
+
+	.brand-logo-md img {
+		max-height: 4rem;
+	}
+
+	.brand-logo-sm img {
+		max-height: 3.2rem;
+	}
+
+	@media (max-width: 760px) {
+		.brand-logo-md img {
+			max-height: 3rem;
+		}
+	}
+</style>
