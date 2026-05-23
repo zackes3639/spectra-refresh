@@ -82,7 +82,7 @@ import PageHero from "../components/PageHero.astro";
 		eyebrow="Next Step"
 		title="Write your longevity plan today"
 		singleLineTitle={true}
-		copy="Book an initial consultation or explore programs to find the right entry point into your personalized longevity strategy."
+		copy="Book an initial consultation or explore programs to find the right entry point into your personalized longevity strategy"
 		primaryHref="/contact"
 		primaryLabel="Book Consultation"
 		secondaryHref="/programs"
@@ -235,16 +235,16 @@ import PageHero from "../components/PageHero.astro";
 	@media (min-width: 960px) {
 		.mission-flow {
 			grid-template-columns: repeat(3, minmax(0, 1fr));
-			gap: 1rem;
+			gap: clamp(1.5rem, 2.4vw, 2rem);
 		}
 
 		.mission-flow li:not(:last-child)::before {
 			content: "";
 			position: absolute;
 			left: auto;
-			right: -1.05rem;
+			right: calc(clamp(1.5rem, 2.4vw, 2rem) * -0.68);
 			top: 50%;
-			width: 0.92rem;
+			width: clamp(0.72rem, 1.4vw, 1rem);
 			height: 2px;
 			background: linear-gradient(90deg, rgba(40, 156, 176, 0.5), rgba(226, 96, 151, 0.52));
 			transform: translateY(-50%);
@@ -253,7 +253,7 @@ import PageHero from "../components/PageHero.astro";
 		.mission-flow li:not(:last-child)::after {
 			content: "";
 			left: auto;
-			right: -1.14rem;
+			right: calc(clamp(1.5rem, 2.4vw, 2rem) * -0.72);
 			top: calc(50% - 0.26rem);
 			width: 0.38rem;
 			height: 0.38rem;

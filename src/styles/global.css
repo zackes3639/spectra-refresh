@@ -66,7 +66,11 @@ select {
 }
 
 .section {
-	padding-block: var(--space-3xl);
+	padding-block: clamp(2.35rem, 4.8vw, 4rem);
+}
+
+main > section + section.section {
+	padding-top: 0;
 }
 
 .section-soft {
@@ -244,7 +248,11 @@ li {
 
 @media (max-width: 760px) {
 	.section {
-		padding-block: clamp(2rem, 6.5vw, 2.85rem);
+		padding-block: clamp(1.65rem, 5.5vw, 2.25rem);
+	}
+
+	main > section + section.section {
+		padding-top: 0;
 	}
 
 	.container,
