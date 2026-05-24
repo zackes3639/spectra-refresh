@@ -1,0 +1,90 @@
+---
+import { isExternalUrl } from "../data/site";
+import type { MediaAppearance } from "../data/media";
+
+interface Props {
+	items: MediaAppearance[];
+}
+
+const { items } = Astro.props;
+const categoryLabel: Record<MediaAppearance["category"], string> = {
+	tv: "TV",
+	podcast: "Podcast",
+	article: "Article",
+	video: "Video",
+};
+---
+
+<div class="media-grid">
+	{
+		items.map((item) => {
+			const linkAttrs = isExternalUrl(item.href) ? { target: "_blank", rel: "noopener noreferrer" } : {};
+			return (
+				<article class="card media-card">
+					<p>{categoryLabel[item.category]}</p>
+					<h3>{item.title}</h3>
+					<span>{item.outlet}</span>
+					<a href={item.href} {...linkAttrs}>View appearance</a>
+				</article>
+			);
+		})
+	}
+</div>
+
+<style>
+	.media-grid {
+		display: grid;
+		gap: var(--space-lg);
+	}
+
+	.media-card {
+		display: flex;
+		min-height: 16rem;
+		flex-direction: column;
+		align-items: flex-start;
+		padding: clamp(1.2rem, 3vw, 1.75rem);
+	}
+
+	p {
+		margin: 0 0 var(--space-lg);
+		color: var(--color-spectra-teal);
+		font-size: 0.72rem;
+		font-weight: 800;
+		letter-spacing: 0.12em;
+		text-transform: uppercase;
+	}
+
+	h3 {
+		margin: 0;
+		font-family: var(--font-display);
+		font-size: clamp(1.35rem, 2.2vw, 1.9rem);
+		font-weight: 400;
+		line-height: 1.12;
+	}
+
+	span {
+		display: block;
+		margin-top: var(--space-sm);
+		color: var(--color-muted);
+		font-size: 0.92rem;
+	}
+
+	a {
+		margin-top: auto;
+		color: var(--color-spectra-teal);
+		font-size: 0.86rem;
+		font-weight: 800;
+	}
+
+	@media (min-width: 760px) {
+		.media-grid {
+			grid-template-columns: repeat(2, 1fr);
+		}
+	}
+
+	@media (min-width: 1040px) {
+		.media-grid {
+			grid-template-columns: repeat(3, 1fr);
+		}
+	}
+</style>

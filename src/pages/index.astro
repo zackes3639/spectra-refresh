@@ -2,43 +2,99 @@
 import CTASection from "../components/CTASection.astro";
 import Layout from "../components/Layout.astro";
 import PageHero from "../components/PageHero.astro";
+import SectionIntro from "../components/SectionIntro.astro";
+import ServiceCard from "../components/ServiceCard.astro";
+import TestimonialCard from "../components/TestimonialCard.astro";
+import { services } from "../data/services";
+import { siteLinks } from "../data/site";
+import { testimonials } from "../data/testimonials";
+
+const featuredServices = services.filter((service) =>
+	["functional-medicine", "performance-longevity", "applied-kinesiology", "chiropractic-care", "aesthetics-regenerative-wellness"].includes(service.slug),
+);
+
+const featuredOfferings = [
+	{
+		title: "Functional Medicine Care",
+		copy: "A deeper clinical pathway for patients who want time, context, labs, coaching, and follow-through.",
+		href: "/membership",
+	},
+	{
+		title: "Destination Health Immersion",
+		copy: "A private, focused Tampa experience for people seeking deeper diagnostics, strategy, and wellness support.",
+		href: "/services/destination-health",
+	},
+	{
+		title: "Healing Arts Collective",
+		copy: "A rotating collective of independent practitioners offering complementary care in one trusted space.",
+		href: "/services/healing-arts-collective",
+	},
+];
 ---
 
 <Layout
-	title="Dr. Lisa Koche | Longevity Medicine"
-	description="Modern physician-led longevity medicine by Dr. Lisa Koche, founder of Spectra Wellness."
+	title="Dr. Lisa Koche | Functional Medicine & Longevity Physician"
+	description="Explore Dr. Lisa Koche's functional medicine, longevity, education, speaking, and whole-person health work from her Tampa clinical home."
 	currentPath="/"
 >
 	<PageHero
-		title="Understand. Advocate. Heal."
-		titleLines={["Understand.", "Advocate.", "Heal."]}
-		copy="Science, wisdom, and spiritual alignment to help you understand your body, advocate for yourself, and begin true root-cause healing"
-		copyHtml="Science, wisdom, and spiritual alignment to help you understand your body, advocate for yourself, and begin true <strong class='hero-emphasis'>root-cause healing</strong>"
-		primaryHref="/contact"
-		primaryLabel="Book Consultation"
-		secondaryHref="/programs"
-		secondaryLabel="Explore Programs"
+		title="Modern medicine, root-cause care, and longevity optimization."
+		copy="Dr. Lisa Koche is a triple board-certified physician, educator, speaker, and root-cause medicine advocate helping patients understand their bodies, reclaim agency, and build long-term vitality."
+		primaryHref={siteLinks.discoveryCall}
+		primaryLabel="Book a Discovery Call"
+		secondaryHref="/about"
+		secondaryLabel="Meet Dr. Lisa"
 		mediaLabel="Dr. Lisa Koche Portrait"
 		imageSrc="/images/dr-lisa-koche-headshot.jpeg"
-		imageAlt="Dr. Lisa Koche, physician and longevity thought leader"
+		imageAlt="Dr. Lisa Koche"
 		mediaType="portrait"
 	/>
 
-	<section class="section" aria-labelledby="mission-title">
-		<div class="container mission-shell">
+	<section class="section" aria-labelledby="promise-title">
+		<div class="container promise-panel">
+			<div>
+				<p class="eyebrow">Why Dr. Lisa</p>
+				<h2 id="promise-title">For patients tired of being rushed, unheard, or left without answers.</h2>
+			</div>
+			<div>
+				<p>
+					Dr. Lisa's work gives people more room to connect symptoms, history, diagnostics, lifestyle,
+					and goals. Her clinical lens blends traditional and integrative medicine without promising
+					shortcuts or one-size-fits-all answers.
+				</p>
+				<a class="button button-secondary" href="/approach">Learn Her Approach</a>
+			</div>
+		</div>
+	</section>
+
+	<section class="section section-soft" aria-labelledby="services-title">
+		<div class="container">
+			<SectionIntro
+				id="services-title"
+				eyebrow="Services"
+				title="Care pathways shaped by a whole-person lens."
+				copy="Start with functional medicine, recovery therapies, structural support, aesthetics, or root-cause assessment. Dr. Lisa's clinical home can help clarify which doorway fits."
+			/>
+			<div class="service-grid">
+				{featuredServices.map((service) => <ServiceCard service={service} compact />)}
+			</div>
+		</div>
+	</section>
+
+	<section class="section" aria-labelledby="membership-title">
+		<div class="container membership-shell">
 			<div class="mission-intro">
-				<p class="eyebrow">My Mission</p>
-				<h2 id="mission-title">
-					Empower you with <span class="mission-science">science</span>,
-					<span class="mission-wisdom">wisdom</span>, and
-					<span class="mission-alignment">spiritual alignment</span>
+				<p class="eyebrow">Clinical Care</p>
+				<h2 id="membership-title">
+					A more connected way to access the <span class="mission-science">full spectrum</span> of care.
 				</h2>
 				<p>
-					Understand your body, advocate for yourself, and begin true root-cause healing with
-					physician-led clarity
+					For patients who need deeper support, the functional medicine care model can bring clinical
+					continuity, coaching, advanced labs, IV support, and performance therapies into a more guided
+					relationship.
 				</p>
 			</div>
-			<ol class="mission-flow" aria-label="Mission flow">
+			<ol class="mission-flow" aria-label="Care flow">
 				<li>
 					<span class="flow-icon flow-icon-understanding" aria-hidden="true">
 						<svg viewBox="0 0 24 24">
@@ -47,8 +103,8 @@ import PageHero from "../components/PageHero.astro";
 						</svg>
 					</span>
 					<div>
-						<strong>Understanding</strong>
-						<p>Decode your patterns</p>
+						<strong>Clarify</strong>
+						<p>Understand your baseline</p>
 					</div>
 				</li>
 				<li>
@@ -59,8 +115,8 @@ import PageHero from "../components/PageHero.astro";
 						</svg>
 					</span>
 					<div>
-						<strong>Self-Advocating</strong>
-						<p>Ask better questions</p>
+						<strong>Support</strong>
+						<p>Follow a guided plan</p>
 					</div>
 				</li>
 				<li>
@@ -70,28 +126,124 @@ import PageHero from "../components/PageHero.astro";
 						</svg>
 					</span>
 					<div>
-						<strong>Healing</strong>
-						<p>Follow a root-cause plan</p>
+						<strong>Refine</strong>
+						<p>Adjust as needs evolve</p>
 					</div>
 				</li>
 			</ol>
+			<a class="button button-primary" href="/membership">Explore Care Model</a>
+		</div>
+	</section>
+
+	<section class="section section-soft" aria-labelledby="lisa-title">
+		<div class="container authority-grid">
+			<div>
+				<p class="eyebrow">Dr. Lisa Koche</p>
+				<h2 id="lisa-title">The physician authority behind the practice model.</h2>
+			</div>
+			<div>
+				<p>
+					Dr. Lisa is a triple board-certified physician, educator, speaker, and longtime root-cause
+					medicine advocate. Her own health story informs a body of work built for people who want to
+					understand their biology and participate in their care.
+				</p>
+				<div class="authority-actions">
+					<a class="button button-secondary" href="/about">Meet Dr. Lisa</a>
+					<a class="button button-secondary" href="/speaking">Speaking</a>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="section" aria-labelledby="new-title">
+		<div class="container">
+			<SectionIntro
+				id="new-title"
+				eyebrow="Featured"
+				title="Featured ways to work with Dr. Lisa's world."
+				copy="Clinical care, private intensives, and trusted adjunctive support for people who want a deeper health conversation."
+			/>
+			<div class="offering-grid">
+				{featuredOfferings.map((item) => (
+					<article class="card offering-card">
+						<h3>{item.title}</h3>
+						<p>{item.copy}</p>
+						<a href={item.href}>Learn more</a>
+					</article>
+				))}
+			</div>
+		</div>
+	</section>
+
+	<section class="section section-soft" aria-labelledby="testimonial-title">
+		<div class="container">
+			<SectionIntro
+				id="testimonial-title"
+				eyebrow="Patient Themes"
+				title="Patients remember feeling heard."
+				copy="These summaries emphasize trust, continuity, and whole-person support without exaggerated claims."
+			/>
+			<div class="testimonial-grid">
+				{testimonials.slice(0, 3).map((testimonial) => <TestimonialCard testimonial={testimonial} />)}
+			</div>
 		</div>
 	</section>
 
 	<CTASection
 		eyebrow="Next Step"
-		title="Write your longevity plan today"
+		title="Your first step starts here."
 		singleLineTitle={true}
-		copy="Book an initial consultation or explore programs to find the right entry point into your personalized longevity strategy"
-		primaryHref="/contact"
-		primaryLabel="Book Consultation"
-		secondaryHref="/programs"
-		secondaryLabel="Explore Programs"
+		copy="Book a discovery call or contact the office to clarify the right next step for care, therapies, education, or speaking."
+		primaryHref={siteLinks.discoveryCall}
+		primaryLabel="Book Discovery Call"
+		secondaryHref="/contact"
+		secondaryLabel="Contact"
 	/>
 </Layout>
 
 <style>
-	.mission-shell {
+	.promise-panel,
+	.authority-grid {
+		display: grid;
+		gap: clamp(2rem, 6vw, 5rem);
+		align-items: start;
+	}
+
+	.promise-panel {
+		padding: clamp(1.35rem, 3vw, 2.35rem);
+		border: 1px solid var(--color-border);
+		border-radius: var(--radius-xl);
+		background:
+			radial-gradient(circle at 8% 18%, rgba(40, 156, 176, 0.14), transparent 16rem),
+			radial-gradient(circle at 94% 78%, rgba(226, 96, 151, 0.1), transparent 18rem),
+			linear-gradient(180deg, rgba(255, 255, 255, 0.84), rgba(255, 255, 255, 0.66));
+		box-shadow: var(--shadow-soft);
+	}
+
+	.promise-panel h2,
+	.authority-grid h2 {
+		margin: 0;
+		font-family: var(--font-display);
+		font-size: clamp(2.05rem, 4.4vw, 3.9rem);
+		font-weight: 400;
+		line-height: 1.03;
+	}
+
+	.promise-panel p,
+	.authority-grid p {
+		margin: 0 0 var(--space-lg);
+		color: var(--color-muted);
+	}
+
+	.service-grid,
+	.offering-grid,
+	.testimonial-grid {
+		display: grid;
+		gap: var(--space-lg);
+		margin-top: var(--space-2xl);
+	}
+
+	.membership-shell {
 		display: grid;
 		gap: clamp(1.1rem, 2.4vw, 1.65rem);
 		align-items: start;
@@ -108,38 +260,29 @@ import PageHero from "../components/PageHero.astro";
 	.mission-intro {
 		display: grid;
 		gap: 0.25rem;
-		max-width: none;
 		width: 100%;
 	}
 
 	.mission-intro h2 {
+		max-width: none;
 		margin: 0;
 		font-family: var(--font-display);
 		font-size: clamp(2.05rem, 4.4vw, 3.9rem);
 		line-height: 1.03;
-		max-width: none;
 		letter-spacing: -0.012em;
 		text-wrap: balance;
 	}
 
 	.mission-intro p:not(.eyebrow) {
+		max-width: 70ch;
 		margin: var(--space-sm) 0 0;
 		color: var(--color-muted);
-		max-width: 70ch;
 		font-size: clamp(0.98rem, 1.15vw, 1.1rem);
 		line-height: 1.5;
 	}
 
 	.mission-science {
 		color: var(--color-spectra-teal);
-	}
-
-	.mission-wisdom {
-		color: var(--color-oxygen-blue);
-	}
-
-	.mission-alignment {
-		color: var(--color-spectra-pink);
 	}
 
 	.mission-flow {
@@ -151,38 +294,38 @@ import PageHero from "../components/PageHero.astro";
 	}
 
 	.mission-flow li {
+		position: relative;
 		display: grid;
 		grid-template-columns: auto 1fr;
 		gap: 0.8rem;
 		align-items: center;
-		padding: 0.95rem 1.05rem;
 		min-height: 5.25rem;
+		padding: 0.95rem 1.05rem;
 		border: 1px solid var(--color-border);
 		border-radius: var(--radius-md);
 		background: rgba(255, 255, 255, 0.76);
 		color: var(--color-muted);
-		position: relative;
 	}
 
 	.mission-flow li:not(:last-child)::before {
-		content: "";
 		position: absolute;
-		left: 2.1rem;
 		top: calc(100% + 0.08rem);
+		left: 2.1rem;
 		width: 2px;
 		height: 0.55rem;
 		background: linear-gradient(180deg, rgba(40, 156, 176, 0.5), rgba(226, 96, 151, 0.48));
+		content: "";
 	}
 
 	.mission-flow li:not(:last-child)::after {
-		content: "";
 		position: absolute;
-		left: 1.82rem;
 		top: calc(100% + 0.48rem);
+		left: 1.82rem;
 		width: 0.5rem;
 		height: 0.5rem;
 		border-right: 2px solid rgba(226, 96, 151, 0.72);
 		border-bottom: 2px solid rgba(226, 96, 151, 0.72);
+		content: "";
 		transform: rotate(45deg);
 	}
 
@@ -220,8 +363,8 @@ import PageHero from "../components/PageHero.astro";
 	}
 
 	.mission-flow li strong {
-		color: var(--color-deep-evergreen);
 		display: block;
+		color: var(--color-deep-evergreen);
 		font-size: clamp(1rem, 0.72vw + 0.78rem, 1.12rem);
 		line-height: 1.08;
 	}
@@ -232,18 +375,67 @@ import PageHero from "../components/PageHero.astro";
 		line-height: 1.34;
 	}
 
+	.membership-shell > .button {
+		width: fit-content;
+	}
+
+	.authority-actions {
+		display: flex;
+		flex-wrap: wrap;
+		gap: var(--space-sm);
+	}
+
+	.offering-card {
+		display: flex;
+		min-height: 17rem;
+		flex-direction: column;
+		align-items: flex-start;
+		padding: clamp(1.25rem, 3vw, 1.85rem);
+	}
+
+	.offering-card h3 {
+		margin: 0;
+		font-family: var(--font-display);
+		font-size: clamp(1.45rem, 2.4vw, 2rem);
+		font-weight: 400;
+		line-height: 1.1;
+	}
+
+	.offering-card p {
+		margin: var(--space-md) 0 var(--space-xl);
+		color: var(--color-muted);
+	}
+
+	.offering-card a {
+		margin-top: auto;
+		color: var(--color-spectra-teal);
+		font-size: 0.88rem;
+		font-weight: 800;
+	}
+
+	@media (min-width: 760px) {
+		.service-grid,
+		.offering-grid,
+		.testimonial-grid {
+			grid-template-columns: repeat(3, 1fr);
+		}
+	}
+
 	@media (min-width: 960px) {
+		.promise-panel,
+		.authority-grid {
+			grid-template-columns: 0.85fr 1fr;
+		}
+
 		.mission-flow {
 			grid-template-columns: repeat(3, minmax(0, 1fr));
 			gap: clamp(1.5rem, 2.4vw, 2rem);
 		}
 
 		.mission-flow li:not(:last-child)::before {
-			content: "";
-			position: absolute;
-			left: auto;
-			right: calc(clamp(1.5rem, 2.4vw, 2rem) * -0.68);
 			top: 50%;
+			right: calc(clamp(1.5rem, 2.4vw, 2rem) * -0.68);
+			left: auto;
 			width: clamp(0.72rem, 1.4vw, 1rem);
 			height: 2px;
 			background: linear-gradient(90deg, rgba(40, 156, 176, 0.5), rgba(226, 96, 151, 0.52));
@@ -251,25 +443,14 @@ import PageHero from "../components/PageHero.astro";
 		}
 
 		.mission-flow li:not(:last-child)::after {
-			content: "";
-			left: auto;
-			right: calc(clamp(1.5rem, 2.4vw, 2rem) * -0.72);
 			top: calc(50% - 0.26rem);
+			right: calc(clamp(1.5rem, 2.4vw, 2rem) * -0.72);
+			left: auto;
 			width: 0.38rem;
 			height: 0.38rem;
 			border-right: 2px solid rgba(226, 96, 151, 0.72);
 			border-bottom: 2px solid rgba(226, 96, 151, 0.72);
 			transform: rotate(-45deg);
-		}
-	}
-
-	@media (max-width: 959px) {
-		.mission-intro h2 {
-			text-wrap: pretty;
-		}
-
-		.mission-flow li {
-			padding: 0.88rem 0.95rem;
 		}
 	}
 </style>

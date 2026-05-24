@@ -9,9 +9,10 @@ const { currentPath = "/" } = Astro.props;
 
 const navItems = [
 	{ label: "About", href: "/about" },
-	{ label: "Programs", href: "/programs" },
 	{ label: "Approach", href: "/approach" },
-	{ label: "Insights", href: "/insights" },
+	{ label: "Services", href: "/services" },
+	{ label: "Programs", href: "/programs" },
+	{ label: "Resources", href: "/resources" },
 	{ label: "Speaking", href: "/speaking" },
 	{ label: "Contact", href: "/contact" },
 ];
@@ -20,10 +21,12 @@ const desktopNavItems = navItems.filter((item) => item.href !== "/contact");
 
 const normalizePath = (path: string) => path.replace(/\/$/, "") || "/";
 const activePath = normalizePath(currentPath);
-const isActive = (href: string) =>
-	href === "/programs"
-		? activePath === "/programs" || activePath.startsWith("/programs/")
-		: activePath === href;
+const isActive = (href: string) => {
+	if (href === "/services") return activePath === "/services" || activePath.startsWith("/services/");
+	if (href === "/programs") return activePath === "/programs" || activePath.startsWith("/programs/");
+	if (href === "/resources") return activePath === "/resources" || activePath.startsWith("/resources/") || activePath === "/insights";
+	return activePath === href;
+};
 ---
 
 <header class="site-header" aria-label="Primary navigation">
@@ -57,7 +60,7 @@ const isActive = (href: string) =>
 						))
 					}
 				</nav>
-				<a class="button button-primary header-cta mobile-cta" href="/contact">Book Consultation</a>
+				<a class="button button-primary header-cta mobile-cta" href="/contact">Book Discovery</a>
 			</div>
 		</details>
 	</div>

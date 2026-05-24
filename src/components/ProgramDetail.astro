@@ -14,17 +14,17 @@ const { program } = Astro.props;
 
 <Layout
 	title={`${program.title} | Dr. Lisa Koche`}
-	description={`${program.title} is a static program concept page for personalized, data-informed longevity care.`}
+	description={`${program.title} is an education pathway from Dr. Lisa Koche for personalized, data-informed longevity care.`}
 	currentPath={`/programs/${program.slug}`}
 >
 	<PageHero
 		title={program.title}
 		copy={program.summary}
 		primaryHref="/contact"
-		primaryLabel="Start Assessment"
+		primaryLabel="Ask About Fit"
 		secondaryHref="/programs"
-		secondaryLabel="Explore All Programs"
-		mediaLabel={`${program.title} Imagery Placeholder`}
+		secondaryLabel="Explore Programs"
+		mediaLabel={`${program.title} imagery`}
 	/>
 
 	<section class="section" aria-labelledby="who-title">
@@ -33,7 +33,7 @@ const { program } = Astro.props;
 				id="who-title"
 				eyebrow="Fit"
 				title="Who this is for"
-				copy="This static concept copy should be reviewed against final clinical, legal, and brand positioning before production."
+				copy="Use this page as education and orientation. Clinical decisions require individualized provider review."
 			/>
 			<div class="detail-list">
 				{program.who.map((item) => <p>{item}</p>)}
@@ -88,11 +88,11 @@ const { program } = Astro.props;
 
 	<CTASection
 		title="Start with a clearer picture of your physiology."
-		copy="Begin with an assessment conversation, or return to the programs overview to compare pathways."
+		copy="Begin with a care conversation, or return to the programs overview to compare education pathways."
 		primaryHref="/contact"
-		primaryLabel="Start Assessment"
+		primaryLabel="Contact"
 		secondaryHref="/programs"
-		secondaryLabel="Explore All Programs"
+		secondaryLabel="Explore Programs"
 	/>
 </Layout>
 

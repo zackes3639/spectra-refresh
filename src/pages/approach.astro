@@ -7,35 +7,50 @@ import SectionIntro from "../components/SectionIntro.astro";
 const steps = [
 	{
 		title: "Understand",
-		copy: "Build a fuller clinical picture using history, symptoms, diagnostics, lifestyle context, and goals.",
-		details: ["Health story and timeline", "Relevant labs and diagnostics", "Lifestyle and recovery context"],
+		copy: "Build a fuller picture with symptoms, history, labs, lifestyle, structure, recovery, and goals.",
+		details: ["Health story and timeline", "Advanced diagnostic context", "Lifestyle and recovery patterns"],
 	},
 	{
 		title: "Personalize",
-		copy: "Translate patterns into a plan that respects the person, not just isolated data points.",
-		details: ["Root-cause pattern review", "Prioritized care planning", "Education for better decisions"],
+		copy: "Translate patterns into a plan that reflects the person, not just isolated data points.",
+		details: ["Root-cause pattern review", "Priority setting", "Education and shared decision-making"],
 	},
 	{
 		title: "Optimize",
-		copy: "Refine the strategy over time as markers, capacity, and lived experience change.",
-		details: ["Follow-up interpretation", "Protocol refinement", "Long-term resilience focus"],
+		copy: "Refine care over time as markers, capacity, symptoms, and lived experience change.",
+		details: ["Follow-up interpretation", "Therapy and protocol refinement", "Long-term vitality focus"],
 	},
+];
+
+const systems = [
+	"Metabolism",
+	"Hormones",
+	"Inflammation",
+	"Gut health",
+	"Toxins",
+	"Sleep",
+	"Stress chemistry",
+	"Movement",
+	"Nervous system",
+	"Structure",
+	"Mitochondria",
+	"Cellular health",
 ];
 ---
 
 <Layout
-	title="Approach | Dr. Lisa Koche"
-	description="Explore a whole-system, data-informed clinical approach to personalized longevity and health optimization."
+	title="Dr. Lisa's Approach | Root-Cause Functional Medicine"
+	description="Understand Dr. Lisa Koche's patient-centered approach to root-cause care, advanced diagnostics, personalized planning, and long-term vitality."
 	currentPath="/approach"
 >
 	<PageHero
-		title="A more complete way to understand and optimize health."
-		copy="The approach looks for meaningful patterns across physiology, lifestyle, symptoms, diagnostics, and long-term goals."
-		primaryHref="/programs"
-		primaryLabel="Explore Programs"
+		title="Understand the pattern. Personalize the plan. Support the whole person."
+		copy="Dr. Lisa's approach combines functional medicine, advanced diagnostics, structural support, performance therapies, and education so care can be more connected and less reactive."
+		primaryHref="/services"
+		primaryLabel="Explore Services"
 		secondaryHref="/contact"
-		secondaryLabel="Start Assessment"
-		mediaLabel="Clinical Methodology Visual Placeholder"
+		secondaryLabel="Book Discovery"
+		mediaLabel="Clinical methodology visual"
 	/>
 
 	<section class="section" aria-labelledby="framework-title">
@@ -44,7 +59,7 @@ const steps = [
 				id="framework-title"
 				eyebrow="Framework"
 				title="Understand. Personalize. Optimize."
-				copy="A simple structure for care that can hold complexity without making the experience feel overwhelming."
+				copy="A simple structure for care that can hold complexity without making the patient experience feel scattered."
 			/>
 			<div class="framework-grid">
 				{steps.map((step, index) => (
@@ -61,56 +76,63 @@ const steps = [
 		</div>
 	</section>
 
-	<section class="section section-soft" aria-labelledby="root-title">
+	<section class="section section-soft" aria-labelledby="systems-title">
 		<div class="container two-column root-grid">
 			<div>
-				<p class="eyebrow">Whole-System Philosophy</p>
-				<h2 id="root-title">Root-cause care looks for relationships, not just results.</h2>
+				<p class="eyebrow">What We Look At</p>
+				<h2 id="systems-title">Root-cause care looks for relationships, not just results.</h2>
 			</div>
-			<div class="editorial-copy">
+			<div>
 				<p>
-					The body is an interconnected system. Metabolism, hormones, inflammation, immune signaling,
-					sleep, stress chemistry, digestion, nutrition, toxins, movement, and emotional load can all
-					shape how a person feels and functions.
+					The body is an interconnected system. Dr. Lisa's team considers how core systems may shape
+					symptoms, resilience, recovery, and long-term vitality.
 				</p>
-				<p>
-					This methodology is designed to make those relationships easier to see, prioritize, and
-					translate into careful next steps.
-				</p>
+				<div class="system-tags" aria-label="Systems reviewed in care">
+					{systems.map((system) => <span>{system}</span>)}
+				</div>
 			</div>
 		</div>
 	</section>
 
-	<section class="section" aria-labelledby="technology-title">
-		<div class="container intelligence-panel">
+	<section class="section" aria-labelledby="journey-title">
+		<div class="container journey-panel">
 			<div>
-				<p class="eyebrow">Technology & Intelligence</p>
-				<h2 id="technology-title">Data can strengthen care when it remains in service of the person.</h2>
-				<p>
-					Diagnostics, tracking, and longitudinal insight can help reveal patterns over time. This
-					concept describes a data-informed clinical point of view, not a live software platform or
-					patient portal.
-				</p>
-				<!-- Final platform, technology, tracking, and legal language should be approved before production. -->
+				<p class="eyebrow">Care Journey</p>
+				<h2 id="journey-title">Reclaim, heal, perform, and transcend.</h2>
 			</div>
-			<aside aria-label="Data-informed care placeholders">
-				<span>01</span>
-				<strong>Clinical interpretation</strong>
-				<span>02</span>
-				<strong>Longitudinal context</strong>
-				<span>03</span>
-				<strong>Personalized refinement</strong>
-			</aside>
+			<p>
+				The care journey gives language to a flexible process: stabilize foundations, address deeper
+				drivers, strengthen capacity, and support whole-person alignment. The sequence is educational and
+				individual plans vary.
+			</p>
+		</div>
+	</section>
+
+	<section class="section section-soft" aria-labelledby="connected-title">
+		<div class="container connected-grid">
+			<SectionIntro
+				id="connected-title"
+				eyebrow="Connected Care"
+				title="The practice works because services are not treated as separate silos."
+				copy="Functional medicine, primary care, performance therapies, structural care, aesthetics, and healing arts can each answer a different part of the same human story."
+			/>
+			<div class="connection-list">
+				<a href="/services/functional-medicine">Functional medicine</a>
+				<a href="/services/performance-longevity">Performance center</a>
+				<a href="/services/chiropractic-care">Structural care</a>
+				<a href="/services/aesthetics-regenerative-wellness">Functional aesthetics</a>
+				<a href="/services/healing-arts-collective">Healing Arts Collective</a>
+			</div>
 		</div>
 	</section>
 
 	<CTASection
-		title="Find the pathway that matches your physiology."
-		copy="Explore the program overview or start an assessment conversation to clarify where care should begin."
-		primaryHref="/programs"
-		primaryLabel="Explore Programs"
+		title="Find the doorway that matches your physiology."
+		copy="Explore the services hub or start a discovery conversation to clarify where care should begin."
+		primaryHref="/services"
+		primaryLabel="Explore Services"
 		secondaryHref="/contact"
-		secondaryLabel="Start Assessment"
+		secondaryLabel="Book Discovery"
 	/>
 </Layout>
 
@@ -138,7 +160,7 @@ const steps = [
 
 	.framework-card h3,
 	.root-grid h2,
-	.intelligence-panel h2 {
+	.journey-panel h2 {
 		margin: var(--space-md) 0 0;
 		font-family: var(--font-display);
 		font-size: clamp(1.9rem, 4vw, 3.2rem);
@@ -146,9 +168,14 @@ const steps = [
 		line-height: 1.05;
 	}
 
+	.root-grid h2,
+	.journey-panel h2 {
+		margin-top: 0;
+	}
+
 	.framework-card p,
-	.editorial-copy p,
-	.intelligence-panel p {
+	.root-grid p,
+	.journey-panel p {
 		color: var(--color-muted);
 	}
 
@@ -171,18 +198,30 @@ const steps = [
 		align-items: start;
 	}
 
-	.editorial-copy {
-		display: grid;
-		gap: var(--space-md);
+	.system-tags {
+		display: flex;
+		flex-wrap: wrap;
+		gap: var(--space-xs);
+		margin-top: var(--space-lg);
 	}
 
-	.editorial-copy p {
-		margin: 0;
+	.system-tags span {
+		display: inline-flex;
+		align-items: center;
+		min-height: 2.25rem;
+		padding: 0.55rem 0.8rem;
+		border: 1px solid var(--color-border);
+		border-radius: var(--radius-pill);
+		background: rgba(255, 255, 255, 0.58);
+		color: var(--color-muted);
+		font-size: 0.84rem;
+		font-weight: 700;
 	}
 
-	.intelligence-panel {
+	.journey-panel {
 		display: grid;
-		gap: var(--space-2xl);
+		gap: clamp(2rem, 6vw, 5rem);
+		align-items: start;
 		padding: clamp(1.5rem, 5vw, 4rem);
 		border: 1px solid rgba(80, 166, 163, 0.28);
 		border-radius: var(--radius-xl);
@@ -193,42 +232,35 @@ const steps = [
 		box-shadow: var(--shadow-spectrum);
 	}
 
-	.intelligence-panel h2 {
-		max-width: 48rem;
-	}
-
-	.intelligence-panel p {
-		max-width: 42rem;
-	}
-
-	.intelligence-panel aside {
+	.connected-grid {
 		display: grid;
-		grid-template-columns: auto 1fr;
-		gap: var(--space-sm) var(--space-md);
-		align-content: start;
+		gap: var(--space-2xl);
 	}
 
-	.intelligence-panel aside span {
-		color: var(--color-spectra-teal);
-		font-family: var(--font-display);
+	.connection-list {
+		display: grid;
+		gap: var(--space-md);
 	}
 
-	.intelligence-panel aside strong {
-		padding-bottom: var(--space-md);
-		border-bottom: 1px solid rgba(80, 166, 163, 0.18);
+	.connection-list a {
+		padding: var(--space-md) 0;
+		border-top: 1px solid rgba(80, 166, 163, 0.18);
+		color: var(--color-deep-evergreen);
 		font-family: var(--font-display);
-		font-size: 1.35rem;
-		font-weight: 400;
+		font-size: clamp(1.35rem, 2.2vw, 1.85rem);
+		line-height: 1.08;
 	}
 
 	@media (min-width: 820px) {
 		.framework-grid {
 			grid-template-columns: repeat(3, 1fr);
 		}
+	}
 
-		.intelligence-panel {
-			grid-template-columns: 1fr minmax(18rem, 0.48fr);
-			align-items: start;
+	@media (min-width: 940px) {
+		.journey-panel,
+		.connected-grid {
+			grid-template-columns: 0.88fr 1fr;
 		}
 	}
 </style>

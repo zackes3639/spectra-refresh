@@ -1,0 +1,57 @@
+---
+import type { Testimonial } from "../data/testimonials";
+
+interface Props {
+	testimonial: Testimonial;
+}
+
+const { testimonial } = Astro.props;
+const themeLabels: Record<Testimonial["theme"], string> = {
+	"root-cause": "Root-cause clarity",
+	heard: "Feeling heard",
+	team: "Team experience",
+	functional: "Continuity of care",
+	structural: "Structural support",
+};
+---
+
+<article class={`card testimonial-card theme-${testimonial.theme}`}>
+	<p>{themeLabels[testimonial.theme]}</p>
+	<blockquote>{testimonial.excerpt}</blockquote>
+	<span>{testimonial.name}</span>
+</article>
+
+<style>
+	.testimonial-card {
+		display: grid;
+		min-height: 18rem;
+		align-content: start;
+		padding: clamp(1.35rem, 3vw, 2rem);
+	}
+
+	p {
+		margin: 0 0 var(--space-xl);
+		color: var(--color-spectra-teal);
+		font-size: 0.72rem;
+		font-weight: 800;
+		letter-spacing: 0.12em;
+		text-transform: uppercase;
+	}
+
+	blockquote {
+		margin: 0;
+		color: var(--color-deep-evergreen);
+		font-family: var(--font-display);
+		font-size: clamp(1.35rem, 2.15vw, 1.9rem);
+		font-weight: 400;
+		line-height: 1.18;
+	}
+
+	span {
+		display: block;
+		margin-top: var(--space-lg);
+		color: var(--color-muted);
+		font-size: 0.9rem;
+		font-weight: 800;
+	}
+</style>

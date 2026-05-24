@@ -1,0 +1,149 @@
+---
+import { isExternalUrl } from "../data/site";
+import type { TeamMember } from "../data/team";
+
+interface Props {
+	member: TeamMember;
+}
+
+const { member } = Astro.props;
+const linkAttrs = isExternalUrl(member.bookingHref) ? { target: "_blank", rel: "noopener noreferrer" } : {};
+---
+
+<article class="card team-card">
+	<div class="team-photo">
+		{
+			member.image.src ? (
+				<img src={member.image.src} alt={member.image.alt} loading="lazy" decoding="async" />
+			) : (
+				<div aria-label={member.image.alt}>
+					<span>{member.name.split(" ").map((part) => part[0]).slice(0, 2).join("")}</span>
+				</div>
+			)
+		}
+	</div>
+	<div class="team-copy">
+		<p>{member.credentials}</p>
+		<h3>{member.name}</h3>
+		<strong>{member.role}</strong>
+		<span>{member.summary}</span>
+		<ul aria-label={`${member.name} specialties`}>
+			{member.specialties.map((specialty) => <li>{specialty}</li>)}
+		</ul>
+		<small>{member.acceptsInsurance ? "Insurance note: many PPO policies may apply; confirm before scheduling." : "Self-pay or direct scheduling; confirm details with the practice."}</small>
+		<a href={member.bookingHref} {...linkAttrs}>{member.bookingLabel}</a>
+	</div>
+</article>
+
+<style>
+	.team-card {
+		display: grid;
+		gap: var(--space-lg);
+		padding: clamp(1.15rem, 2.6vw, 1.65rem);
+	}
+
+	.team-photo {
+		overflow: hidden;
+		border: 1px solid rgba(40, 156, 176, 0.18);
+		border-radius: var(--radius-md);
+		background:
+			radial-gradient(circle at 72% 18%, rgba(226, 96, 151, 0.14), transparent 9rem),
+			var(--gradient-spectrum-soft);
+		aspect-ratio: 1.05;
+	}
+
+	.team-photo img,
+	.team-photo div {
+		width: 100%;
+		height: 100%;
+	}
+
+	.team-photo img {
+		object-fit: cover;
+		object-position: center top;
+	}
+
+	.team-photo div {
+		display: grid;
+		place-items: center;
+	}
+
+	.team-photo span {
+		display: grid;
+		width: 4.3rem;
+		aspect-ratio: 1;
+		place-items: center;
+		border: 1px solid rgba(255, 255, 255, 0.72);
+		border-radius: 50%;
+		background: rgba(255, 255, 255, 0.58);
+		color: var(--color-deep-evergreen);
+		font-family: var(--font-display);
+		font-size: 1.45rem;
+	}
+
+	.team-copy {
+		display: grid;
+		gap: var(--space-sm);
+	}
+
+	p {
+		margin: 0;
+		color: var(--color-spectra-teal);
+		font-size: 0.72rem;
+		font-weight: 800;
+		letter-spacing: 0.12em;
+		text-transform: uppercase;
+	}
+
+	h3 {
+		margin: 0;
+		font-family: var(--font-display);
+		font-size: clamp(1.55rem, 2.3vw, 2.05rem);
+		font-weight: 400;
+		line-height: 1.08;
+	}
+
+	strong {
+		color: var(--color-deep-evergreen);
+		font-size: 0.94rem;
+		line-height: 1.35;
+	}
+
+	.team-copy > span,
+	small {
+		color: var(--color-muted);
+	}
+
+	ul {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.45rem;
+		padding: 0;
+		margin: var(--space-xs) 0 0;
+		list-style: none;
+	}
+
+	li {
+		padding: 0.42rem 0.62rem;
+		border: 1px solid rgba(40, 156, 176, 0.2);
+		border-radius: var(--radius-pill);
+		background: rgba(255, 255, 255, 0.58);
+		color: var(--color-muted);
+		font-size: 0.76rem;
+		font-weight: 700;
+		line-height: 1;
+	}
+
+	small {
+		display: block;
+		font-size: 0.8rem;
+		line-height: 1.45;
+	}
+
+	a {
+		margin-top: var(--space-xs);
+		color: var(--color-spectra-teal);
+		font-size: 0.88rem;
+		font-weight: 800;
+	}
+</style>

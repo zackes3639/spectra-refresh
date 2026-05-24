@@ -1,0 +1,281 @@
+---
+import CTASection from "../components/CTASection.astro";
+import Layout from "../components/Layout.astro";
+import PageHero from "../components/PageHero.astro";
+import SectionIntro from "../components/SectionIntro.astro";
+import TestimonialCard from "../components/TestimonialCard.astro";
+import { siteLinks } from "../data/site";
+import { testimonials } from "../data/testimonials";
+
+const inclusions = [
+	{
+		title: "Comprehensive Medical Care",
+		copy: "Scheduled provider visits, lab review, priority scheduling, and a clearer clinical rhythm. Confirm current visit counts and benefits directly with the office.",
+	},
+	{
+		title: "Coaching & Ongoing Support",
+		copy: "Bi-weekly coaching, member support, and access to Dr. Lisa's education ecosystem where approved.",
+	},
+	{
+		title: "IV Therapy & Longevity Enhancements",
+		copy: "IV support, tiered performance therapies, and wellness enhancements guided by current care terms.",
+	},
+	{
+		title: "Member Exclusives",
+		copy: "Potential supplement, IV, therapy, aesthetics, chiropractic, and event benefits, with active offers confirmed by the practice.",
+	},
+];
+
+const journey = [
+	["Reclaim", "Stabilize foundations such as sleep, hydration, stress load, nourishment, and safety."],
+	["Heal", "Explore deeper drivers such as gut, inflammation, toxins, hormones, and metabolic patterns."],
+	["Perform", "Strengthen cellular health, structure, recovery, circulation, and long-term capacity."],
+	["Transcend", "Support purpose, emotional regulation, heart coherence, and whole-person alignment."],
+];
+---
+
+<Layout
+	title="Functional Medicine Care Model | Dr. Lisa Koche"
+	description="A deeper functional medicine care model with physician-led care, advanced labs, coaching, IV support, and longevity therapies through Dr. Lisa's Tampa practice."
+	currentPath="/membership"
+>
+	<PageHero
+		title="A full year of care, tailored to your biology."
+		copy="Dr. Lisa's functional medicine care model is designed for people who want continuity, expanded clinician time, advanced labs, coaching, IV support, and access to performance therapies in one intentional care relationship."
+		primaryHref={siteLinks.discoveryCall}
+		primaryLabel="Book a Discovery Call"
+		secondaryHref="/services"
+		secondaryLabel="Explore Services"
+		mediaLabel="Care model imagery"
+		imageSrc="/images/dr-lisa-koche-headshot.jpeg"
+		imageAlt="Dr. Lisa Koche"
+		mediaType="portrait"
+	/>
+
+	<section class="section" aria-labelledby="why-title">
+		<div class="container two-column why-grid">
+			<div>
+				<p class="eyebrow">Why This Model</p>
+				<h2 id="why-title">A more connected way to practice proactive care.</h2>
+			</div>
+			<div class="editorial-copy">
+				<p>
+					This care model gives the team more room to monitor patterns, educate patients, and
+					adjust care over time. It is built for people who want strategy before symptoms become the
+					only reason to seek support.
+				</p>
+				<p>
+					Inclusions, credits, discounts, and pricing can change. Confirm current details directly with
+					the office before relying on any specific benefit.
+				</p>
+			</div>
+		</div>
+	</section>
+
+	<section class="section section-soft" aria-labelledby="included-title">
+		<div class="container">
+			<SectionIntro
+				id="included-title"
+				eyebrow="Included"
+				title="Four layers of support, organized around continuity."
+				copy="This structure keeps the care model easy to understand while directing benefit-specific questions back to the office."
+			/>
+			<div class="membership-grid">
+				{inclusions.map((item) => (
+					<article class="card membership-card">
+						<h3>{item.title}</h3>
+						<p>{item.copy}</p>
+					</article>
+				))}
+			</div>
+		</div>
+	</section>
+
+	<section class="section" aria-labelledby="fit-title">
+		<div class="container fit-panel">
+			<div>
+				<p class="eyebrow">Fit</p>
+				<h2 id="fit-title">For patients seeking a clearer, longer relationship with care.</h2>
+			</div>
+			<ul>
+				<li>People who want to understand their health with more time and context.</li>
+				<li>Patients looking for coaching, follow-through, and a more proactive strategy.</li>
+				<li>Individuals who want access to functional medicine, IV support, and longevity therapies under one roof.</li>
+			</ul>
+		</div>
+	</section>
+
+	<section class="section section-soft" aria-labelledby="journey-title">
+		<div class="container">
+			<SectionIntro
+				id="journey-title"
+				eyebrow="Journey"
+				title="Reclaim, heal, perform, and transcend."
+				copy="These phases are an educational framework, not a fixed protocol. Individual plans vary based on history, labs, goals, and provider review."
+			/>
+			<div class="journey-grid">
+				{journey.map(([title, copy], index) => (
+					<article class="journey-step">
+						<span>{String(index + 1).padStart(2, "0")}</span>
+						<h3>{title}</h3>
+						<p>{copy}</p>
+					</article>
+				))}
+			</div>
+		</div>
+	</section>
+
+	<section class="section" aria-labelledby="perks-title">
+		<div class="container perks-panel">
+			<p class="eyebrow">Care Details</p>
+			<h2 id="perks-title">Benefits should stay current and clearly confirmed.</h2>
+			<p>
+				Ask the office to confirm visit counts, IV credits, wellness credits, discounts, therapy tier limits,
+				supplement benefits, pricing, cancellation terms, and whether offers vary by first-year or
+				continuing membership status.
+			</p>
+		</div>
+	</section>
+
+	<section class="section section-soft" aria-labelledby="testimonial-title">
+		<div class="container">
+			<SectionIntro
+				id="testimonial-title"
+				eyebrow="Patient Themes"
+				title="Continuity is the part patients remember."
+				copy="These are safer thematic summaries until exact testimonial migration is approved."
+			/>
+			<div class="testimonial-grid">
+				{testimonials.slice(0, 3).map((testimonial) => <TestimonialCard testimonial={testimonial} />)}
+			</div>
+		</div>
+	</section>
+
+	<CTASection
+		title="Ready to understand whether this care model fits?"
+		copy="Begin with a discovery conversation and confirm current details directly with the office."
+		primaryHref={siteLinks.discoveryCall}
+		primaryLabel="Book Discovery Call"
+		secondaryHref="/contact"
+		secondaryLabel="Contact"
+	/>
+</Layout>
+
+<style>
+	.why-grid {
+		align-items: start;
+	}
+
+	.why-grid h2,
+	.fit-panel h2,
+	.perks-panel h2 {
+		margin: 0;
+		font-family: var(--font-display);
+		font-size: clamp(2rem, 4vw, 3.8rem);
+		font-weight: 400;
+		line-height: 1.04;
+	}
+
+	.editorial-copy {
+		display: grid;
+		gap: var(--space-md);
+	}
+
+	.editorial-copy p,
+	.membership-card p,
+	.journey-step p,
+	.perks-panel p {
+		margin: 0;
+		color: var(--color-muted);
+	}
+
+	.membership-grid,
+	.journey-grid,
+	.testimonial-grid {
+		display: grid;
+		gap: var(--space-lg);
+		margin-top: var(--space-2xl);
+	}
+
+	.membership-card,
+	.journey-step {
+		padding: clamp(1.25rem, 3vw, 1.8rem);
+	}
+
+	.membership-card h3,
+	.journey-step h3 {
+		margin: 0;
+		font-family: var(--font-display);
+		font-size: clamp(1.45rem, 2.2vw, 2rem);
+		font-weight: 400;
+		line-height: 1.1;
+	}
+
+	.membership-card p,
+	.journey-step p {
+		margin-top: var(--space-md);
+	}
+
+	.fit-panel,
+	.perks-panel {
+		display: grid;
+		gap: var(--space-xl);
+		padding: clamp(1.5rem, 4vw, 3rem);
+		border: 1px solid var(--color-border);
+		border-radius: var(--radius-xl);
+		background:
+			linear-gradient(150deg, rgba(255, 255, 255, 0.78), rgba(220, 239, 238, 0.48)),
+			radial-gradient(circle at 88% 18%, rgba(244, 201, 93, 0.16), transparent 14rem);
+		box-shadow: var(--shadow-card);
+	}
+
+	.fit-panel ul {
+		display: grid;
+		gap: var(--space-md);
+		padding: 0;
+		margin: 0;
+		list-style: none;
+	}
+
+	.fit-panel li {
+		padding-top: var(--space-md);
+		border-top: 1px solid rgba(80, 166, 163, 0.18);
+		color: var(--color-muted);
+	}
+
+	.journey-step {
+		border: 1px solid var(--color-border);
+		border-radius: var(--radius-lg);
+		background:
+			linear-gradient(180deg, rgba(255, 255, 255, 0.82), rgba(255, 255, 255, 0.68)),
+			var(--gradient-spectrum-soft);
+		box-shadow: var(--shadow-card);
+	}
+
+	.journey-step span {
+		color: var(--color-spectra-teal);
+		font-family: var(--font-display);
+	}
+
+	.perks-panel {
+		max-width: 62rem;
+	}
+
+	@media (min-width: 760px) {
+		.membership-grid,
+		.journey-grid {
+			grid-template-columns: repeat(4, 1fr);
+		}
+
+		.testimonial-grid {
+			grid-template-columns: repeat(3, 1fr);
+		}
+	}
+
+	@media (min-width: 940px) {
+		.fit-panel {
+			grid-template-columns: 0.9fr 1fr;
+			align-items: start;
+		}
+	}
+</style>

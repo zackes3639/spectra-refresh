@@ -4,39 +4,55 @@ import CTASection from "../components/CTASection.astro";
 import Layout from "../components/Layout.astro";
 import PageHero from "../components/PageHero.astro";
 import SectionIntro from "../components/SectionIntro.astro";
+import { practiceInfo, siteLinks } from "../data/site";
 
 const contactOptions = [
 	{
-		title: "Patient inquiries",
-		copy: "Start here for assessment interest, program fit, or general questions about care pathways.",
-		label: "Start assessment",
+		title: "Become a patient",
+		copy: "Start here for new patient questions, provider routing, and care pathway fit.",
+		href: "/patients",
+		label: "Patient information",
 	},
 	{
-		title: "Speaking / media",
-		copy: "Use this destination for podcast, event, interview, and physician education inquiries.",
-		label: "Send inquiry",
+		title: "Clinical care discovery",
+		copy: "Use a discovery call for functional medicine care questions and current fit.",
+		href: siteLinks.discoveryCall,
+		label: "Book discovery",
 	},
 	{
-		title: "General inquiries",
-		copy: "For other professional or practice-related questions, use the static form layout below.",
-		label: "Contact practice",
+		title: "Performance therapies",
+		copy: "Book performance and longevity therapies through the current public Mindbody destination.",
+		href: siteLinks.mindbody,
+		label: "Book with Mindbody",
+	},
+	{
+		title: "Speaking or media",
+		copy: "Route event, interview, podcast, and education inquiries through the speaking page.",
+		href: "/speaking",
+		label: "Speaking inquiry",
+	},
+	{
+		title: "General question",
+		copy: "For non-urgent practice questions, call, email, or use the inquiry form below.",
+		href: "#contact-form",
+		label: "Prepare inquiry",
 	},
 ];
 ---
 
 <Layout
-	title="Contact | Dr. Lisa Koche"
-	description="Static contact page concept for patient inquiries, speaking and media requests, and general practice questions."
+	title="Contact Dr. Lisa Koche | Tampa Functional Medicine"
+	description="Contact Dr. Lisa Koche's office for patient inquiries, discovery calls, appointments, speaking requests, and general questions."
 	currentPath="/contact"
 >
 	<PageHero
-		title="Start the conversation with a clearer next step."
-		copy="Use this static concept page to route patient, speaking, media, and general inquiries without adding backend processing."
-		primaryHref="#contact-form"
-		primaryLabel="Contact the Practice"
-		secondaryHref="/programs"
-		secondaryLabel="Explore Programs"
-		mediaLabel="Contact Imagery Placeholder"
+		title="Start with the right conversation."
+		copy="Use this page to route patient care, discovery calls, performance therapy, speaking, media, and general office questions while keeping sensitive medical details out of web forms."
+		primaryHref={practiceInfo.phoneHref}
+		primaryLabel={`Call ${practiceInfo.phone}`}
+		secondaryHref="#contact-form"
+		secondaryLabel="Prepare Inquiry"
+		mediaLabel="Contact imagery"
 	/>
 
 	<section class="section" aria-labelledby="options-title">
@@ -45,10 +61,10 @@ const contactOptions = [
 				id="options-title"
 				eyebrow="Contact Options"
 				title="Choose the inquiry that best fits."
-				copy="These static cards establish future routing without adding automation or backend systems."
+				copy="Clear routing keeps clinical, therapy, education, and media pathways separate so each question reaches the right destination."
 			/>
 			<div class="contact-grid">
-				{contactOptions.map((option) => <ContactCard {...option} href="#contact-form" />)}
+				{contactOptions.map((option) => <ContactCard {...option} />)}
 			</div>
 		</div>
 	</section>
@@ -57,12 +73,15 @@ const contactOptions = [
 		<div class="container contact-layout">
 			<div>
 				<p class="eyebrow">Inquiry</p>
-				<h2 id="form-title">A simple static form layout.</h2>
+				<h2 id="form-title">Prepare a simple inquiry.</h2>
 				<p>
-					This form is intentionally not connected to processing, storage, email automation, or patient
-					systems in this local concept.
+					Use these fields to organize a non-urgent message before contacting the practice. For direct
+					communication, call or email the office.
 				</p>
-				<!-- Final HIPAA, privacy, consent, and inquiry-handling language should be approved before production. -->
+				<p class="notice">
+					Do not submit protected health information, urgent symptoms, or emergency concerns through
+					this form. Call the office for routine questions or call 911 for emergencies.
+				</p>
 			</div>
 			<form class="contact-form" action="#" method="get">
 				<label>
@@ -77,15 +96,17 @@ const contactOptions = [
 					Inquiry type
 					<select name="inquiry">
 						<option>Patient inquiry</option>
+						<option>Clinical care discovery</option>
+						<option>Performance therapy</option>
 						<option>Speaking / media</option>
-						<option>General inquiry</option>
+						<option>General question</option>
 					</select>
 				</label>
 				<label>
 					Message
 					<textarea name="message" rows="5"></textarea>
 				</label>
-				<button class="button button-primary" type="submit">Send Static Inquiry</button>
+				<button class="button button-primary" type="submit">Prepare Inquiry</button>
 			</form>
 		</div>
 	</section>
@@ -94,29 +115,25 @@ const contactOptions = [
 		<div class="container practice-panel">
 			<div>
 				<p class="eyebrow">Practice Information</p>
-				<h2 id="practice-title">Final practice details belong here.</h2>
+				<h2 id="practice-title">Dr. Lisa's Tampa clinical home.</h2>
 			</div>
-			<div>
-				<p>
-					Space for clinic location, approved contact email, scheduling guidance, hours, and
-					appropriate medical disclaimers.
-				</p>
-				<p>
-					This concept does not include urgent care instructions, patient portal functionality, or
-					protected health information workflows.
-				</p>
-				<!-- Replace with final approved clinic/practice information and legal copy. -->
+			<div class="practice-details">
+				<a href={practiceInfo.phoneHref}>{practiceInfo.phone}</a>
+				<a href={practiceInfo.emailHref}>{practiceInfo.email}</a>
+				<a href={siteLinks.maps} target="_blank" rel="noopener noreferrer">{practiceInfo.address}</a>
+				<a href={siteLinks.patientPortal} target="_blank" rel="noopener noreferrer">Patient Portal</a>
+				<a href={siteLinks.mindbody} target="_blank" rel="noopener noreferrer">Mindbody Booking</a>
 			</div>
 		</div>
 	</section>
 
 	<CTASection
 		title="Prefer to understand the pathways first?"
-		copy="Return to the program overview to compare the static flagship programs before reaching out."
-		primaryHref="/programs"
-		primaryLabel="Explore Programs"
-		secondaryHref="/about"
-		secondaryLabel="Meet Dr. Koche"
+		copy="Explore services or patient information before reaching out if you are not sure where your question belongs."
+		primaryHref="/services"
+		primaryLabel="Explore Services"
+		secondaryHref="/patients"
+		secondaryLabel="Patient Information"
 	/>
 </Layout>
 
@@ -146,6 +163,13 @@ const contactOptions = [
 	.contact-layout p,
 	.practice-panel p {
 		color: var(--color-muted);
+	}
+
+	.notice {
+		padding: var(--space-md);
+		border: 1px solid rgba(216, 76, 159, 0.22);
+		border-radius: var(--radius-md);
+		background: rgba(255, 255, 255, 0.62);
 	}
 
 	.contact-form {
@@ -217,9 +241,21 @@ const contactOptions = [
 		box-shadow: var(--shadow-card);
 	}
 
+	.practice-details {
+		display: grid;
+		gap: var(--space-md);
+	}
+
+	.practice-details a {
+		padding: var(--space-md) 0;
+		border-top: 1px solid rgba(80, 166, 163, 0.18);
+		color: var(--color-deep-evergreen);
+		font-weight: 800;
+	}
+
 	@media (min-width: 760px) {
 		.contact-grid {
-			grid-template-columns: repeat(3, 1fr);
+			grid-template-columns: repeat(2, 1fr);
 		}
 	}
 
@@ -227,6 +263,10 @@ const contactOptions = [
 		.contact-layout,
 		.practice-panel {
 			grid-template-columns: 0.8fr 1fr;
+		}
+
+		.contact-grid {
+			grid-template-columns: repeat(5, 1fr);
 		}
 	}
 </style>

@@ -1,0 +1,127 @@
+---
+import { isExternalUrl } from "../data/site";
+import { serviceCategories, type Service } from "../data/services";
+
+interface Props {
+	service: Service;
+	compact?: boolean;
+}
+
+const { service, compact = false } = Astro.props;
+const href = `/services/${service.slug}`;
+const linkAttrs = isExternalUrl(href) ? { target: "_blank", rel: "noopener noreferrer" } : {};
+---
+
+<article class:list={["card service-card", `category-${service.category}`, compact && "compact"]}>
+	<span class="service-mark" aria-hidden="true"></span>
+	<p>{serviceCategories[service.category].label}</p>
+	<h3>{service.title}</h3>
+	<span>{service.summary}</span>
+	{!compact && service.benefits.length > 0 && (
+		<ul>
+			{service.benefits.map((benefit) => <li>{benefit}</li>)}
+		</ul>
+	)}
+	<a href={href} {...linkAttrs} aria-label={`Explore ${service.title}`}>Explore service</a>
+</article>
+
+<style>
+	.service-card {
+		display: flex;
+		min-height: 25rem;
+		flex-direction: column;
+		align-items: flex-start;
+		padding: clamp(1.25rem, 3vw, 1.95rem);
+	}
+
+	.service-card.compact {
+		min-height: 17rem;
+	}
+
+	.service-mark {
+		width: 2.35rem;
+		aspect-ratio: 1;
+		border: 1px solid color-mix(in srgb, var(--accent-color), var(--color-deep-evergreen) 20%);
+		border-radius: 50%;
+		background:
+			radial-gradient(circle at 34% 32%, rgba(255, 255, 255, 0.82) 0 18%, transparent 19%),
+			linear-gradient(135deg, var(--accent-color), color-mix(in srgb, var(--accent-color), var(--color-spectra-teal) 34%));
+		box-shadow: 0 10px 22px color-mix(in srgb, var(--accent-color), transparent 62%);
+	}
+
+	p {
+		margin: var(--space-lg) 0 0;
+		color: var(--color-spectra-teal);
+		font-size: 0.72rem;
+		font-weight: 800;
+		letter-spacing: 0.12em;
+		text-transform: uppercase;
+	}
+
+	h3 {
+		margin: var(--space-sm) 0 0;
+		font-family: var(--font-display);
+		font-size: clamp(1.45rem, 2.35vw, 2.12rem);
+		font-weight: 400;
+		line-height: 1.08;
+	}
+
+	span:not(.service-mark) {
+		display: block;
+		margin-top: var(--space-md);
+		color: var(--color-muted);
+	}
+
+	ul {
+		display: grid;
+		gap: 0.55rem;
+		padding: 0;
+		margin: var(--space-lg) 0 var(--space-xl);
+		list-style: none;
+	}
+
+	li {
+		position: relative;
+		padding-left: 1rem;
+		color: var(--color-muted);
+		font-size: 0.9rem;
+	}
+
+	li::before {
+		position: absolute;
+		top: 0.72em;
+		left: 0;
+		width: 0.34rem;
+		aspect-ratio: 1;
+		border-radius: 50%;
+		background: var(--accent-color);
+		content: "";
+	}
+
+	a {
+		margin-top: auto;
+		color: color-mix(in srgb, var(--accent-color), var(--color-deep-evergreen) 58%);
+		font-size: 0.88rem;
+		font-weight: 800;
+	}
+
+	.category-medical {
+		--accent-color: var(--color-spectra-teal);
+	}
+
+	.category-performance {
+		--accent-color: var(--color-oxygen-blue);
+	}
+
+	.category-structural {
+		--accent-color: var(--color-spectra-sun);
+	}
+
+	.category-aesthetics {
+		--accent-color: var(--color-spectra-pink);
+	}
+
+	.category-specialty {
+		--accent-color: var(--color-spectra-violet);
+	}
+</style>

@@ -1,0 +1,222 @@
+---
+import { isExternalUrl } from "../data/site";
+import type { Service } from "../data/services";
+import { getRelatedServices } from "../data/services";
+import CTASection from "./CTASection.astro";
+import Layout from "./Layout.astro";
+import PageHero from "./PageHero.astro";
+import SectionIntro from "./SectionIntro.astro";
+import ServiceCard from "./ServiceCard.astro";
+
+interface Props {
+	service: Service;
+}
+
+const { service } = Astro.props;
+const relatedServices = getRelatedServices(service.related);
+const primaryAttrs = isExternalUrl(service.primaryCta.href) ? { target: "_blank", rel: "noopener noreferrer" } : {};
+const secondaryAttrs = service.secondaryCta && isExternalUrl(service.secondaryCta.href) ? { target: "_blank", rel: "noopener noreferrer" } : {};
+---
+
+<Layout title={service.seo.title} description={service.seo.description} currentPath={`/services/${service.slug}`}>
+	<PageHero
+		title={service.title}
+		copy={service.heroCopy}
+		primaryHref={service.primaryCta.href}
+		primaryLabel={service.primaryCta.label}
+		secondaryHref={service.secondaryCta?.href}
+		secondaryLabel={service.secondaryCta?.label}
+		mediaLabel={`${service.title} imagery`}
+		imageSrc={service.image.src}
+		imageAlt={service.image.alt}
+	/>
+
+	<section class="section" aria-labelledby="fit-title">
+		<div class="container service-fit">
+			<SectionIntro
+				id="fit-title"
+				eyebrow={service.eyebrow}
+				title="Who this service is for"
+				copy="These pathways are educational starting points. Care recommendations depend on individualized clinical review."
+			/>
+			<div class="fit-list">
+				{service.who.map((item) => <p>{item}</p>)}
+			</div>
+		</div>
+	</section>
+
+	<section class="section section-soft" aria-labelledby="benefits-title">
+		<div class="container benefits-panel">
+			<div>
+				<p class="eyebrow">Care Focus</p>
+				<h2 id="benefits-title">Support that stays specific and measured.</h2>
+			</div>
+			<ul>
+				{service.benefits.map((benefit) => <li>{benefit}</li>)}
+			</ul>
+		</div>
+	</section>
+
+	{service.sections.map((section, index) => (
+		<section class:list={["section", index % 2 === 1 && "section-soft"]} aria-labelledby={`service-section-${index}`}>
+			<div class="container detail-section">
+				<div>
+					{section.eyebrow && <p class="eyebrow">{section.eyebrow}</p>}
+					<h2 id={`service-section-${index}`}>{section.title}</h2>
+				</div>
+				<div class="detail-copy">
+					<p>{section.copy}</p>
+					{section.items && (
+						<ul>
+							{section.items.map((item) => <li>{item}</li>)}
+						</ul>
+					)}
+				</div>
+			</div>
+		</section>
+	))}
+
+	<section class="section" aria-labelledby="related-title">
+		<div class="container">
+			<SectionIntro
+				id="related-title"
+				eyebrow="Related Care"
+				title="Care often works best when the whole picture is connected."
+				copy="Explore adjacent services that may be discussed as part of a personalized care plan."
+			/>
+			<div class="related-grid">
+				{relatedServices.map((related) => <ServiceCard service={related} compact />)}
+			</div>
+			<div class="service-actions" aria-label={`${service.title} calls to action`}>
+				<a class="button button-primary" href={service.primaryCta.href} {...primaryAttrs}>{service.primaryCta.label}</a>
+				{service.secondaryCta && <a class="button button-secondary" href={service.secondaryCta.href} {...secondaryAttrs}>{service.secondaryCta.label}</a>}
+			</div>
+		</div>
+	</section>
+
+	<CTASection
+		title="Start with a conversation, not a guess."
+		copy="Tell the office team what you are navigating, and they can help route you toward the most appropriate next step."
+		primaryHref="/contact"
+		primaryLabel="Contact the Practice"
+		secondaryHref="/services"
+		secondaryLabel="Explore Services"
+	/>
+</Layout>
+
+<style>
+	.service-fit,
+	.benefits-panel,
+	.detail-section {
+		display: grid;
+		gap: clamp(2rem, 6vw, 5rem);
+		align-items: start;
+	}
+
+	.fit-list {
+		display: grid;
+		gap: var(--space-md);
+	}
+
+	.fit-list p {
+		margin: 0;
+		padding: var(--space-lg);
+		border-top: 1px solid rgba(80, 166, 163, 0.26);
+		color: var(--color-muted);
+		background:
+			linear-gradient(90deg, rgba(255, 255, 255, 0.7), transparent),
+			var(--gradient-spectrum-soft);
+	}
+
+	.benefits-panel {
+		padding: clamp(1.4rem, 4vw, 3rem);
+		border: 1px solid var(--color-border);
+		border-radius: var(--radius-xl);
+		background:
+			linear-gradient(150deg, rgba(255, 255, 255, 0.78), rgba(220, 239, 238, 0.48)),
+			radial-gradient(circle at 88% 18%, rgba(244, 201, 93, 0.16), transparent 14rem);
+		box-shadow: var(--shadow-card);
+	}
+
+	.benefits-panel h2,
+	.detail-section h2 {
+		margin: 0;
+		font-family: var(--font-display);
+		font-size: clamp(2rem, 4vw, 3.6rem);
+		font-weight: 400;
+		line-height: 1.04;
+	}
+
+	.benefits-panel ul,
+	.detail-copy ul {
+		display: grid;
+		gap: 0.75rem;
+		padding: 0;
+		margin: 0;
+		list-style: none;
+	}
+
+	.benefits-panel li,
+	.detail-copy li {
+		position: relative;
+		padding: var(--space-sm) 0 var(--space-sm) var(--space-lg);
+		border-top: 1px solid rgba(80, 166, 163, 0.18);
+		color: var(--color-muted);
+	}
+
+	.benefits-panel li::before,
+	.detail-copy li::before {
+		position: absolute;
+		top: 1.42rem;
+		left: 0;
+		width: 0.4rem;
+		aspect-ratio: 1;
+		border-radius: 50%;
+		background: var(--color-spectra-pink);
+		content: "";
+	}
+
+	.detail-copy {
+		display: grid;
+		gap: var(--space-lg);
+	}
+
+	.detail-copy p {
+		margin: 0;
+		color: var(--color-muted);
+		font-size: clamp(1rem, 1.2vw, 1.12rem);
+	}
+
+	.related-grid {
+		display: grid;
+		gap: var(--space-lg);
+		margin-top: var(--space-2xl);
+	}
+
+	.service-actions {
+		display: flex;
+		flex-wrap: wrap;
+		gap: var(--space-sm);
+		margin-top: var(--space-xl);
+	}
+
+	@media (min-width: 780px) {
+		.related-grid {
+			grid-template-columns: repeat(2, 1fr);
+		}
+	}
+
+	@media (min-width: 940px) {
+		.service-fit,
+		.benefits-panel,
+		.detail-section {
+			grid-template-columns: 0.86fr 1fr;
+		}
+	}
+
+	@media (min-width: 1180px) {
+		.related-grid {
+			grid-template-columns: repeat(4, 1fr);
+		}
+	}
+</style>

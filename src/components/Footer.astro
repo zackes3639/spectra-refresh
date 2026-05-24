@@ -1,15 +1,37 @@
 ---
 import BrandLogo from "./BrandLogo.astro";
+import { isExternalUrl, practiceInfo, siteLinks } from "../data/site";
 
 const exploreLinks = [
 	{ label: "About", href: "/about" },
 	{ label: "Approach", href: "/approach" },
-	{ label: "Insights", href: "/insights" },
+	{ label: "Programs", href: "/programs" },
+	{ label: "Resources", href: "/resources" },
 	{ label: "Speaking", href: "/speaking" },
+	{ label: "Media", href: "/media" },
 ];
 const careLinks = [
-	{ label: "Programs", href: "/programs" },
+	{ label: "Services", href: "/services" },
+	{ label: "Functional Medicine", href: "/services/functional-medicine" },
+	{ label: "Performance & Longevity", href: "/services/performance-longevity" },
+	{ label: "IV Nutrition", href: "/services/iv-nutrition" },
+	{ label: "Applied Kinesiology", href: "/services/applied-kinesiology" },
+];
+const practiceLinks = [
+	{ label: "Clinical Practice", href: "/services" },
+	{ label: "Care Model", href: "/membership" },
+	{ label: "Care Team", href: "/team" },
+	{ label: "Patient Info", href: "/patients" },
+	{ label: "Patient Portal", href: siteLinks.patientPortal },
+	{ label: "Mindbody Booking", href: siteLinks.mindbody },
+	{ label: "Testimonials", href: "/testimonials" },
 	{ label: "Contact", href: "/contact" },
+];
+const drLisaLinks = [
+	{ label: "Free Resources", href: siteLinks.drLisaResources },
+	{ label: "Courses", href: siteLinks.drLisaCourses },
+	{ label: "Favorites", href: siteLinks.drLisaFavorites },
+	{ label: "Academy Login", href: siteLinks.drLisaAcademy },
 ];
 const legal = [
 	{ label: "Privacy Policy", href: "/privacy" },
@@ -20,7 +42,10 @@ const social = [
 	{ label: "LinkedIn", href: "https://www.linkedin.com/in/lisa-koche-m-d-64a43a100/" },
 	{ label: "Instagram", href: "https://www.instagram.com/drlisaskoche/" },
 	{ label: "YouTube", href: "https://www.youtube.com/@spectrawellness" },
+	{ label: "Practice Instagram", href: "https://www.instagram.com/spectrawellnesstampa/" },
 ];
+
+const linkAttrs = (href: string) => (isExternalUrl(href) ? { target: "_blank", rel: "noopener noreferrer" } : {});
 ---
 
 <footer class="site-footer" aria-label="Site footer">
@@ -29,29 +54,42 @@ const social = [
 			<a class="footer-brand" href="/" aria-label="Dr. Lisa Koche home">
 				<BrandLogo size="sm" showTagline={false} loading="lazy" />
 			</a>
-			<p>Physician-led longevity medicine with a calm, root-cause point of view.</p>
+			<p>Dr. Lisa Koche's home for functional medicine education, longevity care, speaking, and whole-person health.</p>
+			<p class="footer-contact">
+				<a href={practiceInfo.phoneHref}>{practiceInfo.phone}</a><br />
+				<a href={practiceInfo.emailHref}>{practiceInfo.email}</a><br />
+				<a href={siteLinks.maps} {...linkAttrs(siteLinks.maps)}>{practiceInfo.address}</a>
+			</p>
 			<div class="footer-actions" aria-label="Footer calls to action">
-				<a class="footer-action-link" href="/contact">Book consultation</a>
-				<a class="footer-action-link" href="/programs">Programs</a>
+				<a class="footer-action-link" href="/contact">Book discovery</a>
+				<a class="footer-action-link" href="/about">Meet Dr. Lisa</a>
 			</div>
 		</div>
 		<nav aria-label="Footer site links">
 			<h2>Explore</h2>
-			{exploreLinks.map((link) => <a href={link.href}>{link.label}</a>)}
+			{exploreLinks.map((link) => <a href={link.href} {...linkAttrs(link.href)}>{link.label}</a>)}
 		</nav>
 		<nav aria-label="Care pathway links">
 			<h2>Care</h2>
-			{careLinks.map((link) => <a href={link.href}>{link.label}</a>)}
+			{careLinks.map((link) => <a href={link.href} {...linkAttrs(link.href)}>{link.label}</a>)}
+		</nav>
+		<nav aria-label="Practice links">
+			<h2>Practice</h2>
+			{practiceLinks.map((link) => <a href={link.href} {...linkAttrs(link.href)}>{link.label}</a>)}
+		</nav>
+		<nav aria-label="Dr. Lisa links">
+			<h2>Dr. Lisa</h2>
+			{drLisaLinks.map((link) => <a href={link.href} {...linkAttrs(link.href)}>{link.label}</a>)}
 		</nav>
 		<nav aria-label="Professional and legal links">
 			<h2>Legal</h2>
-			{legal.map((link) => <a href={link.href}>{link.label}</a>)}
+			{legal.map((link) => <a href={link.href} {...linkAttrs(link.href)}>{link.label}</a>)}
 		</nav>
 		<nav aria-label="Social links">
 			<h2>Connect</h2>
 			{
 				social.map((link) => (
-					<a href={link.href} target="_blank" rel="noopener noreferrer">
+					<a href={link.href} {...linkAttrs(link.href)}>
 						{link.label}
 					</a>
 				))
@@ -60,7 +98,7 @@ const social = [
 	</div>
 	<div class="container footer-bottom">
 		<p>© 2026 Dr. Lisa Koche.</p>
-		<p>Longevity Medicine</p>
+		<p>Functional Medicine & Longevity Care</p>
 	</div>
 </footer>
 
@@ -111,6 +149,11 @@ const social = [
 		color: rgba(22, 33, 40, 0.6);
 		font-size: 0.82rem;
 		line-height: 1.42;
+	}
+
+	.footer-contact a {
+		color: var(--color-deep-evergreen);
+		font-weight: 700;
 	}
 
 	.footer-actions {
@@ -210,7 +253,7 @@ const social = [
 
 	@media (min-width: 1000px) {
 		.footer-grid {
-			grid-template-columns: minmax(14rem, 1.25fr) repeat(4, minmax(6.5rem, 0.7fr));
+			grid-template-columns: minmax(15rem, 1.35fr) repeat(6, minmax(6rem, 0.7fr));
 			align-items: start;
 		}
 	}

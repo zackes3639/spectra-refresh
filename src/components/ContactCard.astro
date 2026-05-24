@@ -1,4 +1,6 @@
 ---
+import { isExternalUrl } from "../data/site";
+
 interface Props {
 	title: string;
 	copy: string;
@@ -7,12 +9,13 @@ interface Props {
 }
 
 const { title, copy, href = "/contact", label = "Start here" } = Astro.props;
+const linkAttrs = isExternalUrl(href) ? { target: "_blank", rel: "noopener noreferrer" } : {};
 ---
 
 <article class="card contact-card">
 	<h3>{title}</h3>
 	<p>{copy}</p>
-	<a href={href}>{label}</a>
+	<a href={href} {...linkAttrs}>{label}</a>
 </article>
 
 <style>

@@ -1,97 +1,58 @@
 ---
 import CTASection from "../../components/CTASection.astro";
-import InsightCard from "../../components/InsightCard.astro";
 import Layout from "../../components/Layout.astro";
 import PageHero from "../../components/PageHero.astro";
 import SectionIntro from "../../components/SectionIntro.astro";
-
-const categories = ["Longevity", "Recovery", "Sleep", "Hormones", "Nervous System", "Nutrition"];
-
-const featured = [
-	{
-		category: "Longevity",
-		title: "Why longevity care begins with better physiological context",
-		copy: "A thoughtful primer on moving from isolated markers to meaningful clinical patterns.",
-	},
-	{
-		category: "Recovery",
-		title: "The recovery signals that can change how we understand fatigue",
-		copy: "How sleep, stress chemistry, and nervous system load shape repair capacity.",
-	},
-	{
-		category: "Hormones",
-		title: "Hormonal health is metabolic health, immune health, and brain health",
-		copy: "An editorial look at the connected systems behind common midlife transitions.",
-	},
-];
-
-const articles = [
-	["Sleep", "How sleep architecture shapes metabolic resilience", "A calm overview of why repair, rhythm, and blood sugar belong in the same conversation."],
-	["Nutrition", "The difference between eating clean and eating strategically", "Why personalized nutrition begins with context rather than rigid rules."],
-	["Nervous System", "What stress physiology can teach us about symptoms", "A careful look at how adaptive load may influence energy, mood, sleep, and recovery."],
-	["Longevity", "Prevention is more precise when the timeline is longer", "How long-range thinking can change which health signals deserve attention now."],
-	["Hormones", "Midlife care needs more than isolated hormone numbers", "A whole-system view of transitions, metabolism, mood, sleep, and vitality."],
-	["Recovery", "Fatigue is information, not a character flaw", "How deeper pattern recognition can inform a more humane recovery strategy."],
-];
+import ResourceCard from "../../components/ResourceCard.astro";
+import { articleResources, featuredResources } from "../../data/resources";
 ---
 
 <Layout
 	title="Insights | Dr. Lisa Koche"
-	description="Static editorial hub concept for insights on longevity, recovery, hormones, nervous system health, sleep, and nutrition."
+	description="Legacy insights hub for resources, articles, and education from Dr. Lisa Koche."
 	currentPath="/insights"
 >
 	<PageHero
-		title="Insights on longevity, recovery, hormones, and whole-person health."
-		copy="A static editorial foundation for translating complex physiology into clear, grounded patient education."
-		primaryHref="#articles"
-		primaryLabel="Browse Articles"
+		title="Insights now live in the resources library."
+		copy="This legacy path remains available for visitors who expect an insights page, while the refreshed site uses Resources as the primary education hub."
+		primaryHref="/resources"
+		primaryLabel="Open Resources"
 		secondaryHref="/programs"
-		secondaryLabel="Explore Programs"
-		mediaLabel="Editorial Imagery Placeholder"
+		secondaryLabel="Dr. Lisa Programs"
+		mediaLabel="Editorial imagery"
 	/>
 
 	<section class="section" aria-labelledby="featured-title">
 		<div class="container">
 			<SectionIntro
 				id="featured-title"
-				eyebrow="Featured"
-				title="Polished thinking for informed patients."
-				copy="These article cards are editorial concepts and should be replaced with final reviewed content."
+				eyebrow="Featured Resources"
+				title="Start with the most useful education pathways."
+				copy="Resources include free guides, courses, favorites, and public articles."
 			/>
 			<div class="featured-grid">
-				{featured.map((item) => <InsightCard category={item.category} title={item.title} copy={item.copy} featured />)}
+				{featuredResources.slice(0, 3).map((resource) => <ResourceCard resource={resource} featured />)}
 			</div>
 		</div>
 	</section>
 
 	<section class="section section-soft" id="articles" aria-labelledby="articles-title">
 		<div class="container">
-			<div class="article-header">
-				<SectionIntro id="articles-title" eyebrow="Library" title="Explore by topic" />
-				<div class="category-filter" aria-label="Static article categories">
-					{categories.map((category, index) => (
-						<span class={index === 0 ? "active" : ""}>{category}</span>
-					))}
-				</div>
-			</div>
+			<SectionIntro id="articles-title" eyebrow="Articles" title="Read recent health education." />
 			<div class="article-grid">
-				{
-					articles.map(([category, title, copy]) => (
-						<InsightCard category={category} title={title} copy={copy} />
-					))
-				}
+				{articleResources.map((resource) => <ResourceCard resource={resource} />)}
 			</div>
 		</div>
 	</section>
 
 	<CTASection
-		eyebrow="Editorial"
-		title="Stay close to the ideas shaping more complete care."
-		copy="This newsletter-style panel is a static visual preview. Final subscription tooling and consent language would be defined later if needed."
-		primaryHref="/contact"
-		primaryLabel="Contact the Practice"
-		secondaryHref="/programs"
-		secondaryLabel="Explore Programs"
+		eyebrow="Resources"
+		title="Use the refreshed resources hub for education."
+		copy="Browse free resources, articles, and learning pathways, or contact the office when your question is clinical."
+		primaryHref="/resources"
+		primaryLabel="Open Resources"
+		secondaryHref="/contact"
+		secondaryLabel="Contact"
 	/>
 </Layout>
 
@@ -103,45 +64,10 @@ const articles = [
 		margin-top: var(--space-2xl);
 	}
 
-	.article-header {
-		display: grid;
-		gap: var(--space-lg);
-		align-items: end;
-	}
-
-	.category-filter {
-		display: flex;
-		flex-wrap: wrap;
-		gap: var(--space-xs);
-	}
-
-	.category-filter span {
-		display: inline-flex;
-		align-items: center;
-		min-height: 2.4rem;
-		padding: 0.65rem 0.95rem;
-		border: 1px solid var(--color-border);
-		border-radius: var(--radius-pill);
-		color: var(--color-muted);
-		font-size: 0.86rem;
-		font-weight: 700;
-	}
-
-	.category-filter .active {
-		background: var(--color-deep-evergreen);
-		color: var(--color-warm-clinical-white);
-	}
-
 	@media (min-width: 760px) {
 		.featured-grid,
 		.article-grid {
 			grid-template-columns: repeat(3, 1fr);
-		}
-	}
-
-	@media (min-width: 900px) {
-		.article-header {
-			grid-template-columns: 1fr auto;
 		}
 	}
 </style>

@@ -1,41 +1,70 @@
 ---
 import CTASection from "../components/CTASection.astro";
 import Layout from "../components/Layout.astro";
+import MediaGrid from "../components/MediaGrid.astro";
 import PageHero from "../components/PageHero.astro";
 import SectionIntro from "../components/SectionIntro.astro";
 import TopicCard from "../components/TopicCard.astro";
+import { mediaAppearances } from "../data/media";
 
 const topics = [
-	["Longevity Medicine", "Practical physician-led insight on prevention, resilience, and long-term vitality."],
-	["Root-Cause Health", "A clear explanation of how symptoms can connect across physiological systems."],
-	["Nervous System & Resilience", "Education on stress physiology, sleep, recovery, and adaptive capacity."],
-	["Women’s Health Optimization", "A whole-person lens on hormones, metabolism, energy, and midlife transitions."],
-	["Metabolic Health", "Grounded teaching on blood sugar, inflammation, body composition, and prevention."],
+	["Sovereign Medicine", "How patients can reclaim voice, agency, and discernment in their health journey."],
+	["The LIT Journey", "A practical introduction to Dr. Lisa's framework for healing, performance, and alignment."],
+	["Mitochondria & Cell Danger Response", "A clear translation of cellular energy, stress signaling, and recovery capacity."],
+	["Heart-Centered Leadership", "Health, coherence, and burnout prevention for leaders and high-demand teams."],
+	["Inner Harmony", "A science-and-spirit conversation about regulation, resilience, and whole-person vitality."],
 ];
 
-const credibility = [
-	"Major stage feature",
-	"Conference keynote feature",
-	"Podcast interview feature",
-	"Media feature",
+const proof = [
+	["Audience reach", "Tens of thousands worldwide"],
+	["Experience", "20+ years in integrative and functional medicine"],
+	["Notable stages", "Tony Robbins Summit, AgeMed Conference, Tampa General Hospital, Gasparilla Conference"],
 ];
 ---
 
 <Layout
-	title="Speaking & Media | Dr. Lisa Koche"
-	description="Speaking and media concept page for physician-led education on longevity, resilience, metabolic health, and whole-person care."
+	title="Book Dr. Lisa Koche as a Speaker | Functional Medicine & Longevity"
+	description="Invite Dr. Lisa Koche to speak on functional medicine, longevity, performance, sovereignty, mitochondria, and heart-centered leadership."
 	currentPath="/speaking"
 >
 	<PageHero
-		title="Physician-led education on longevity, health performance, and resilience."
-		copy="Dr. Koche translates complex physiology into practical, grounded conversations for audiences seeking a more intelligent health framework."
-		primaryHref="/contact"
-		primaryLabel="Invite Dr. Koche to Speak"
-		secondaryHref="/insights"
-		secondaryLabel="Explore Insights"
-		mediaLabel="Portrait or Stage Photography Placeholder"
+		title="Transformational speaker and physician educator for health, performance, and leadership."
+		copy="Dr. Lisa translates complex physiology into grounded, memorable teaching for audiences seeking science-backed health insight with a human and spiritually aware lens."
+		primaryHref="#inquiry"
+		primaryLabel="Request Availability"
+		secondaryHref="/media"
+		secondaryLabel="View Media"
+		mediaLabel="Portrait or stage photography"
 		mediaType="stage"
 	/>
+
+	<section class="section" aria-labelledby="intro-title">
+		<div class="container two-column intro-grid">
+			<div>
+				<p class="eyebrow">Speaker</p>
+				<h2 id="intro-title">A pioneer in integrative medicine with a clear stage presence.</h2>
+			</div>
+			<p>
+				Dr. Lisa is a triple board-certified physician, educator, speaker, and functional medicine voice
+				with more than two decades of clinical experience. Her talks bring complex health ideas into
+				language audiences can use.
+			</p>
+		</div>
+	</section>
+
+	<section class="section section-soft" aria-labelledby="proof-title">
+		<div class="container">
+			<h2 class="visually-hidden" id="proof-title">Speaking experience</h2>
+		</div>
+		<div class="container proof-grid">
+			{proof.map(([label, value]) => (
+				<article class="card proof-card">
+					<p>{label}</p>
+					<h2>{value}</h2>
+				</article>
+			))}
+		</div>
+	</section>
 
 	<section class="section" aria-labelledby="topics-title">
 		<div class="container">
@@ -43,7 +72,7 @@ const credibility = [
 				id="topics-title"
 				eyebrow="Topics"
 				title="Talks that make complex health easier to understand."
-				copy="Topic descriptions are restrained drafts for future approved speaking materials."
+				copy="Each topic can be tailored for conferences, leadership rooms, wellness audiences, podcasts, and patient education events."
 			/>
 			<div class="topic-grid">
 				{topics.map(([title, copy]) => <TopicCard title={title} copy={copy} />)}
@@ -51,134 +80,189 @@ const credibility = [
 		</div>
 	</section>
 
-	<section class="section section-soft" aria-labelledby="credibility-title">
-		<div class="container two-column credibility-grid">
-			<div>
-				<p class="eyebrow">Experience</p>
-				<h2 id="credibility-title">Credibility without clutter.</h2>
-				<p>
-					This area can later hold approved logos, stages, conferences, programs, podcasts, and media
-					features without turning the page into a noisy proof wall.
-				</p>
-				<!-- Replace these placeholders with final approved media, stage, podcast, and publication references. -->
-			</div>
-			<ul>
-				{credibility.map((item) => <li>{item}</li>)}
-			</ul>
+	<section class="section section-soft" aria-labelledby="media-title">
+		<div class="container">
+			<SectionIntro
+				id="media-title"
+				eyebrow="Media Proof"
+				title="A physician voice already in public conversation."
+				copy="Browse selected appearances or visit the full media page for a larger library."
+			/>
+			<MediaGrid items={mediaAppearances.slice(0, 6)} />
 		</div>
 	</section>
 
-	<section class="section" aria-labelledby="appearance-title">
-		<div class="container appearance-panel">
-			<div class="video-placeholder" aria-label="Featured appearance video placeholder">
-				<!-- Replace with final approved video embed or media artwork. -->
-				<span aria-hidden="true"></span>
-				<p class="placeholder-note">Featured Appearance</p>
-			</div>
+	<section class="section" id="inquiry" aria-labelledby="inquiry-title">
+		<div class="container inquiry-layout">
 			<div>
-				<p class="eyebrow">Featured Appearance</p>
-				<h2 id="appearance-title">A calm media moment for a clear physician voice.</h2>
+				<p class="eyebrow">Inquiry</p>
+				<h2 id="inquiry-title">Request availability for your event or interview.</h2>
 				<p>
-					This static module demonstrates how a future talk, podcast, or media feature could be
-					presented once final assets and permissions are available.
+					Use these fields to prepare the key details for a speaking, podcast, interview, or physician
+					education request.
 				</p>
 			</div>
+			<form class="speaking-form" action="#" method="get">
+				<label>
+					Name
+					<input type="text" name="name" autocomplete="name" />
+				</label>
+				<label>
+					Email
+					<input type="email" name="email" autocomplete="email" />
+				</label>
+				<label>
+					Event date
+					<input type="text" name="event-date" />
+				</label>
+				<label>
+					Subject
+					<input type="text" name="subject" />
+				</label>
+				<label>
+					Message
+					<textarea name="message" rows="5"></textarea>
+				</label>
+				<button class="button button-primary" type="submit">Prepare Inquiry</button>
+			</form>
 		</div>
 	</section>
 
 	<CTASection
 		eyebrow="Booking"
-		title="Invite Dr. Koche to speak."
-		copy="Use the static contact destination for speaking, podcast, and media inquiries. No booking backend is connected in this concept."
-		primaryHref="/contact"
-		primaryLabel="Invite Dr. Koche to Speak"
+		title="Invite Dr. Lisa to speak."
+		copy="Use the inquiry section for speaking, podcast, interview, and physician education requests."
+		primaryHref="#inquiry"
+		primaryLabel="Request Availability"
+		secondaryHref="/media"
+		secondaryLabel="View Media"
 	/>
 </Layout>
 
 <style>
-	.topic-grid {
-		display: grid;
-		gap: var(--space-md);
-		margin-top: var(--space-2xl);
-	}
-
-	.credibility-grid {
+	.intro-grid {
 		align-items: start;
 	}
 
-	.credibility-grid h2,
-	.appearance-panel h2 {
+	.intro-grid h2,
+	.inquiry-layout h2 {
 		margin: 0;
 		font-family: var(--font-display);
-		font-size: clamp(2.2rem, 5vw, 4.6rem);
+		font-size: clamp(2.05rem, 4vw, 3.8rem);
 		font-weight: 400;
-		line-height: 1;
+		line-height: 1.04;
 	}
 
-	.credibility-grid p:not(.eyebrow),
-	.appearance-panel p:not(.eyebrow, .placeholder-note) {
+	.intro-grid p,
+	.inquiry-layout p {
 		color: var(--color-muted);
 	}
 
-	.credibility-grid ul {
+	.proof-grid,
+	.topic-grid {
 		display: grid;
-		gap: var(--space-md);
-		padding: 0;
+		gap: var(--space-lg);
+	}
+
+	.topic-grid,
+	:global(.media-grid) {
+		margin-top: var(--space-2xl);
+	}
+
+	.proof-card {
+		min-height: 12rem;
+		padding: clamp(1.25rem, 3vw, 1.85rem);
+	}
+
+	.proof-card p {
+		margin: 0 0 var(--space-lg);
+		color: var(--color-spectra-teal);
+		font-size: 0.72rem;
+		font-weight: 800;
+		letter-spacing: 0.12em;
+		text-transform: uppercase;
+	}
+
+	.proof-card h2 {
 		margin: 0;
-		list-style: none;
+		font-family: var(--font-display);
+		font-size: clamp(1.6rem, 3vw, 2.6rem);
+		font-weight: 400;
+		line-height: 1.05;
 	}
 
-	.credibility-grid li {
-		padding: var(--space-lg);
-		border: 1px solid var(--color-border);
-		border-radius: var(--radius-md);
-		background: rgba(255, 255, 255, 0.62);
-		color: var(--color-muted);
-	}
-
-	.appearance-panel {
+	.inquiry-layout {
 		display: grid;
 		gap: clamp(2rem, 6vw, 5rem);
-		align-items: center;
+		align-items: start;
 	}
 
-	.video-placeholder {
-		position: relative;
+	.speaking-form {
 		display: grid;
-		min-height: 24rem;
-		place-items: center;
-		overflow: hidden;
+		gap: var(--space-md);
+		padding: clamp(1.25rem, 3vw, 2rem);
 		border: 1px solid var(--color-border);
 		border-radius: var(--radius-xl);
 		background:
-			linear-gradient(145deg, rgba(49, 70, 58, 0.96), rgba(30, 36, 33, 0.98)),
-			radial-gradient(circle at 72% 18%, rgba(215, 196, 140, 0.2), transparent 13rem);
-		box-shadow: var(--shadow-soft);
+			linear-gradient(180deg, rgba(255, 255, 255, 0.84), rgba(255, 255, 255, 0.68)),
+			var(--gradient-spectrum-soft);
+		box-shadow: var(--shadow-spectrum);
 	}
 
-	.video-placeholder span {
-		width: 4.5rem;
-		aspect-ratio: 1;
-		border: 1px solid rgba(247, 248, 245, 0.44);
-		border-radius: 50%;
-		background: rgba(247, 248, 245, 0.1);
+	label {
+		display: grid;
+		gap: var(--space-xs);
+		color: var(--color-spectra-teal);
+		font-size: 0.84rem;
+		font-weight: 800;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
 	}
 
-	.video-placeholder .placeholder-note {
-		position: absolute;
-		bottom: var(--space-lg);
-		color: rgba(247, 248, 245, 0.64);
+	input,
+	textarea {
+		width: 100%;
+		border: 1px solid var(--color-border);
+		border-radius: var(--radius-sm);
+		background: rgba(255, 255, 255, 0.78);
+		color: var(--color-text);
+		font-size: 1rem;
+		letter-spacing: 0;
+		text-transform: none;
+	}
+
+	input {
+		min-height: 3rem;
+		padding: 0 0.9rem;
+	}
+
+	textarea {
+		padding: 0.8rem 0.9rem;
+		resize: vertical;
+	}
+
+	input:focus,
+	textarea:focus {
+		border-color: rgba(216, 76, 159, 0.42);
+		box-shadow: 0 0 0 4px rgba(80, 166, 163, 0.16);
+		outline: none;
+	}
+
+	.speaking-form .button {
+		width: fit-content;
+		margin-top: var(--space-sm);
 	}
 
 	@media (min-width: 760px) {
+		.proof-grid,
 		.topic-grid {
-			grid-template-columns: repeat(2, 1fr);
+			grid-template-columns: repeat(3, 1fr);
 		}
 	}
 
-	@media (min-width: 940px) {
-		.appearance-panel {
-			grid-template-columns: minmax(22rem, 0.85fr) 1fr;
+	@media (min-width: 900px) {
+		.inquiry-layout {
+			grid-template-columns: 0.8fr 1fr;
 		}
 	}
 </style>
