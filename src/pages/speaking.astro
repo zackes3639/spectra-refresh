@@ -8,11 +8,11 @@ import TopicCard from "../components/TopicCard.astro";
 import { mediaAppearances } from "../data/media";
 
 const topics = [
-	["Sovereign Medicine", "How patients can reclaim voice, agency, and discernment in their health journey."],
-	["The LIT Journey", "A practical introduction to Dr. Lisa's framework for healing, performance, and alignment."],
-	["Mitochondria & Cell Danger Response", "A clear translation of cellular energy, stress signaling, and recovery capacity."],
-	["Heart-Centered Leadership", "Health, coherence, and burnout prevention for leaders and high-demand teams."],
-	["Inner Harmony", "A science-and-spirit conversation about regulation, resilience, and whole-person vitality."],
+	["Sovereign Medicine", "How people can reclaim voice, agency, and discernment in their health journey"],
+	["The LIT Journey", "A practical introduction to Dr. Lisa's framework for healing, performance, and alignment"],
+	["Mitochondria & Cell Danger Response", "A clear translation of cellular energy, stress signaling, and recovery capacity"],
+	["Heart-Centered Leadership", "Health, coherence, and burnout prevention for leaders and high-demand teams"],
+	["Inner Harmony", "A science-and-spirit conversation about regulation, resilience, and whole-person vitality"],
 ];
 
 const proof = [
@@ -23,13 +23,13 @@ const proof = [
 ---
 
 <Layout
-	title="Book Dr. Lisa Koche as a Speaker | Functional Medicine & Longevity"
-	description="Invite Dr. Lisa Koche to speak on functional medicine, longevity, performance, sovereignty, mitochondria, and heart-centered leadership."
+	title="Book Dr. Lisa Koche as a Speaker | Health, Resilience & Leadership"
+	description="Invite Dr. Lisa Koche to speak on health literacy, longevity, resilience, sovereignty, mitochondria, and heart-centered leadership"
 	currentPath="/speaking"
 >
 	<PageHero
-		title="Transformational speaker and physician educator for health, performance, and leadership."
-		copy="Dr. Lisa translates complex physiology into grounded, memorable teaching for audiences seeking science-backed health insight with a human and spiritually aware lens."
+		title="Transformational speaker and physician educator for health, performance, and leadership"
+		copy="Dr. Lisa translates complex physiology into grounded, memorable teaching for audiences seeking science-backed health insight with a human and spiritually aware lens"
 		primaryHref="#inquiry"
 		primaryLabel="Request Availability"
 		secondaryHref="/media"
@@ -42,12 +42,12 @@ const proof = [
 		<div class="container two-column intro-grid">
 			<div>
 				<p class="eyebrow">Speaker</p>
-				<h2 id="intro-title">A pioneer in integrative medicine with a clear stage presence.</h2>
+				<h2 id="intro-title">A pioneer in integrative medicine with a clear stage presence</h2>
 			</div>
 			<p>
-				Dr. Lisa is a triple board-certified physician, educator, speaker, and functional medicine voice
-				with more than two decades of clinical experience. Her talks bring complex health ideas into
-				language audiences can use.
+				Dr. Lisa is a triple board-certified physician, educator, speaker, and health literacy voice
+				with more than two decades of professional experience. Her talks bring complex health ideas into
+				language audiences can use
 			</p>
 		</div>
 	</section>
@@ -71,8 +71,8 @@ const proof = [
 			<SectionIntro
 				id="topics-title"
 				eyebrow="Topics"
-				title="Talks that make complex health easier to understand."
-				copy="Each topic can be tailored for conferences, leadership rooms, wellness audiences, podcasts, and patient education events."
+				title="Talks that make complex health easier to understand"
+				copy="Each topic can be tailored for conferences, leadership rooms, wellness audiences, podcasts, and public education events"
 			/>
 			<div class="topic-grid">
 				{topics.map(([title, copy]) => <TopicCard title={title} copy={copy} />)}
@@ -85,8 +85,8 @@ const proof = [
 			<SectionIntro
 				id="media-title"
 				eyebrow="Media Proof"
-				title="A physician voice already in public conversation."
-				copy="Browse selected appearances or visit the full media page for a larger library."
+				title="A physician voice already in public conversation"
+				copy="Browse selected appearances or visit the full media page for a larger library"
 			/>
 			<MediaGrid items={mediaAppearances.slice(0, 6)} />
 		</div>
@@ -96,10 +96,10 @@ const proof = [
 		<div class="container inquiry-layout">
 			<div>
 				<p class="eyebrow">Inquiry</p>
-				<h2 id="inquiry-title">Request availability for your event or interview.</h2>
+				<h2 id="inquiry-title">Request availability for your event or interview</h2>
 				<p>
-					Use these fields to prepare the key details for a speaking, podcast, interview, or physician
-					education request.
+					Use these fields to prepare the key details for a speaking, podcast, interview, or professional
+					education request
 				</p>
 			</div>
 			<form class="speaking-form" action="#" method="get">
@@ -130,8 +130,8 @@ const proof = [
 
 	<CTASection
 		eyebrow="Booking"
-		title="Invite Dr. Lisa to speak."
-		copy="Use the inquiry section for speaking, podcast, interview, and physician education requests."
+		title="Invite Dr. Lisa to speak"
+		copy="Use the inquiry section for speaking, podcast, interview, and professional education requests"
 		primaryHref="#inquiry"
 		primaryLabel="Request Availability"
 		secondaryHref="/media"

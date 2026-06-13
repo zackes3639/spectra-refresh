@@ -9,12 +9,12 @@ import { articleResources, featuredResources } from "../../data/resources";
 
 <Layout
 	title="Insights | Dr. Lisa Koche"
-	description="Legacy insights hub for resources, articles, and education from Dr. Lisa Koche."
+	description="Legacy insights hub for resources, articles, and education from Dr. Lisa Koche"
 	currentPath="/insights"
 >
 	<PageHero
-		title="Insights now live in the resources library."
-		copy="This legacy path remains available for visitors who expect an insights page, while the refreshed site uses Resources as the primary education hub."
+		title="Insights now live in the resources library"
+		copy="This legacy path remains available for visitors who expect an insights page, while the refreshed site uses Resources as the primary education hub"
 		primaryHref="/resources"
 		primaryLabel="Open Resources"
 		secondaryHref="/programs"
@@ -27,8 +27,8 @@ import { articleResources, featuredResources } from "../../data/resources";
 			<SectionIntro
 				id="featured-title"
 				eyebrow="Featured Resources"
-				title="Start with the most useful education pathways."
-				copy="Resources include free guides, courses, favorites, and public articles."
+				title="Start with the most useful education pathways"
+				copy="Resources include free guides, courses, favorites, and public articles"
 			/>
 			<div class="featured-grid">
 				{featuredResources.slice(0, 3).map((resource) => <ResourceCard resource={resource} featured />)}
@@ -38,7 +38,7 @@ import { articleResources, featuredResources } from "../../data/resources";
 
 	<section class="section section-soft" id="articles" aria-labelledby="articles-title">
 		<div class="container">
-			<SectionIntro id="articles-title" eyebrow="Articles" title="Read recent health education." />
+			<SectionIntro id="articles-title" eyebrow="Articles" title="Read recent health education" />
 			<div class="article-grid">
 				{articleResources.map((resource) => <ResourceCard resource={resource} />)}
 			</div>
@@ -47,8 +47,8 @@ import { articleResources, featuredResources } from "../../data/resources";
 
 	<CTASection
 		eyebrow="Resources"
-		title="Use the refreshed resources hub for education."
-		copy="Browse free resources, articles, and learning pathways, or contact the office when your question is clinical."
+		title="Use the refreshed resources hub for education"
+		copy="Browse free resources, articles, and learning pathways from Dr. Lisa's platform"
 		primaryHref="/resources"
 		primaryLabel="Open Resources"
 		secondaryHref="/contact"

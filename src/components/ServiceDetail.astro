@@ -37,7 +37,7 @@ const secondaryAttrs = service.secondaryCta && isExternalUrl(service.secondaryCt
 				id="fit-title"
 				eyebrow={service.eyebrow}
 				title="Who this service is for"
-				copy="These pathways are educational starting points. Care recommendations depend on individualized clinical review."
+				copy="These pathways are educational starting points. Care recommendations depend on individualized clinical review"
 			/>
 			<div class="fit-list">
 				{service.who.map((item) => <p>{item}</p>)}
@@ -49,7 +49,7 @@ const secondaryAttrs = service.secondaryCta && isExternalUrl(service.secondaryCt
 		<div class="container benefits-panel">
 			<div>
 				<p class="eyebrow">Care Focus</p>
-				<h2 id="benefits-title">Support that stays specific and measured.</h2>
+				<h2 id="benefits-title">Support that stays specific and measured</h2>
 			</div>
 			<ul>
 				{service.benefits.map((benefit) => <li>{benefit}</li>)}
@@ -81,8 +81,8 @@ const secondaryAttrs = service.secondaryCta && isExternalUrl(service.secondaryCt
 			<SectionIntro
 				id="related-title"
 				eyebrow="Related Care"
-				title="Care often works best when the whole picture is connected."
-				copy="Explore adjacent services that may be discussed as part of a personalized care plan."
+				title="Care often works best when the whole picture is connected"
+				copy="Explore adjacent services that may be discussed as part of a personalized care plan"
 			/>
 			<div class="related-grid">
 				{relatedServices.map((related) => <ServiceCard service={related} compact />)}
@@ -95,8 +95,8 @@ const secondaryAttrs = service.secondaryCta && isExternalUrl(service.secondaryCt
 	</section>
 
 	<CTASection
-		title="Start with a conversation, not a guess."
-		copy="Tell the office team what you are navigating, and they can help route you toward the most appropriate next step."
+		title="Start with a conversation, not a guess"
+		copy="Tell the office team what you are navigating, and they can help route you toward the most appropriate next step"
 		primaryHref="/contact"
 		primaryLabel="Contact the Practice"
 		secondaryHref="/services"

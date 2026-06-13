@@ -1,0 +1,99 @@
+---
+import { widont } from "../utils/typography";
+
+interface MetricItem {
+	value: string;
+	label: string;
+	copy?: string;
+}
+
+interface Props {
+	items: MetricItem[];
+	ariaLabel: string;
+	compact?: boolean;
+}
+
+const { items, ariaLabel, compact = false } = Astro.props;
+---
+
+<div class:list={["metric-strip", compact && "compact"]} aria-label={ariaLabel}>
+	{
+		items.map((item) => (
+			<div class="metric-item">
+				<span aria-hidden="true"></span>
+				<strong set:html={widont(item.value)} />
+				<p set:html={widont(item.label)} />
+				{item.copy && <small set:html={widont(item.copy)} />}
+			</div>
+		))
+	}
+</div>
+
+<style>
+	.metric-strip {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(min(15.5rem, 100%), 1fr));
+		gap: var(--space-24);
+	}
+
+	.metric-item {
+		display: grid;
+		gap: var(--space-8);
+		align-content: start;
+		min-height: 10.5rem;
+		padding: clamp(var(--space-16), 2.2vw, var(--space-24));
+		border: 1px solid rgba(40, 156, 176, 0.18);
+		border-radius: var(--radius-lg);
+		background:
+			linear-gradient(180deg, rgba(255, 255, 255, 0.82), rgba(247, 252, 254, 0.64)),
+			var(--gradient-spectrum-soft);
+		box-shadow: var(--shadow-card);
+	}
+
+	.compact .metric-item {
+		min-height: 8.5rem;
+	}
+
+	.metric-item > span {
+		width: 1.7rem;
+		aspect-ratio: 1;
+		border: 1px solid rgba(255, 255, 255, 0.72);
+		border-radius: 50%;
+		background:
+			radial-gradient(circle at 30% 30%, var(--color-spectra-sun) 0 18%, transparent 19%),
+			radial-gradient(circle at 72% 32%, var(--color-spectra-pink) 0 16%, transparent 17%),
+			radial-gradient(circle at 34% 72%, var(--color-spectra-teal) 0 18%, transparent 19%),
+			radial-gradient(circle at 70% 70%, var(--color-oxygen-blue) 0 16%, transparent 17%);
+		box-shadow: 0 10px 22px rgba(40, 156, 176, 0.18);
+	}
+
+	strong {
+		color: var(--color-deep-evergreen);
+		font-family: var(--font-display);
+		font-size: clamp(1.35rem, 2vw, 1.85rem);
+		font-weight: 400;
+		line-height: 1.12;
+	}
+
+	p,
+	small {
+		margin: 0;
+		color: var(--color-muted);
+		line-height: 1.42;
+	}
+
+	p {
+		font-size: 0.94rem;
+		font-weight: 800;
+	}
+
+	small {
+		font-size: 0.84rem;
+	}
+
+	@media (min-width: 760px) and (max-width: 999px) {
+		strong {
+			font-size: clamp(1.28rem, 1.8vw, 1.6rem);
+		}
+	}
+</style>

@@ -5,16 +5,17 @@ import PageHero from "../components/PageHero.astro";
 import ProgramCard from "../components/ProgramCard.astro";
 import SectionIntro from "../components/SectionIntro.astro";
 import { programs } from "../data/programs";
+import { siteLinks } from "../data/site";
 ---
 
 <Layout
 	title="Programs & Education | Dr. Lisa Koche"
-	description="Explore Dr. Lisa Koche education pathways for longevity, recovery, hormonal health, and preventive care."
+	description="Explore Dr. Lisa Koche education pathways for longevity, recovery, resilience, and whole-person health literacy"
 	currentPath="/programs"
 >
 	<PageHero
-		title="Dr. Lisa's education pathways for healing, resilience, and longevity."
-		copy="These programs are Dr. Lisa learning pathways for education, self-advocacy, and a clearer conversation about your health."
+		title="Dr. Lisa's education pathways for healing, resilience, and longevity"
+		copy="These programs are Dr. Lisa learning pathways for education, self-advocacy, and a clearer conversation about your health"
 		primaryHref="/contact"
 		primaryLabel="Ask About Fit"
 		secondaryHref="/resources"
@@ -25,11 +26,10 @@ import { programs } from "../data/programs";
 	<section class="section" aria-labelledby="program-intro-title">
 		<div class="container intro-panel">
 			<p class="eyebrow">Overview</p>
-			<h2 id="program-intro-title">A clearer structure for learning before, during, or after care.</h2>
+			<h2 id="program-intro-title">A clearer structure for learning and self-advocacy</h2>
 			<p>
 				Each pathway is designed to connect physiology, lifestyle, symptoms, and goals into more useful
-				questions. These educational pages do not replace individualized medical advice from a qualified
-				clinician.
+				questions. These educational pages are for orientation, reflection, and health literacy
 			</p>
 		</div>
 	</section>
@@ -39,8 +39,8 @@ import { programs } from "../data/programs";
 			<SectionIntro
 				id="program-list-title"
 				eyebrow="Flagship Programs"
-				title="Choose the path that matches the pattern you want to understand."
-				copy="For clinical care, begin with services or patient information. For education, these pathways can help organize the next question."
+				title="Choose the path that matches the pattern you want to understand"
+				copy="These pathways help organize the next question and point people back to Dr. Lisa's larger education ecosystem"
 			/>
 			<div class="program-grid">
 				{
@@ -62,7 +62,7 @@ import { programs } from "../data/programs";
 		<div class="container path-panel">
 			<div>
 				<p class="eyebrow">Which path is right for you?</p>
-				<h2 id="path-title">Start with the pattern you most want to understand.</h2>
+				<h2 id="path-title">Start with the pattern you most want to understand</h2>
 			</div>
 			<div class="path-grid">
 				{programs.map((program) => (
@@ -77,12 +77,12 @@ import { programs } from "../data/programs";
 	</section>
 
 	<CTASection
-		title="Care and education can work together."
-		copy="If your question is clinical, start with the care pathways. If your question is educational, explore Dr. Lisa's resources and programs."
-		primaryHref="/contact"
-		primaryLabel="Contact"
-		secondaryHref="/resources"
-		secondaryLabel="Explore Resources"
+		title="Education can organize the next question"
+		copy="Explore Dr. Lisa's resources and programs, or continue to Spectra Wellness for practice details"
+		primaryHref="/resources"
+		primaryLabel="Explore Resources"
+		secondaryHref={siteLinks.spectraWellness}
+		secondaryLabel="Spectra Wellness"
 	/>
 </Layout>
 

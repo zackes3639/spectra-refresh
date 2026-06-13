@@ -1,14 +1,19 @@
 ---
-import ServiceDetail from "../../components/ServiceDetail.astro";
-import { services } from "../../data/services";
+import SpectraRedirect from "../../components/SpectraRedirect.astro";
 
 export const getStaticPaths = () =>
-	services.map((service) => ({
-		params: { slug: service.slug },
-		props: { service },
-	}));
-
-const { service } = Astro.props;
+	[
+		"functional-medicine",
+		"performance-longevity",
+		"iv-nutrition",
+		"applied-kinesiology",
+		"chiropractic-care",
+		"hormone-replacement",
+		"aesthetics-regenerative-wellness",
+		"destination-health",
+		"preventive-cardiology",
+		"healing-arts-collective",
+	].map((slug) => ({ params: { slug } }));
 ---
 
-<ServiceDetail service={service} />
+<SpectraRedirect />

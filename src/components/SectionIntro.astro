@@ -1,4 +1,6 @@
 ---
+import { widont } from "../utils/typography";
+
 interface Props {
 	id?: string;
 	eyebrow?: string;
@@ -12,13 +14,13 @@ const { id, eyebrow, title, copy, align = "left" } = Astro.props;
 
 <div class={`section-intro align-${align}`}>
 	{eyebrow && <p class="eyebrow">{eyebrow}</p>}
-	<h2 class="section-heading" id={id}>{title}</h2>
-	{copy && <p class="section-copy">{copy}</p>}
+	<h2 class="section-heading" id={id} set:html={widont(title)} />
+	{copy && <p class="section-copy" set:html={widont(copy)} />}
 </div>
 
 <style>
 	.section-intro {
-		max-width: 52rem;
+		max-width: min(52rem, var(--max-text-width));
 	}
 
 	.align-center {

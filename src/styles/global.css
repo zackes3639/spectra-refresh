@@ -19,8 +19,8 @@ body {
 		var(--color-warm-clinical-white);
 	color: var(--color-text);
 	font-family: var(--font-body);
-	font-size: clamp(15px, 0.22vw + 14.2px, 18px);
-	line-height: 1.65;
+	font-size: var(--body-font-size);
+	line-height: var(--body-line-height);
 	text-rendering: optimizeLegibility;
 }
 
@@ -66,11 +66,11 @@ select {
 }
 
 .section {
-	padding-block: clamp(2.35rem, 4.8vw, 4rem);
+	padding-block: clamp(var(--space-40), 5vw, var(--space-64));
 }
 
 main > section + section.section {
-	padding-top: 0;
+	padding-top: clamp(var(--space-56), 6vw, var(--space-80));
 }
 
 .section-soft {
@@ -82,7 +82,7 @@ main > section + section.section {
 }
 
 .eyebrow {
-	margin: 0 0 var(--space-sm);
+	margin: 0 0 var(--space-8);
 	color: var(--color-spectra-teal);
 	font-size: 0.76rem;
 	font-weight: 700;
@@ -96,12 +96,12 @@ main > section + section.section {
 	font-size: clamp(1.9rem, 3.8vw, 4.1rem);
 	font-weight: 400;
 	letter-spacing: 0;
-	line-height: 1.02;
+	line-height: var(--heading-line-height);
 }
 
 .section-copy {
-	margin: var(--space-md) 0 0;
-	max-width: 42rem;
+	margin: var(--space-16) 0 0;
+	max-width: min(42rem, var(--max-text-width));
 	color: var(--color-muted);
 	font-size: clamp(1rem, 1.25vw, 1.125rem);
 }
@@ -112,6 +112,7 @@ h3,
 h4,
 h5,
 h6 {
+	scroll-margin-top: clamp(6rem, 12vw, 8rem);
 	text-wrap: balance;
 }
 
@@ -120,12 +121,20 @@ li {
 	text-wrap: pretty;
 }
 
+.text-measure {
+	max-width: var(--max-text-width);
+}
+
+.nowrap {
+	white-space: nowrap;
+}
+
 .button {
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;
-	min-height: 2.85rem;
-	padding: 0.8rem 1.32rem;
+	min-height: var(--space-48);
+	padding: var(--space-12) var(--space-24);
 	border: 1px solid transparent;
 	border-radius: var(--radius-pill);
 	font-size: clamp(0.84rem, 0.32vw + 0.72rem, 0.94rem);
@@ -198,7 +207,7 @@ li {
 
 .spectrum-mark {
 	display: inline-block;
-	width: 2.45rem;
+	width: var(--space-40);
 	aspect-ratio: 1;
 	border-radius: 50%;
 	background:
@@ -248,11 +257,11 @@ li {
 
 @media (max-width: 760px) {
 	.section {
-		padding-block: clamp(1.65rem, 5.5vw, 2.25rem);
+		padding-block: clamp(var(--space-24), 6vw, var(--space-40));
 	}
 
 	main > section + section.section {
-		padding-top: 0;
+		padding-top: var(--space-40);
 	}
 
 	.container,

@@ -30,7 +30,7 @@ const linkAttrs = isExternalUrl(member.bookingHref) ? { target: "_blank", rel: "
 		<ul aria-label={`${member.name} specialties`}>
 			{member.specialties.map((specialty) => <li>{specialty}</li>)}
 		</ul>
-		<small>{member.acceptsInsurance ? "Insurance note: many PPO policies may apply; confirm before scheduling." : "Self-pay or direct scheduling; confirm details with the practice."}</small>
+		<small>{member.acceptsInsurance ? "Insurance note: many PPO policies may apply; confirm before scheduling" : "Self-pay or direct scheduling; confirm details with the practice"}</small>
 		<a href={member.bookingHref} {...linkAttrs}>{member.bookingLabel}</a>
 	</div>
 </article>

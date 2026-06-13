@@ -1,4 +1,5 @@
 export const siteLinks = {
+	spectraWellness: "https://spectrawellness.com/",
 	discoveryCall: "https://calendly.com/nincandela-spectrawellness/15min",
 	patientPortal: "https://spectrawellness.com/patient-portal/",
 	patientInformation: "https://spectrawellness.com/patient-information/",

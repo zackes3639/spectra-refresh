@@ -8,32 +8,26 @@ import { practiceInfo, siteLinks } from "../data/site";
 
 const contactOptions = [
 	{
-		title: "Become a patient",
-		copy: "Start here for new patient questions, provider routing, and care pathway fit.",
-		href: "/patients",
-		label: "Patient information",
-	},
-	{
-		title: "Clinical care discovery",
-		copy: "Use a discovery call for functional medicine care questions and current fit.",
-		href: siteLinks.discoveryCall,
-		label: "Book discovery",
-	},
-	{
-		title: "Performance therapies",
-		copy: "Book performance and longevity therapies through the current public Mindbody destination.",
-		href: siteLinks.mindbody,
-		label: "Book with Mindbody",
-	},
-	{
 		title: "Speaking or media",
-		copy: "Route event, interview, podcast, and education inquiries through the speaking page.",
+		copy: "Route event, interview, podcast, and education inquiries through the speaking page",
 		href: "/speaking",
 		label: "Speaking inquiry",
 	},
 	{
+		title: "Resources and courses",
+		copy: "Start with Dr. Lisa's public learning library, current courses, and favorites",
+		href: "/resources",
+		label: "View resources",
+	},
+	{
+		title: "Spectra Wellness",
+		copy: "For practice information, appointments, and office details, continue to Spectra Wellness",
+		href: siteLinks.spectraWellness,
+		label: "Open Spectra",
+	},
+	{
 		title: "General question",
-		copy: "For non-urgent practice questions, call, email, or use the inquiry form below.",
+		copy: "For non-urgent questions about this site, speaking, resources, or media, use the inquiry form below",
 		href: "#contact-form",
 		label: "Prepare inquiry",
 	},
@@ -41,17 +35,17 @@ const contactOptions = [
 ---
 
 <Layout
-	title="Contact Dr. Lisa Koche | Tampa Functional Medicine"
-	description="Contact Dr. Lisa Koche's office for patient inquiries, discovery calls, appointments, speaking requests, and general questions."
+	title="Contact Dr. Lisa Koche | Speaking, Media & Resources"
+	description="Contact Dr. Lisa Koche for speaking, media, resources, education, and general inquiries, with practice details routed to Spectra Wellness"
 	currentPath="/contact"
 >
 	<PageHero
-		title="Start with the right conversation."
-		copy="Use this page to route patient care, discovery calls, performance therapy, speaking, media, and general office questions while keeping sensitive medical details out of web forms."
-		primaryHref={practiceInfo.phoneHref}
-		primaryLabel={`Call ${practiceInfo.phone}`}
-		secondaryHref="#contact-form"
-		secondaryLabel="Prepare Inquiry"
+		title="Start with the right conversation"
+		copy="Use this page for Dr. Lisa speaking, media, education, resources, and general inquiries. Practice details and appointments are routed to Spectra Wellness"
+		primaryHref="#contact-form"
+		primaryLabel="Prepare Inquiry"
+		secondaryHref={siteLinks.spectraWellness}
+		secondaryLabel="Spectra Wellness"
 		mediaLabel="Contact imagery"
 	/>
 
@@ -60,8 +54,8 @@ const contactOptions = [
 			<SectionIntro
 				id="options-title"
 				eyebrow="Contact Options"
-				title="Choose the inquiry that best fits."
-				copy="Clear routing keeps clinical, therapy, education, and media pathways separate so each question reaches the right destination."
+				title="Choose the inquiry that best fits"
+				copy="Clear routing keeps Dr. Lisa invitations, education questions, general messages, and Spectra Wellness handoffs easy to separate"
 			/>
 			<div class="contact-grid">
 				{contactOptions.map((option) => <ContactCard {...option} />)}
@@ -73,14 +67,14 @@ const contactOptions = [
 		<div class="container contact-layout">
 			<div>
 				<p class="eyebrow">Inquiry</p>
-				<h2 id="form-title">Prepare a simple inquiry.</h2>
+				<h2 id="form-title">Prepare a simple inquiry</h2>
 				<p>
-					Use these fields to organize a non-urgent message before contacting the practice. For direct
-					communication, call or email the office.
+					Use these fields to organize a non-urgent message about speaking, media, resources, or a
+					general website question
 				</p>
 				<p class="notice">
-					Do not submit protected health information, urgent symptoms, or emergency concerns through
-					this form. Call the office for routine questions or call 911 for emergencies.
+					Please do not submit private health details, urgent symptoms, or emergency concerns through
+					this form. For practice information, continue to Spectra Wellness
 				</p>
 			</div>
 			<form class="contact-form" action="#" method="get">
@@ -95,10 +89,9 @@ const contactOptions = [
 				<label>
 					Inquiry type
 					<select name="inquiry">
-						<option>Patient inquiry</option>
-						<option>Clinical care discovery</option>
-						<option>Performance therapy</option>
 						<option>Speaking / media</option>
+						<option>Resources / courses</option>
+						<option>Spectra Wellness</option>
 						<option>General question</option>
 					</select>
 				</label>
@@ -111,29 +104,28 @@ const contactOptions = [
 		</div>
 	</section>
 
-	<section class="section" aria-labelledby="practice-title">
+	<section class="section" aria-labelledby="spectra-title">
 		<div class="container practice-panel">
 			<div>
-				<p class="eyebrow">Practice Information</p>
-				<h2 id="practice-title">Dr. Lisa's Tampa clinical home.</h2>
+				<p class="eyebrow">Spectra Wellness</p>
+				<h2 id="spectra-title">Practice information belongs there</h2>
 			</div>
 			<div class="practice-details">
+				<a href={siteLinks.spectraWellness} target="_blank" rel="noopener noreferrer">Open Spectra Wellness</a>
 				<a href={practiceInfo.phoneHref}>{practiceInfo.phone}</a>
 				<a href={practiceInfo.emailHref}>{practiceInfo.email}</a>
 				<a href={siteLinks.maps} target="_blank" rel="noopener noreferrer">{practiceInfo.address}</a>
-				<a href={siteLinks.patientPortal} target="_blank" rel="noopener noreferrer">Patient Portal</a>
-				<a href={siteLinks.mindbody} target="_blank" rel="noopener noreferrer">Mindbody Booking</a>
 			</div>
 		</div>
 	</section>
 
 	<CTASection
-		title="Prefer to understand the pathways first?"
-		copy="Explore services or patient information before reaching out if you are not sure where your question belongs."
-		primaryHref="/services"
-		primaryLabel="Explore Services"
-		secondaryHref="/patients"
-		secondaryLabel="Patient Information"
+		title="Prefer to explore Dr. Lisa's platform first"
+		copy="Browse resources, media, and speaking before choosing the best next step"
+		primaryHref="/resources"
+		primaryLabel="Explore Resources"
+		secondaryHref="/speaking"
+		secondaryLabel="Speaking"
 	/>
 </Layout>
 
@@ -266,7 +258,7 @@ const contactOptions = [
 		}
 
 		.contact-grid {
-			grid-template-columns: repeat(5, 1fr);
+			grid-template-columns: repeat(4, 1fr);
 		}
 	}
 </style>

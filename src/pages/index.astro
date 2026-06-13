@@ -1,456 +1,313 @@
 ---
 import CTASection from "../components/CTASection.astro";
+import EditorialArtFrame from "../components/EditorialArtFrame.astro";
 import Layout from "../components/Layout.astro";
+import MetricStrip from "../components/MetricStrip.astro";
 import PageHero from "../components/PageHero.astro";
+import PathwayCard from "../components/PathwayCard.astro";
 import SectionIntro from "../components/SectionIntro.astro";
-import ServiceCard from "../components/ServiceCard.astro";
-import TestimonialCard from "../components/TestimonialCard.astro";
-import { services } from "../data/services";
+import TimelineList from "../components/TimelineList.astro";
 import { siteLinks } from "../data/site";
-import { testimonials } from "../data/testimonials";
 
-const featuredServices = services.filter((service) =>
-	["functional-medicine", "performance-longevity", "applied-kinesiology", "chiropractic-care", "aesthetics-regenerative-wellness"].includes(service.slug),
-);
-
-const featuredOfferings = [
+const waysIn = [
 	{
-		title: "Functional Medicine Care",
-		copy: "A deeper clinical pathway for patients who want time, context, labs, coaching, and follow-through.",
-		href: "/membership",
+		title: "Story",
+		copy: "Meet the founder behind the platform",
+		href: "/about",
+		cta: "Meet",
+		icon: "story",
 	},
 	{
-		title: "Destination Health Immersion",
-		copy: "A private, focused Tampa experience for people seeking deeper diagnostics, strategy, and wellness support.",
-		href: "/services/destination-health",
+		title: "Invite",
+		copy: "Book speaking, podcasts, or interviews",
+		href: "/speaking",
+		cta: "Book",
+		icon: "invite",
 	},
 	{
-		title: "Healing Arts Collective",
-		copy: "A rotating collective of independent practitioners offering complementary care in one trusted space.",
-		href: "/services/healing-arts-collective",
+		title: "Learn",
+		copy: "Browse resources, programs, and favorites",
+		href: "/resources",
+		cta: "Read",
+		icon: "learn",
+	},
+	{
+		title: "Spectra",
+		copy: "Visit the practice site",
+		href: siteLinks.spectraWellness,
+		cta: "Visit",
+		icon: "spectra",
 	},
 ];
+
+const proofItems = [
+	{
+		value: "Founder",
+		label: "Spectra Wellness",
+		copy: "Built the organization that became home to her broader vision",
+	},
+	{
+		value: "Physician",
+		label: "Medical perspective",
+		copy: "Her training informs the way she teaches, writes, and leads",
+	},
+	{
+		value: "Educator",
+		label: "Health literacy",
+		copy: "Translates complex ideas into language people can use",
+	},
+	{
+		value: "Speaker",
+		label: "Public voice",
+		copy: "Brings a grounded, human message to audiences and interviews",
+	},
+];
+
+const storyMoments = [
+	{
+		title: "Origin story",
+		copy: "Her personal experience shaped the empathy and persistence behind the work",
+	},
+	{
+		title: "Founder's vision",
+		copy: "Spectra Wellness grew from a desire to build something more human and integrative",
+	},
+	{
+		title: "Public education",
+		copy: "Her platform helps people ask clearer questions and trust their own discernment",
+	},
+	{
+		title: "The next chapter",
+		copy: "This site centers Dr. Lisa's voice, story, resources, media, and invitations",
+	},
+];
+
 ---
 
 <Layout
-	title="Dr. Lisa Koche | Functional Medicine & Longevity Physician"
-	description="Explore Dr. Lisa Koche's functional medicine, longevity, education, speaking, and whole-person health work from her Tampa clinical home."
+	title="Dr. Lisa Koche | Founder, Physician, Educator & Speaker"
+	description="Meet Dr. Lisa Koche, the founder, physician, educator, speaker, and advocate behind Spectra Wellness and a broader platform for health literacy"
 	currentPath="/"
 >
 	<PageHero
-		title="Modern medicine, root-cause care, and longevity optimization."
-		copy="Dr. Lisa Koche is a triple board-certified physician, educator, speaker, and root-cause medicine advocate helping patients understand their bodies, reclaim agency, and build long-term vitality."
-		primaryHref={siteLinks.discoveryCall}
-		primaryLabel="Book a Discovery Call"
-		secondaryHref="/about"
-		secondaryLabel="Meet Dr. Lisa"
-		mediaLabel="Dr. Lisa Koche Portrait"
+		title="Dr. Lisa Koche"
+		titleLines={["Dr. Lisa Koche", "educator", "advocate", "healer"]}
+		copy="The physician, educator, speaker, advocate, and healer behind Spectra Wellness and a larger conversation about resilience, agency, and health literacy"
+		primaryHref="/about"
+		primaryLabel="Meet Dr. Lisa"
+		secondaryHref="/speaking"
+		secondaryLabel="Speaking & Media"
+		mediaLabel="Dr. Lisa Koche portrait"
 		imageSrc="/images/dr-lisa-koche-headshot.jpeg"
 		imageAlt="Dr. Lisa Koche"
 		mediaType="portrait"
+		variant="home"
+		imagePosition="50% 34%"
+		mobileImagePosition="50% 30%"
+		imageScale="1.08"
+		mobileImageScale="1.08"
 	/>
 
-	<section class="section" aria-labelledby="promise-title">
-		<div class="container promise-panel">
-			<div>
-				<p class="eyebrow">Why Dr. Lisa</p>
-				<h2 id="promise-title">For patients tired of being rushed, unheard, or left without answers.</h2>
-			</div>
-			<div>
-				<p>
-					Dr. Lisa's work gives people more room to connect symptoms, history, diagnostics, lifestyle,
-					and goals. Her clinical lens blends traditional and integrative medicine without promising
-					shortcuts or one-size-fits-all answers.
-				</p>
-				<a class="button button-secondary" href="/approach">Learn Her Approach</a>
-			</div>
-		</div>
-	</section>
-
-	<section class="section section-soft" aria-labelledby="services-title">
+	<section class="section wayfinding-section" aria-labelledby="ways-title">
 		<div class="container">
-			<SectionIntro
-				id="services-title"
-				eyebrow="Services"
-				title="Care pathways shaped by a whole-person lens."
-				copy="Start with functional medicine, recovery therapies, structural support, aesthetics, or root-cause assessment. Dr. Lisa's clinical home can help clarify which doorway fits."
-			/>
-			<div class="service-grid">
-				{featuredServices.map((service) => <ServiceCard service={service} compact />)}
-			</div>
-		</div>
-	</section>
-
-	<section class="section" aria-labelledby="membership-title">
-		<div class="container membership-shell">
-			<div class="mission-intro">
-				<p class="eyebrow">Clinical Care</p>
-				<h2 id="membership-title">
-					A more connected way to access the <span class="mission-science">full spectrum</span> of care.
-				</h2>
-				<p>
-					For patients who need deeper support, the functional medicine care model can bring clinical
-					continuity, coaching, advanced labs, IV support, and performance therapies into a more guided
-					relationship.
-				</p>
-			</div>
-			<ol class="mission-flow" aria-label="Care flow">
-				<li>
-					<span class="flow-icon flow-icon-understanding" aria-hidden="true">
-						<svg viewBox="0 0 24 24">
-							<circle cx="12" cy="12" r="7"></circle>
-							<circle cx="12" cy="12" r="2.3"></circle>
-						</svg>
-					</span>
-					<div>
-						<strong>Clarify</strong>
-						<p>Understand your baseline</p>
-					</div>
-				</li>
-				<li>
-					<span class="flow-icon flow-icon-advocating" aria-hidden="true">
-						<svg viewBox="0 0 24 24">
-							<path d="M6 7H18V17H6Z"></path>
-							<path d="M8.5 11.5H15.5"></path>
-						</svg>
-					</span>
-					<div>
-						<strong>Support</strong>
-						<p>Follow a guided plan</p>
-					</div>
-				</li>
-				<li>
-					<span class="flow-icon flow-icon-healing" aria-hidden="true">
-						<svg viewBox="0 0 24 24">
-							<path d="M12 19.2C8.2 16.6 6 14.4 6 11.6C6 9.5 7.6 8 9.8 8C10.9 8 12 8.5 12.7 9.3C13.4 8.5 14.5 8 15.6 8C17.8 8 19.4 9.5 19.4 11.6C19.4 14.4 17.2 16.6 13.4 19.2L12.7 19.7Z"></path>
-						</svg>
-					</span>
-					<div>
-						<strong>Refine</strong>
-						<p>Adjust as needs evolve</p>
-					</div>
-				</li>
-			</ol>
-			<a class="button button-primary" href="/membership">Explore Care Model</a>
-		</div>
-	</section>
-
-	<section class="section section-soft" aria-labelledby="lisa-title">
-		<div class="container authority-grid">
-			<div>
-				<p class="eyebrow">Dr. Lisa Koche</p>
-				<h2 id="lisa-title">The physician authority behind the practice model.</h2>
-			</div>
-			<div>
-				<p>
-					Dr. Lisa is a triple board-certified physician, educator, speaker, and longtime root-cause
-					medicine advocate. Her own health story informs a body of work built for people who want to
-					understand their biology and participate in their care.
-				</p>
-				<div class="authority-actions">
-					<a class="button button-secondary" href="/about">Meet Dr. Lisa</a>
-					<a class="button button-secondary" href="/speaking">Speaking</a>
-				</div>
-			</div>
-		</div>
-	</section>
-
-	<section class="section" aria-labelledby="new-title">
-		<div class="container">
-			<SectionIntro
-				id="new-title"
-				eyebrow="Featured"
-				title="Featured ways to work with Dr. Lisa's world."
-				copy="Clinical care, private intensives, and trusted adjunctive support for people who want a deeper health conversation."
-			/>
-			<div class="offering-grid">
-				{featuredOfferings.map((item) => (
-					<article class="card offering-card">
-						<h3>{item.title}</h3>
-						<p>{item.copy}</p>
-						<a href={item.href}>Learn more</a>
-					</article>
+			<h2 class="visually-hidden" id="ways-title">Ways to begin</h2>
+			<div class="wayfinding-grid">
+				{waysIn.map((item, index) => (
+					<PathwayCard
+						title={item.title}
+						copy={item.copy}
+						href={item.href}
+						icon={item.icon}
+						ctaLabel={item.cta}
+					/>
 				))}
 			</div>
 		</div>
 	</section>
 
-	<section class="section section-soft" aria-labelledby="testimonial-title">
-		<div class="container">
+	<section class="section section-soft promise-section" aria-labelledby="promise-title">
+		<div class="container promise-layout">
 			<SectionIntro
-				id="testimonial-title"
-				eyebrow="Patient Themes"
-				title="Patients remember feeling heard."
-				copy="These summaries emphasize trust, continuity, and whole-person support without exaggerated claims."
+				id="promise-title"
+				eyebrow="Why Dr. Lisa"
+				title="The person behind the platform"
+				copy="The refreshed site is intentionally about Dr. Lisa herself: her story, her public voice, her education work, and the vision that became Spectra Wellness"
 			/>
-			<div class="testimonial-grid">
-				{testimonials.slice(0, 3).map((testimonial) => <TestimonialCard testimonial={testimonial} />)}
+			<div class="promise-body">
+				<MetricStrip items={proofItems} ariaLabel="Dr. Lisa proof points" />
+				<!-- Generated concept art; replace with approved brand photography when available. -->
+				<EditorialArtFrame src="/images/generated/root-cause-still-life.png" alt="" aspect="wide" />
+			</div>
+		</div>
+	</section>
+
+	<section class="section section-soft" aria-labelledby="story-title">
+		<div class="container editorial-grid story-grid">
+			<!-- Generated concept art; replace with approved founder-story photography when available. -->
+			<EditorialArtFrame src="/images/generated/founder-story-still-life.png" alt="" aspect="wide" />
+			<div class="copy-stack">
+				<SectionIntro
+					id="story-title"
+					eyebrow="Founder Story"
+					title="Her Story, Her Voice"
+					copy="Dr. Lisa's work has always been shaped by a desire to make complex health ideas more humane, more practical, and easier to discuss"
+				/>
+				<TimelineList items={storyMoments} ariaLabel="Dr. Lisa founder story" />
 			</div>
 		</div>
 	</section>
 
 	<CTASection
-		eyebrow="Next Step"
-		title="Your first step starts here."
-		singleLineTitle={true}
-		copy="Book a discovery call or contact the office to clarify the right next step for care, therapies, education, or speaking."
-		primaryHref={siteLinks.discoveryCall}
-		primaryLabel="Book Discovery Call"
-		secondaryHref="/contact"
-		secondaryLabel="Contact"
+		eyebrow=""
+		title="Follow Dr. Lisa's work"
+		copy="Explore her story, resources, speaking, or visit Spectra Wellness for practice details"
+		compactLayout={true}
+		primaryHref="/about"
+		primaryLabel="Meet Dr. Lisa"
+		secondaryHref={siteLinks.spectraWellness}
+		secondaryLabel="Spectra Wellness"
 	/>
 </Layout>
 
 <style>
-	.promise-panel,
-	.authority-grid {
-		display: grid;
-		gap: clamp(2rem, 6vw, 5rem);
-		align-items: start;
+	.wayfinding-section {
+		padding-top: clamp(var(--space-48), 5vw, var(--space-64));
 	}
 
-	.promise-panel {
-		padding: clamp(1.35rem, 3vw, 2.35rem);
-		border: 1px solid var(--color-border);
-		border-radius: var(--radius-xl);
-		background:
-			radial-gradient(circle at 8% 18%, rgba(40, 156, 176, 0.14), transparent 16rem),
-			radial-gradient(circle at 94% 78%, rgba(226, 96, 151, 0.1), transparent 18rem),
-			linear-gradient(180deg, rgba(255, 255, 255, 0.84), rgba(255, 255, 255, 0.66));
-		box-shadow: var(--shadow-soft);
-	}
-
-	.promise-panel h2,
-	.authority-grid h2 {
-		margin: 0;
-		font-family: var(--font-display);
-		font-size: clamp(2.05rem, 4.4vw, 3.9rem);
-		font-weight: 400;
-		line-height: 1.03;
-	}
-
-	.promise-panel p,
-	.authority-grid p {
-		margin: 0 0 var(--space-lg);
-		color: var(--color-muted);
-	}
-
-	.service-grid,
-	.offering-grid,
-	.testimonial-grid {
+	.wayfinding-grid {
 		display: grid;
 		gap: var(--space-lg);
-		margin-top: var(--space-2xl);
 	}
 
-	.membership-shell {
+	:global(.wayfinding-grid .pathway-card) {
+		min-height: 11rem;
+		gap: var(--space-16);
+	}
+
+	:global(.wayfinding-grid .pathway-card h3) {
+		font-size: clamp(1.55rem, 2.1vw, 2.15rem);
+	}
+
+	:global(.wayfinding-grid .pathway-card div > span) {
+		margin-top: var(--space-8);
+		font-size: 0.86rem;
+		line-height: 1.45;
+	}
+
+	:global(.wayfinding-grid .pathway-card strong) {
+		font-size: 0.78rem;
+	}
+
+	.editorial-grid {
 		display: grid;
-		gap: clamp(1.1rem, 2.4vw, 1.65rem);
-		align-items: start;
-		padding: clamp(1.35rem, 3vw, 2.35rem);
-		border: 1px solid var(--color-border);
-		border-radius: var(--radius-xl);
-		background:
-			radial-gradient(circle at 8% 18%, rgba(40, 156, 176, 0.14), transparent 16rem),
-			radial-gradient(circle at 94% 78%, rgba(226, 96, 151, 0.1), transparent 18rem),
-			linear-gradient(180deg, rgba(255, 255, 255, 0.84), rgba(255, 255, 255, 0.66));
-		box-shadow: var(--shadow-soft);
-	}
-
-	.mission-intro {
-		display: grid;
-		gap: 0.25rem;
-		width: 100%;
-	}
-
-	.mission-intro h2 {
-		max-width: none;
-		margin: 0;
-		font-family: var(--font-display);
-		font-size: clamp(2.05rem, 4.4vw, 3.9rem);
-		line-height: 1.03;
-		letter-spacing: -0.012em;
-		text-wrap: balance;
-	}
-
-	.mission-intro p:not(.eyebrow) {
-		max-width: 70ch;
-		margin: var(--space-sm) 0 0;
-		color: var(--color-muted);
-		font-size: clamp(0.98rem, 1.15vw, 1.1rem);
-		line-height: 1.5;
-	}
-
-	.mission-science {
-		color: var(--color-spectra-teal);
-	}
-
-	.mission-flow {
-		display: grid;
-		gap: clamp(1.35rem, 2.8vw, 1.7rem);
-		padding: 0;
-		margin: 0;
-		list-style: none;
-	}
-
-	.mission-flow li {
-		position: relative;
-		display: grid;
-		grid-template-columns: auto 1fr;
-		gap: 0.8rem;
+		gap: clamp(var(--space-32), 6vw, var(--space-80));
 		align-items: center;
-		min-height: 5.25rem;
-		padding: 0.95rem 1.05rem;
-		border: 1px solid var(--color-border);
-		border-radius: var(--radius-md);
-		background: rgba(255, 255, 255, 0.76);
-		color: var(--color-muted);
 	}
 
-	.mission-flow li:not(:last-child)::before {
-		position: absolute;
-		top: calc(100% + 0.08rem);
-		left: 2.1rem;
-		width: 2px;
-		height: 0.55rem;
-		background: linear-gradient(180deg, rgba(40, 156, 176, 0.5), rgba(226, 96, 151, 0.48));
-		content: "";
+	.section.promise-section {
+		padding-top: clamp(var(--space-56), 6vw, var(--space-80));
 	}
 
-	.mission-flow li:not(:last-child)::after {
-		position: absolute;
-		top: calc(100% + 0.48rem);
-		left: 1.82rem;
-		width: 0.5rem;
-		height: 0.5rem;
-		border-right: 2px solid rgba(226, 96, 151, 0.72);
-		border-bottom: 2px solid rgba(226, 96, 151, 0.72);
-		content: "";
-		transform: rotate(45deg);
+	.promise-layout {
+		display: grid;
+		gap: clamp(var(--space-32), 4vw, var(--space-48));
 	}
 
-	.flow-icon {
-		display: inline-flex;
+	.promise-body {
+		display: grid;
+		gap: clamp(var(--space-32), 6vw, var(--space-80));
 		align-items: center;
-		justify-content: center;
-		min-width: 2.2rem;
-		height: 2.2rem;
-		border: 1px solid rgba(40, 156, 176, 0.28);
-		border-radius: var(--radius-pill);
-		background: var(--gradient-spectrum-soft);
-		color: var(--color-deep-evergreen);
 	}
 
-	.flow-icon svg {
-		width: 1rem;
-		height: 1rem;
-		fill: none;
-		stroke-width: 1.9;
-		stroke-linecap: round;
-		stroke-linejoin: round;
+	:global(.promise-section .section-intro) {
+		max-width: 100%;
 	}
 
-	.flow-icon-understanding svg {
-		stroke: var(--color-spectra-teal);
-	}
-
-	.flow-icon-advocating svg {
-		stroke: var(--color-oxygen-blue);
-	}
-
-	.flow-icon-healing svg {
-		stroke: var(--color-spectra-pink);
-	}
-
-	.mission-flow li strong {
-		display: block;
-		color: var(--color-deep-evergreen);
-		font-size: clamp(1rem, 0.72vw + 0.78rem, 1.12rem);
-		line-height: 1.08;
-	}
-
-	.mission-flow li p {
-		margin: 0.2rem 0 0;
-		font-size: clamp(0.9rem, 0.64vw + 0.72rem, 1rem);
-		line-height: 1.34;
-	}
-
-	.membership-shell > .button {
-		width: fit-content;
-	}
-
-	.authority-actions {
-		display: flex;
-		flex-wrap: wrap;
-		gap: var(--space-sm);
-	}
-
-	.offering-card {
-		display: flex;
-		min-height: 17rem;
-		flex-direction: column;
-		align-items: flex-start;
-		padding: clamp(1.25rem, 3vw, 1.85rem);
-	}
-
-	.offering-card h3 {
-		margin: 0;
-		font-family: var(--font-display);
-		font-size: clamp(1.45rem, 2.4vw, 2rem);
-		font-weight: 400;
-		line-height: 1.1;
-	}
-
-	.offering-card p {
-		margin: var(--space-md) 0 var(--space-xl);
-		color: var(--color-muted);
-	}
-
-	.offering-card a {
-		margin-top: auto;
-		color: var(--color-spectra-teal);
-		font-size: 0.88rem;
+	:global(.promise-section .section-intro .eyebrow) {
+		margin-bottom: var(--space-12);
+		font-size: clamp(0.82rem, 0.22vw + 0.76rem, 0.94rem);
 		font-weight: 800;
 	}
 
-	@media (min-width: 760px) {
-		.service-grid,
-		.offering-grid,
-		.testimonial-grid {
-			grid-template-columns: repeat(3, 1fr);
+	:global(.promise-section .section-intro .section-heading) {
+		max-width: 100%;
+		font-size: clamp(2.65rem, 4.6vw, 5rem);
+		line-height: 1.04;
+	}
+
+	:global(.promise-section .section-intro .section-copy) {
+		max-width: 100%;
+		font-size: clamp(1.05rem, 1.08vw, 1.22rem);
+		line-height: 1.62;
+	}
+
+	.copy-stack {
+		display: grid;
+		gap: clamp(var(--space-24), 4vw, var(--space-40));
+	}
+
+	@media (min-width: 760px) and (max-width: 999px) {
+		.wayfinding-section {
+			padding-top: var(--space-64);
+		}
+
+		.wayfinding-grid {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
+
+		.editorial-grid {
+			gap: var(--space-40);
+		}
+
+		.editorial-grid :global(.editorial-art-frame) {
+			width: 100%;
+			max-width: 40rem;
+			margin-inline: auto;
+		}
+
+		.promise-body :global(.editorial-art-frame) {
+			width: 100%;
+			max-width: 40rem;
+			margin-inline: auto;
+		}
+
+		.copy-stack {
+			gap: var(--space-32);
 		}
 	}
 
-	@media (min-width: 960px) {
-		.promise-panel,
-		.authority-grid {
-			grid-template-columns: 0.85fr 1fr;
+	@media (min-width: 1000px) {
+		.wayfinding-grid {
+			grid-template-columns: repeat(4, minmax(0, 1fr));
+		}
+	}
+
+	@media (min-width: 900px) {
+		.promise-body {
+			grid-template-columns: minmax(0, 1fr) minmax(22rem, 0.74fr);
 		}
 
-		.mission-flow {
-			grid-template-columns: repeat(3, minmax(0, 1fr));
-			gap: clamp(1.5rem, 2.4vw, 2rem);
+		.story-grid {
+			grid-template-columns: minmax(22rem, 0.76fr) minmax(0, 1fr);
 		}
 
-		.mission-flow li:not(:last-child)::before {
-			top: 50%;
-			right: calc(clamp(1.5rem, 2.4vw, 2rem) * -0.68);
-			left: auto;
-			width: clamp(0.72rem, 1.4vw, 1rem);
-			height: 2px;
-			background: linear-gradient(90deg, rgba(40, 156, 176, 0.5), rgba(226, 96, 151, 0.52));
-			transform: translateY(-50%);
+		.story-grid > :global(.editorial-art-frame img) {
+			height: clamp(28rem, 34vw, 36rem);
+			aspect-ratio: auto;
+			object-position: center;
 		}
+	}
 
-		.mission-flow li:not(:last-child)::after {
-			top: calc(50% - 0.26rem);
-			right: calc(clamp(1.5rem, 2.4vw, 2rem) * -0.72);
-			left: auto;
-			width: 0.38rem;
-			height: 0.38rem;
-			border-right: 2px solid rgba(226, 96, 151, 0.72);
-			border-bottom: 2px solid rgba(226, 96, 151, 0.72);
-			transform: rotate(-45deg);
+	@media (min-width: 1100px) {
+		:global(.promise-section .section-intro .section-heading) {
+			text-wrap: nowrap;
+			white-space: nowrap;
+		}
+	}
+
+	@media (max-width: 759px) {
+		.wayfinding-section {
+			padding-top: var(--space-40);
 		}
 	}
 </style>

@@ -14,7 +14,7 @@ const { program } = Astro.props;
 
 <Layout
 	title={`${program.title} | Dr. Lisa Koche`}
-	description={`${program.title} is an education pathway from Dr. Lisa Koche for personalized, data-informed longevity care.`}
+	description={`${program.title} is an education pathway from Dr. Lisa Koche for personalized, data-informed health literacy`}
 	currentPath={`/programs/${program.slug}`}
 >
 	<PageHero
@@ -33,7 +33,7 @@ const { program } = Astro.props;
 				id="who-title"
 				eyebrow="Fit"
 				title="Who this is for"
-				copy="Use this page as education and orientation. Clinical decisions require individualized provider review."
+				copy="Use this page as education and orientation for clearer questions and stronger self-advocacy"
 			/>
 			<div class="detail-list">
 				{program.who.map((item) => <p>{item}</p>)}
@@ -64,7 +64,7 @@ const { program } = Astro.props;
 				id="journey-title"
 				eyebrow="Journey"
 				title="A measured path from insight to refinement"
-				copy="The exact care plan would be individualized after clinical review."
+				copy="The exact learning path can be adapted to the questions you are trying to understand"
 			/>
 			<div class="journey-grid">
 				{program.journey.map((step, index) => (
@@ -81,14 +81,14 @@ const { program } = Astro.props;
 	<section class="section section-soft" aria-labelledby="outcome-title">
 		<div class="container outcome-panel">
 			<p class="eyebrow">Experience</p>
-			<h2 id="outcome-title">Outcome-focused, without overpromising.</h2>
+			<h2 id="outcome-title">Outcome-minded, without overpromising</h2>
 			<p>{program.outcome}</p>
 		</div>
 	</section>
 
 	<CTASection
-		title="Start with a clearer picture of your physiology."
-		copy="Begin with a care conversation, or return to the programs overview to compare education pathways."
+		title="Start with a clearer picture of your physiology"
+		copy="Return to the programs overview to compare Dr. Lisa's education pathways"
 		primaryHref="/contact"
 		primaryLabel="Contact"
 		secondaryHref="/programs"

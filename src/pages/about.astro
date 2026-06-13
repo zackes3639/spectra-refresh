@@ -1,215 +1,305 @@
 ---
 import CTASection from "../components/CTASection.astro";
+import EditorialArtFrame from "../components/EditorialArtFrame.astro";
 import Layout from "../components/Layout.astro";
+import MetricStrip from "../components/MetricStrip.astro";
 import PageHero from "../components/PageHero.astro";
+import PathwayCard from "../components/PathwayCard.astro";
 import SectionIntro from "../components/SectionIntro.astro";
+import TimelineList from "../components/TimelineList.astro";
+import { siteLinks } from "../data/site";
 
-const credentials = [
-	"Triple board-certified physician",
-	"Founder and clinical director",
-	"Functional medicine and longevity educator",
-	"Speaker for major health and leadership audiences",
+const missionParagraphs = [
+	"Dr. Lisa Koche built her platform for people who want to understand their bodies, reclaim voice, and make clearer decisions about their health",
+	"Her lens blends medical training, root-cause thinking, education, and a spiritually aware understanding of human resilience",
+	"This site keeps the spotlight on her story, voice, resources, media, and invitations to speak",
 ];
 
-const pathways = [
-	["Become a patient", "/patients", "Understand appointment routing, portal access, and patient logistics."],
-	["Explore services", "/services", "See the practice care families and priority service pages."],
-	["Learn from Dr. Lisa", "/resources", "Start with free resources, articles, courses, and favorites."],
-	["Invite Dr. Lisa", "/speaking", "Route speaking, podcast, and media inquiries."],
+const storyTimeline = [
+	{
+		title: "A personal health story",
+		copy: "Her own experience with serious illness shaped deep empathy for people who feel dismissed, confused, or stuck between partial answers",
+	},
+	{
+		title: "Physician and pattern-finder",
+		copy: "Her medical background informs the way she notices relationships across body systems, lived experience, and long-term vitality",
+	},
+	{
+		title: "Founder of Spectra Wellness",
+		copy: "Spectra Wellness became the organization where her larger vision could take shape",
+	},
+	{
+		title: "Education beyond the office",
+		copy: "Through resources, media, and speaking, Dr. Lisa helps people ask better questions and participate more actively in their health",
+	},
+];
+
+const valueCards = [
+	{
+		title: "Context",
+		copy: "Health questions make more sense when history, biology, lifestyle, environment, and goals are seen together",
+	},
+	{
+		title: "Agency",
+		copy: "Education helps people understand options, ask better questions, and advocate with steadier confidence",
+	},
+	{
+		title: "Whole-person lens",
+		copy: "The work respects physiology, resilience, spirituality, and real life rather than isolating a single complaint",
+	},
+];
+
+const professionalBackground = [
+	{
+		value: "Triple board-certified",
+		label: "Physician expertise",
+		copy: "Internal medicine, integrative medicine, and pediatrics expertise",
+	},
+	{
+		value: "Founder",
+		label: "Spectra Wellness",
+		copy: "Created the organization that carries the dedicated practice destination",
+	},
+	{
+		value: "Educator",
+		label: "Public teaching",
+		copy: "Translates root-cause concepts into practical guidance",
+	},
+	{
+		value: "Speaker",
+		label: "Health and leadership audiences",
+		copy: "Presents for wellness, media, and leadership communities",
+	},
+];
+
+const nextPaths = [
+	{
+		title: "Resources",
+		copy: "Explore Dr. Lisa's articles, courses, favorites, and education library",
+		href: "/resources",
+	},
+	{
+		title: "Speaking",
+		copy: "Route podcast, media, event, and stage invitations",
+		href: "/speaking",
+	},
+	{
+		title: "Spectra Wellness",
+		copy: "For appointments and office information, continue to the Spectra Wellness site",
+		href: siteLinks.spectraWellness,
+	},
 ];
 ---
 
 <Layout
-	title="About Dr. Lisa Koche | Functional Medicine Physician"
-	description="Meet Dr. Lisa Koche, triple-board-certified physician, speaker, educator, and root-cause medicine advocate."
+	title="About Dr. Lisa Koche | Founder, Physician, Educator & Speaker"
+	description="Meet Dr. Lisa Koche, triple-board-certified physician, founder, speaker, educator, and health literacy advocate"
 	currentPath="/about"
 >
 	<PageHero
-		title="A physician who understands what it feels like to search for answers."
-		copy="Dr. Lisa Koche built her work for people who want to understand their bodies, advocate for themselves, and approach health with science, wisdom, and whole-person care."
-		primaryHref="/patients"
-		primaryLabel="Become a Patient"
+		title="About Dr Lisa"
+		copy="Triple board-certified physician, founder, educator, speaker, and advocate helping people understand their bodies with more clarity and context"
+		primaryHref="/resources"
+		primaryLabel="Explore Resources"
 		secondaryHref="/speaking"
 		secondaryLabel="Speaking & Media"
 		mediaLabel="Dr. Lisa Koche portrait"
 		imageSrc="/images/dr-lisa-koche-headshot.jpeg"
 		imageAlt="Dr. Lisa Koche portrait"
 		mediaType="portrait"
+		variant="story"
+		imagePosition="50% 34%"
+		mobileImagePosition="50% 30%"
+		imageScale="1.08"
+		mobileImageScale="1.08"
 	/>
 
 	<section class="section" aria-labelledby="mission-title">
-		<div class="container two-column story-grid">
-			<div>
-				<p class="eyebrow">Mission</p>
-				<h2 id="mission-title">Understand your body. Advocate for yourself. Heal with context.</h2>
+		<div class="container editorial-grid mission-grid">
+			<div class="copy-stack mission-copy">
+				<SectionIntro
+					id="mission-title"
+					eyebrow="Dr Lisa's Mission"
+					title="Body Literacy"
+				/>
+				<div class="paragraph-stack">
+					{missionParagraphs.map((paragraph) => <p>{paragraph}</p>)}
+				</div>
 			</div>
-			<div>
-				<p>
-					Dr. Lisa's work blends clinical medicine, root-cause investigation, education, and a spiritually
-					aware understanding of human resilience. The goal is not to overwhelm patients with more data,
-					but to help them ask better questions and make clearer decisions.
-				</p>
-				<p>
-					Her own experience with serious illness shaped her empathy for people who feel dismissed,
-					confused, or stuck between conventional answers and a deeper sense that something important is
-					being missed.
-				</p>
-			</div>
+			<!-- Generated concept art; replace with approved Dr. Lisa brand photography when available. -->
+			<EditorialArtFrame src="/images/generated/about-story-still-life.png" alt="" aspect="wide" />
 		</div>
 	</section>
 
 	<section class="section section-soft" aria-labelledby="story-title">
-		<div class="container story-panel">
-			<p class="eyebrow">Story</p>
-			<h2 id="story-title">From survivor to physician, educator, and patient advocate.</h2>
-			<p>
-				Dr. Lisa's survivor story, including leukemia and heart failure, informs the practice model she
-				has spent decades shaping. Her Tampa clinical practice is one expression of that mission: longer
-				listening, deeper diagnostics, proactive strategy, and care that respects the whole person.
-			</p>
+		<div class="container story-layout">
+			<SectionIntro
+				id="story-title"
+				eyebrow="Story"
+				title="From personal experience to public advocacy"
+				copy="Dr. Lisa's story informs a platform built around better questions, deeper context, and a more humane conversation about health"
+			/>
+			<TimelineList items={storyTimeline} ariaLabel="Dr. Lisa Koche story timeline" />
 		</div>
 	</section>
 
-	<section class="section" aria-labelledby="credentials-title">
+	<section class="section" aria-labelledby="values-title">
 		<div class="container">
 			<SectionIntro
-				id="credentials-title"
-				eyebrow="Credentials"
-				title="Authority that stays close to the patient experience."
-				copy="Dr. Lisa's public work bridges clinical care, patient education, media, and leadership audiences."
+				id="values-title"
+				eyebrow="Values"
+				title="The principles behind her public voice"
 			/>
-			<div class="credential-grid">
-				{credentials.map((credential) => (
-					<article class="card credential-card">
-						<span aria-hidden="true"></span>
-						<h3>{credential}</h3>
-					</article>
+			<div class="pathway-grid value-grid">
+				{valueCards.map((item, index) => (
+					<PathwayCard title={item.title} copy={item.copy} index={index + 1} />
 				))}
 			</div>
 		</div>
 	</section>
 
-	<section class="section section-soft" aria-labelledby="practice-title">
-		<div class="container two-column story-grid">
-			<div>
-				<p class="eyebrow">Clinical Philosophy</p>
-				<h2 id="practice-title">A practice model built for root-cause clarity.</h2>
+	<section class="section section-soft" aria-labelledby="background-title">
+		<div class="container background-layout">
+			<div class="copy-stack">
+				<SectionIntro
+					id="background-title"
+					eyebrow="Professional Background"
+					title="Medical credentials with real-world leadership"
+					copy="A concise view of Dr. Lisa's training, founder role, and public-facing expertise"
+				/>
+				<div class="spectra-handoff">
+					<h3>Spectra Wellness has its own destination</h3>
+					<p>
+						This site stays focused on Dr. Lisa herself. For office details and appointment information,
+						continue to the dedicated Spectra Wellness site
+					</p>
+					<a class="button button-secondary" href={siteLinks.spectraWellness} target="_blank" rel="noopener noreferrer">Open Spectra Wellness</a>
+				</div>
 			</div>
-			<div>
-				<p>
-					Dr. Lisa's clinical ecosystem can include functional medicine, primary care, advanced diagnostics,
-					structural support, IV nutrition, performance therapies, aesthetics, and complementary care
-					pathways. The throughline is not complexity for its own sake. It is a clearer map of the person
-					in front of the team.
-				</p>
-			</div>
+			<MetricStrip items={professionalBackground} ariaLabel="Dr. Lisa professional background" />
 		</div>
 	</section>
 
-	<section class="section" aria-labelledby="path-title">
+	<section class="section" aria-labelledby="next-title">
 		<div class="container">
 			<SectionIntro
-				id="path-title"
-				eyebrow="Pathways"
-				title="Choose the doorway that fits this season."
+				id="next-title"
+				eyebrow="Next Steps"
+				title="Choose the doorway that matches your question"
 			/>
-			<div class="pathway-grid">
-				{pathways.map(([title, href, copy]) => (
-					<a class="card pathway-card" href={href}>
-						<h3>{title}</h3>
-						<p>{copy}</p>
-					</a>
+			<div class="pathway-grid next-grid">
+				{nextPaths.map((item, index) => (
+					<PathwayCard
+						title={item.title}
+						copy={item.copy}
+						href={item.href}
+						index={index + 1}
+						ctaLabel="Continue"
+					/>
 				))}
 			</div>
 		</div>
 	</section>
 
 	<CTASection
-		eyebrow="Next Step"
-		title="Start with the path that matches your question."
-		copy="Explore patient care, services, education, or speaking inquiries from Dr. Lisa's refreshed home base."
-		primaryHref="/services"
-		primaryLabel="Explore Services"
-		secondaryHref="/contact"
-		secondaryLabel="Contact"
+		eyebrow=""
+		title="Choose your next step"
+		copy="Explore Dr. Lisa's resources, invite her to speak, or continue to Spectra Wellness for practice details"
+		compactLayout={true}
+		primaryHref="/speaking"
+		primaryLabel="Invite Dr. Lisa"
+		secondaryHref={siteLinks.spectraWellness}
+		secondaryLabel="Spectra Wellness"
 	/>
 </Layout>
 
 <style>
-	.story-grid {
-		align-items: start;
+	.editorial-grid,
+	.background-layout {
+		display: grid;
+		gap: clamp(var(--space-32), 6vw, var(--space-80));
+		align-items: center;
 	}
 
-	.story-grid h2,
-	.story-panel h2 {
+	.copy-stack,
+	.story-layout {
+		display: grid;
+		gap: clamp(var(--space-24), 3.5vw, var(--space-40));
+	}
+
+	.paragraph-stack {
+		display: grid;
+		gap: var(--space-md);
+		max-width: var(--max-text-width);
+	}
+
+	.paragraph-stack p,
+	.spectra-handoff p {
 		margin: 0;
-		font-family: var(--font-display);
-		font-size: clamp(2rem, 4vw, 3.8rem);
-		font-weight: 400;
-		line-height: 1.04;
-	}
-
-	.story-grid p,
-	.story-panel p,
-	.pathway-card p {
 		color: var(--color-muted);
+		font-size: clamp(1rem, 1.15vw, 1.12rem);
+		line-height: 1.6;
 	}
 
-	.story-panel {
-		max-width: 62rem;
-		padding: clamp(1.5rem, 4vw, 3rem);
-		border: 1px solid var(--color-border);
-		border-radius: var(--radius-xl);
-		background:
-			linear-gradient(150deg, rgba(255, 255, 255, 0.8), rgba(220, 239, 238, 0.58)),
-			radial-gradient(circle at 85% 16%, rgba(125, 183, 217, 0.22), transparent 16rem),
-			radial-gradient(circle at 12% 82%, rgba(216, 76, 159, 0.12), transparent 15rem);
-		box-shadow: var(--shadow-spectrum);
-	}
-
-	.credential-grid,
 	.pathway-grid {
 		display: grid;
 		gap: var(--space-lg);
-		margin-top: var(--space-2xl);
+		margin-top: var(--space-40);
 	}
 
-	.credential-card,
-	.pathway-card {
+	.story-layout {
+		max-width: min(64rem, calc(var(--max-text-width) + 10rem));
+		margin-inline: auto;
+	}
+
+	.spectra-handoff {
 		display: grid;
-		align-content: start;
-		min-height: 12rem;
-		padding: clamp(1.25rem, 3vw, 1.85rem);
+		gap: var(--space-sm);
+		align-items: start;
+		max-width: 34rem;
+		padding: clamp(var(--space-24), 2.6vw, var(--space-32));
+		border: 1px solid var(--color-border);
+		border-radius: var(--radius-lg);
+		background:
+			linear-gradient(180deg, rgba(255, 255, 255, 0.86), rgba(247, 252, 254, 0.66)),
+			var(--gradient-spectrum-soft);
+		box-shadow: var(--shadow-card);
 	}
 
-	.credential-card span {
-		width: 1rem;
-		aspect-ratio: 1;
-		border-radius: 50%;
-		background: var(--gradient-spectrum);
-	}
-
-	.credential-card h3,
-	.pathway-card h3 {
-		margin: var(--space-lg) 0 0;
+	.spectra-handoff h3 {
+		margin: 0;
 		font-family: var(--font-display);
-		font-size: clamp(1.35rem, 2.3vw, 1.95rem);
+		font-size: clamp(1.45rem, 2.2vw, 1.95rem);
 		font-weight: 400;
-		line-height: 1.1;
+		line-height: 1.16;
 	}
 
-	.pathway-card h3 {
-		margin-top: 0;
-	}
-
-	.pathway-card p {
-		margin: var(--space-md) 0 0;
+	.spectra-handoff .button {
+		justify-self: start;
+		margin-top: var(--space-xs);
 	}
 
 	@media (min-width: 760px) {
-		.credential-grid,
-		.pathway-grid {
-			grid-template-columns: repeat(4, 1fr);
+		.value-grid,
+		.next-grid {
+			grid-template-columns: repeat(3, minmax(0, 1fr));
+		}
+	}
+
+	@media (min-width: 900px) {
+		.mission-grid {
+			grid-template-columns: minmax(0, 1fr) minmax(22rem, 0.72fr);
+		}
+
+		.background-layout {
+			grid-template-columns: minmax(18rem, 0.56fr) minmax(0, 1fr);
+			align-items: start;
+		}
+	}
+
+	@media (max-width: 759px) {
+		.spectra-handoff .button {
+			width: 100%;
 		}
 	}
 </style>

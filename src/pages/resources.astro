@@ -10,12 +10,12 @@ import { siteLinks } from "../data/site";
 
 <Layout
 	title="Resources | Dr. Lisa Koche"
-	description="Free guides, health education, courses, articles, and curated learning pathways from Dr. Lisa Koche."
+	description="Free guides, health education, courses, articles, and curated learning pathways from Dr. Lisa Koche"
 	currentPath="/resources"
 >
 	<PageHero
-		title="Start learning how your body is communicating."
-		copy="A Dr. Lisa resource hub for free guides, courses, articles, favorites, and carefully curated wellness pathways."
+		title="Start learning how your body is communicating"
+		copy="A Dr. Lisa resource hub for free guides, courses, articles, favorites, and thoughtfully curated wellness pathways"
 		primaryHref="#free-resources"
 		primaryLabel="Browse Resources"
 		secondaryHref={siteLinks.drLisaCourses}
@@ -28,8 +28,8 @@ import { siteLinks } from "../data/site";
 			<SectionIntro
 				id="free-title"
 				eyebrow="Free Resources"
-				title="Begin with accessible education, not overwhelm."
-				copy="These links route to Dr. Lisa's current education ecosystem or approved public resources."
+				title="Begin with accessible education, not overwhelm"
+				copy="These links route to Dr. Lisa's current education ecosystem or approved public resources"
 			/>
 			<div class="resource-grid featured-grid">
 				{featuredResources.map((resource) => <ResourceCard resource={resource} featured />)}
@@ -42,8 +42,8 @@ import { siteLinks } from "../data/site";
 			<SectionIntro
 				id="articles-title"
 				eyebrow="Articles"
-				title="Helpful reading for curious patients."
-				copy="Articles remain hosted externally and are linked here so patients can find the current public versions."
+				title="Helpful reading for curious people"
+				copy="Articles remain hosted externally and are linked here so visitors can find the current public versions"
 			/>
 			<div class="resource-grid">
 				{articleResources.map((resource) => <ResourceCard resource={resource} />)}
@@ -55,23 +55,22 @@ import { siteLinks } from "../data/site";
 		<div class="container resource-note">
 			<div>
 				<p class="eyebrow">Library</p>
-				<h2 id="all-title">Courses, favorites, and clinical care should stay clearly separated.</h2>
+				<h2 id="all-title">Courses, favorites, and public education stay easy to find</h2>
 			</div>
 			<p>
-				Resources can educate and orient, but they are not a substitute for individualized medical care.
-				Product favorites and courses are hosted externally and should include any required disclosures in
-				their own checkout or learning environments.
+				Resources can educate and orient, while product favorites and courses are hosted externally.
+				Any required disclosures should live inside their own checkout or learning environments
 			</p>
 		</div>
 	</section>
 
 	<CTASection
-		title="Want care instead of more content?"
-		copy="If your question is clinical, begin with the office team so you can be routed toward the right provider, service, or care conversation."
-		primaryHref="/services"
-		primaryLabel="Explore Services"
-		secondaryHref="/contact"
-		secondaryLabel="Contact"
+		title="Follow the learning path"
+		copy="Browse Dr. Lisa's courses, public resources, and favorites, or continue to Spectra Wellness for practice details"
+		primaryHref={siteLinks.drLisaCourses}
+		primaryLabel="View Courses"
+		secondaryHref={siteLinks.spectraWellness}
+		secondaryLabel="Spectra Wellness"
 	/>
 </Layout>
 
