@@ -8,9 +8,34 @@ interface Props {
 	title: string;
 	description: string;
 	currentPath?: string;
+	/** Open Graph / Twitter overrides — fall back to sensible site-wide defaults. */
+	ogTitle?: string;
+	ogDescription?: string;
+	ogImage?: string;
+	ogType?: "website" | "article" | "profile";
 }
 
-const { title, description, currentPath = Astro.url.pathname } = Astro.props;
+// Site-wide social defaults. Individual pages can override any of these via props.
+const SITE_URL = "https://drlisakoche.com";
+// TODO: Supply the 1200×630 share image at this path (Constellation palette + serif logo).
+// File does not exist yet — the tag is wired so it works the moment the asset is dropped in.
+const DEFAULT_OG_IMAGE = "/og/dr-lisa-koche-share.png";
+
+const {
+	title,
+	description,
+	currentPath = Astro.url.pathname,
+	ogTitle,
+	ogDescription,
+	ogImage,
+	ogType = "website",
+} = Astro.props;
+
+const resolvedOgTitle = ogTitle ?? title;
+const resolvedOgDescription = ogDescription ?? description;
+// Resolve to an absolute URL so crawlers (iMessage/LinkedIn/Slack) can fetch the card image.
+const canonicalUrl = new URL(currentPath, SITE_URL).href;
+const ogImageUrl = new URL(ogImage ?? DEFAULT_OG_IMAGE, SITE_URL).href;
 ---
 
 <!doctype html>
@@ -22,7 +47,26 @@ const { title, description, currentPath = Astro.url.pathname } = Astro.props;
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<meta name="generator" content={Astro.generator} />
 		<meta name="description" content={description} />
+		<link rel="canonical" href={canonicalUrl} />
 		<title>{title}</title>
+
+		<!-- Open Graph -->
+		<meta property="og:type" content={ogType} />
+		<meta property="og:site_name" content="Dr. Lisa Koche" />
+		<meta property="og:title" content={resolvedOgTitle} />
+		<meta property="og:description" content={resolvedOgDescription} />
+		<meta property="og:url" content={canonicalUrl} />
+		<meta property="og:image" content={ogImageUrl} />
+		<meta property="og:image:width" content="1200" />
+		<meta property="og:image:height" content="630" />
+		<meta property="og:image:alt" content={resolvedOgTitle} />
+
+		<!-- Twitter Card -->
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content={resolvedOgTitle} />
+		<meta name="twitter:description" content={resolvedOgDescription} />
+		<meta name="twitter:image" content={ogImageUrl} />
+		<meta name="twitter:image:alt" content={resolvedOgTitle} />
 	</head>
 	<body>
 		<div class="site-shell">
