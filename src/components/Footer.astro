@@ -48,23 +48,23 @@ const linkAttrs = (href: string) => (isExternalUrl(href) ? { target: "_blank", r
 			</div>
 		</div>
 		<nav aria-label="Footer site links">
-			<h2>Explore</h2>
+			<p class="footer-col-title">Explore</p>
 			{exploreLinks.map((link) => <a href={link.href} {...linkAttrs(link.href)}>{link.label}</a>)}
 		</nav>
 		<nav aria-label="Spectra Wellness links">
-			<h2>Spectra</h2>
+			<p class="footer-col-title">Spectra</p>
 			{spectraLinks.map((link) => <a href={link.href} {...linkAttrs(link.href)}>{link.label}</a>)}
 		</nav>
 		<nav aria-label="Dr. Lisa links">
-			<h2>Dr. Lisa</h2>
+			<p class="footer-col-title">Dr. Lisa</p>
 			{drLisaLinks.map((link) => <a href={link.href} {...linkAttrs(link.href)}>{link.label}</a>)}
 		</nav>
 		<nav aria-label="Professional and legal links">
-			<h2>Legal</h2>
+			<p class="footer-col-title">Legal</p>
 			{legal.map((link) => <a href={link.href} {...linkAttrs(link.href)}>{link.label}</a>)}
 		</nav>
 		<nav aria-label="Social links">
-			<h2>Connect</h2>
+			<p class="footer-col-title">Connect</p>
 			{
 				social.map((link) => (
 					<a href={link.href} {...linkAttrs(link.href)}>
@@ -160,7 +160,7 @@ const linkAttrs = (href: string) => (isExternalUrl(href) ? { target: "_blank", r
 		align-content: start;
 	}
 
-	h2 {
+	.footer-col-title {
 		margin: 0 0 0.45rem;
 		color: var(--color-botanical-sage);
 		font-size: 0.66rem;
@@ -235,7 +235,7 @@ const linkAttrs = (href: string) => (isExternalUrl(href) ? { target: "_blank", r
 			gap: 0.3rem;
 		}
 
-		h2 {
+		.footer-col-title {
 			margin-bottom: 0.3rem;
 			font-size: 0.68rem;
 		}
