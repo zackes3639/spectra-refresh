@@ -1,5 +1,6 @@
 ---
 import { isExternalUrl } from "../data/site";
+import { pictureSources } from "../utils/images";
 import { widont } from "../utils/typography";
 
 interface Props {
@@ -14,6 +15,8 @@ interface Props {
 	mediaLabel?: string;
 	imageSrc?: string;
 	imageAlt?: string;
+	imageWidth?: number;
+	imageHeight?: number;
 	mediaType?: "portrait" | "stage" | "abstract" | "process";
 	hideMedia?: boolean;
 	variant?: "standard" | "home" | "story";
@@ -35,6 +38,8 @@ const {
 	mediaLabel = "Brand imagery",
 	imageSrc,
 	imageAlt = mediaLabel,
+	imageWidth,
+	imageHeight,
 	mediaType = "abstract",
 	hideMedia = false,
 	variant = "standard",
@@ -43,6 +48,8 @@ const {
 	imageScale,
 	mobileImageScale,
 } = Astro.props;
+
+const heroSources = imageSrc ? pictureSources(imageSrc) : null;
 
 const primaryAttrs = primaryHref && isExternalUrl(primaryHref) ? { target: "_blank", rel: "noopener noreferrer" } : {};
 const secondaryAttrs = secondaryHref && isExternalUrl(secondaryHref) ? { target: "_blank", rel: "noopener noreferrer" } : {};
@@ -80,10 +87,18 @@ const mediaStyle = [
 			!hideMedia && (
 				<aside class="page-hero-media" aria-label={mediaLabel} style={mediaStyle}>
 					{
-						imageSrc ? (
+						imageSrc && heroSources ? (
 							<div class="hero-photo-stage">
-								<img class="hero-image-backdrop" src={imageSrc} alt="" aria-hidden="true" loading="eager" decoding="async" />
-								<img class="hero-image" src={imageSrc} alt={imageAlt} loading="eager" decoding="async" />
+								<picture>
+									<source srcset={heroSources.avif} type="image/avif" />
+									<source srcset={heroSources.webp} type="image/webp" />
+									<img class="hero-image-backdrop" src={heroSources.fallback} width={imageWidth} height={imageHeight} alt="" aria-hidden="true" loading="eager" decoding="async" />
+								</picture>
+								<picture>
+									<source srcset={heroSources.avif} type="image/avif" />
+									<source srcset={heroSources.webp} type="image/webp" />
+									<img class="hero-image" src={heroSources.fallback} width={imageWidth} height={imageHeight} alt={imageAlt} loading="eager" decoding="async" />
+								</picture>
 							</div>
 						) : mediaType === "process" ? (
 							<div class="process-art" aria-hidden="true">
@@ -316,6 +331,10 @@ const mediaStyle = [
 		object-fit: cover;
 		object-position: var(--hero-image-position, 74% 30%);
 		transform: scale(var(--hero-image-scale, 1.12));
+	}
+
+	.hero-photo-stage picture {
+		display: contents;
 	}
 
 	.hero-photo-stage {

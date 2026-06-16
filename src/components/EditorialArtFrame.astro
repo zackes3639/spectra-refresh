@@ -1,17 +1,26 @@
 ---
+import { pictureSources } from "../utils/images";
+
 interface Props {
 	src: string;
+	width: number;
+	height: number;
 	alt?: string;
 	caption?: string;
 	aspect?: "wide" | "portrait" | "square";
 	loading?: "eager" | "lazy";
 }
 
-const { src, alt = "", caption, aspect = "wide", loading = "lazy" } = Astro.props;
+const { src, width, height, alt = "", caption, aspect = "wide", loading = "lazy" } = Astro.props;
+const sources = pictureSources(src);
 ---
 
 <figure class:list={["editorial-art-frame", `aspect-${aspect}`]}>
-	<img src={src} alt={alt} loading={loading} decoding="async" />
+	<picture>
+		<source srcset={sources.avif} type="image/avif" />
+		<source srcset={sources.webp} type="image/webp" />
+		<img src={sources.fallback} width={width} height={height} alt={alt} loading={loading} decoding="async" />
+	</picture>
 	{caption && <figcaption>{caption}</figcaption>}
 </figure>
 
@@ -21,6 +30,11 @@ const { src, alt = "", caption, aspect = "wide", loading = "lazy" } = Astro.prop
 		display: grid;
 		gap: var(--space-16);
 		margin: 0;
+	}
+
+	/* Let the <img> remain the direct grid child so existing sizing holds. */
+	.editorial-art-frame picture {
+		display: contents;
 	}
 
 	.editorial-art-frame::before {

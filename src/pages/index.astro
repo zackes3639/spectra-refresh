@@ -133,6 +133,8 @@ const homeTestimonials = testimonials.slice(0, 2);
 		mediaLabel="Dr. Lisa Koche portrait"
 		imageSrc="/images/dr-lisa-koche-headshot.jpeg"
 		imageAlt="Dr. Lisa Koche"
+		imageWidth={2560}
+		imageHeight={1280}
 		mediaType="portrait"
 		variant="home"
 		imagePosition="50% 34%"
@@ -169,7 +171,7 @@ const homeTestimonials = testimonials.slice(0, 2);
 			<div class="promise-body">
 				<MetricStrip items={proofItems} ariaLabel="Dr. Lisa proof points" />
 				<!-- Generated concept art; replace with approved brand photography when available. -->
-				<EditorialArtFrame src="/images/generated/root-cause-still-life.png" alt="" aspect="wide" />
+				<EditorialArtFrame src="/images/generated/root-cause-still-life.png" width={1570} height={1001} alt="" aspect="wide" />
 			</div>
 		</div>
 	</section>
@@ -177,7 +179,7 @@ const homeTestimonials = testimonials.slice(0, 2);
 	<section class="section section-soft" aria-labelledby="story-title">
 		<div class="container editorial-grid story-grid">
 			<!-- Generated concept art; replace with approved founder-story photography when available. -->
-			<EditorialArtFrame src="/images/generated/founder-story-still-life.png" alt="" aspect="wide" />
+			<EditorialArtFrame src="/images/generated/founder-story-still-life.png" width={1672} height={941} alt="" aspect="wide" />
 			<div class="copy-stack">
 				<SectionIntro
 					id="story-title"

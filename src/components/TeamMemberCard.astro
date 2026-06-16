@@ -1,6 +1,7 @@
 ---
 import { isExternalUrl } from "../data/site";
 import type { TeamMember } from "../data/team";
+import { pictureSources } from "../utils/images";
 
 interface Props {
 	member: TeamMember;
@@ -8,13 +9,18 @@ interface Props {
 
 const { member } = Astro.props;
 const linkAttrs = isExternalUrl(member.bookingHref) ? { target: "_blank", rel: "noopener noreferrer" } : {};
+const photo = member.image.src ? pictureSources(member.image.src) : null;
 ---
 
 <article class="card team-card">
 	<div class="team-photo">
 		{
-			member.image.src ? (
-				<img src={member.image.src} alt={member.image.alt} loading="lazy" decoding="async" />
+			member.image.src && photo ? (
+				<picture>
+					<source srcset={photo.avif} type="image/avif" />
+					<source srcset={photo.webp} type="image/webp" />
+					<img src={photo.fallback} width={member.image.width} height={member.image.height} alt={member.image.alt} loading="lazy" decoding="async" />
+				</picture>
 			) : (
 				<div aria-label={member.image.alt}>
 					<span>{member.name.split(" ").map((part) => part[0]).slice(0, 2).join("")}</span>
@@ -50,6 +56,10 @@ const linkAttrs = isExternalUrl(member.bookingHref) ? { target: "_blank", rel: "
 			radial-gradient(circle at 72% 18%, rgba(226, 96, 151, 0.14), transparent 9rem),
 			var(--gradient-spectrum-soft);
 		aspect-ratio: 1.05;
+	}
+
+	.team-photo picture {
+		display: contents;
 	}
 
 	.team-photo img,

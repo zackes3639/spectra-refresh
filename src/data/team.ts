@@ -10,7 +10,7 @@ export interface TeamMember {
 	bookingLabel: string;
 	bookingHref: string;
 	specialties: string[];
-	image: { src?: string; alt: string; needed: string };
+	image: { src?: string; alt: string; needed: string; width?: number; height?: number };
 }
 
 export const teamMembers: TeamMember[] = [
@@ -29,6 +29,8 @@ export const teamMembers: TeamMember[] = [
 			src: "/images/dr-lisa-koche-headshot.jpeg",
 			alt: "Dr. Lisa Koche",
 			needed: "Approved Dr. Lisa portrait",
+			width: 2560,
+			height: 1280,
 		},
 	},
 	{
