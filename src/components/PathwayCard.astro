@@ -26,7 +26,7 @@ const linkAttrs = href && isExternalUrl(href) ? { target: "_blank", rel: "noopen
 				<h3 set:html={widont(title)} />
 				<span set:html={widont(copy)} />
 			</div>
-			<strong>{ctaLabel}</strong>
+			<strong class="pathway-cta">{ctaLabel}<span class="pathway-chevron" aria-hidden="true">&rarr;</span></strong>
 		</a>
 	) : (
 		<article class="pathway-card">
@@ -113,6 +113,22 @@ const linkAttrs = href && isExternalUrl(href) ? { target: "_blank", rel: "noopen
 		font-size: 0.86rem;
 		font-weight: 800;
 		line-height: 1;
+	}
+
+	/* Chevron affordance signals the whole card is clickable. */
+	.pathway-cta {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.4rem;
+	}
+
+	.pathway-chevron {
+		transition: transform var(--transition);
+	}
+
+	a.pathway-card:hover .pathway-chevron,
+	a.pathway-card:focus-visible .pathway-chevron {
+		transform: translateX(0.25rem);
 	}
 
 	@media (min-width: 760px) and (max-width: 999px) {
