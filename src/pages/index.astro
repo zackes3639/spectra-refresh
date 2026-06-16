@@ -6,8 +6,10 @@ import MetricStrip from "../components/MetricStrip.astro";
 import PageHero from "../components/PageHero.astro";
 import PathwayCard from "../components/PathwayCard.astro";
 import SectionIntro from "../components/SectionIntro.astro";
+import TestimonialCard from "../components/TestimonialCard.astro";
 import TimelineList from "../components/TimelineList.astro";
 import { siteLinks } from "../data/site";
+import { testimonials } from "../data/testimonials";
 
 const waysIn = [
 	{
@@ -82,6 +84,35 @@ const storyMoments = [
 	},
 ];
 
+// TODO: real content — replace with Dr. Lisa's verified credentials and
+// confirmed press / "as seen on" placements (press + speaking logos to be supplied).
+const credentials = [
+	{
+		value: "Board-certified",
+		label: "Physician",
+		copy: "Clinical training that grounds every talk, program, and recommendation",
+	},
+	{
+		value: "Published",
+		label: "Author & writer",
+		copy: "TODO: confirm titles — articles, book, and educational resources",
+	},
+	{
+		value: "Featured",
+		label: "Podcasts & media",
+		copy: "TODO: add confirmed interviews and press placements",
+	},
+	{
+		value: "As seen on",
+		label: "Stages & summits",
+		copy: "TODO: supply speaking logos and event names",
+	},
+];
+
+// TODO: real content — replace with attributed founder/speaking testimonials.
+// Reuses two entries from the practice testimonials as on-brand placeholders.
+const homeTestimonials = testimonials.slice(0, 2);
+
 ---
 
 <Layout
@@ -155,6 +186,24 @@ const storyMoments = [
 					copy="Dr. Lisa's work has always been shaped by a desire to make complex health ideas more humane, more practical, and easier to discuss"
 				/>
 				<TimelineList items={storyMoments} ariaLabel="Dr. Lisa founder story" />
+			</div>
+		</div>
+	</section>
+
+	<section class="section trust-section" aria-labelledby="trust-title">
+		<div class="container trust-layout">
+			<SectionIntro
+				id="trust-title"
+				eyebrow="Credibility"
+				title="Proof behind the platform"
+				copy="Real credentials, a physician's training, and the voices of the people Dr. Lisa has cared for and taught"
+			/>
+			<!-- TODO: real content — swap placeholder credentials for verified press logos / "as seen on" assets. -->
+			<MetricStrip items={credentials} ariaLabel="Dr. Lisa credentials and proof points" compact={true} />
+			<div class="trust-testimonials">
+				{homeTestimonials.map((testimonial) => (
+					<TestimonialCard testimonial={testimonial} />
+				))}
 			</div>
 		</div>
 	</section>
@@ -246,6 +295,22 @@ const storyMoments = [
 	.copy-stack {
 		display: grid;
 		gap: clamp(var(--space-24), 4vw, var(--space-40));
+	}
+
+	.trust-layout {
+		display: grid;
+		gap: clamp(var(--space-32), 4vw, var(--space-48));
+	}
+
+	.trust-testimonials {
+		display: grid;
+		gap: var(--space-lg);
+	}
+
+	@media (min-width: 760px) {
+		.trust-testimonials {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
 	}
 
 	@media (min-width: 760px) and (max-width: 999px) {
