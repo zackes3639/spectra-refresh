@@ -26,9 +26,11 @@ export const teamMembers: TeamMember[] = [
 		bookingHref: siteLinks.discoveryCall,
 		specialties: ["Functional medicine", "Longevity strategy", "Root-cause care", "Physician education"],
 		image: {
+			// TODO: replace with retouched headshot (no legacy Spectra logo); re-run
+			// `npm run optimize:images` after swapping the file and update width/height if changed.
 			src: "/images/dr-lisa-koche-headshot.jpeg",
 			alt: "Dr. Lisa Koche",
-			needed: "Approved Dr. Lisa portrait",
+			needed: "Approved Dr. Lisa portrait (retouched, no legacy logo)",
 			width: 2560,
 			height: 1280,
 		},
