@@ -46,9 +46,12 @@ select {
 	font: inherit;
 }
 
+/* Global keyboard focus ring — applies to every interactive element
+   (nav links, buttons, cards, summary, form controls) via the tokens.
+   The outline follows each element's own border-radius. */
 :focus-visible {
-	outline: 2px solid var(--color-spectra-pink);
-	outline-offset: 4px;
+	outline: var(--focus-ring-width) solid var(--focus-ring-color);
+	outline-offset: var(--focus-ring-offset);
 }
 
 .site-shell {

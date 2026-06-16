@@ -87,5 +87,9 @@
 	--shadow-lift: 0 22px 48px rgba(80, 166, 163, 0.16);
 	--shadow-spectrum: 0 22px 54px rgba(216, 76, 159, 0.14), 0 16px 36px rgba(80, 166, 163, 0.16);
 
+	--focus-ring-color: var(--color-spectra-pink);
+	--focus-ring-width: 2px;
+	--focus-ring-offset: 3px;
+
 	--transition: 180ms ease;
 }

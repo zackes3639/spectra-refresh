@@ -159,13 +159,17 @@ const secondaryAttrs = secondaryHref && isExternalUrl(secondaryHref) ? { target:
 		min-width: 10.75rem;
 	}
 
+	/* Outlined pill on the dark gradient: stronger border + subtle resting
+	   fill so it clearly reads as a button (was faint at 0.28 alpha). */
 	.final-cta .button-secondary {
-		border-color: rgba(247, 248, 245, 0.28);
+		border-color: rgba(247, 248, 245, 0.55);
+		background: rgba(247, 248, 245, 0.08);
 		color: var(--color-warm-clinical-white);
 	}
 
 	.final-cta .button-secondary:hover {
-		background: rgba(247, 248, 245, 0.1);
+		border-color: rgba(247, 248, 245, 0.72);
+		background: rgba(247, 248, 245, 0.16);
 	}
 
 	@media (min-width: 900px) {
