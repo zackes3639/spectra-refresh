@@ -11,7 +11,8 @@
     "preview": "astro preview",
     "astro": "astro",
     "check:images": "node scripts/check-images.mjs",
-    "optimize:images": "node scripts/optimize-images.mjs"
+    "optimize:images": "node scripts/optimize-images.mjs",
+    "test:server": "node scripts/test-server.mjs"
   },
   "dependencies": {
     "astro": "^6.3.5"
