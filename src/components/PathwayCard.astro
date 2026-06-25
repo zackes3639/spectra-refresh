@@ -60,10 +60,39 @@ const linkAttrs = href && isExternalUrl(href) ? { target: "_blank", rel: "noopen
 			box-shadow var(--transition);
 	}
 
-	a.pathway-card:hover {
+	/* Subtle spectrum accent border, brighter on hover. */
+	.pathway-card::after {
+		position: absolute;
+		inset: 0;
+		z-index: 0;
+		padding: 1px;
+		border-radius: inherit;
+		background: var(--gradient-spectrum);
+		-webkit-mask:
+			linear-gradient(#000 0 0) content-box,
+			linear-gradient(#000 0 0);
+		-webkit-mask-composite: xor;
+		mask-composite: exclude;
+		opacity: 0.4;
+		transition: opacity var(--transition);
+		content: "";
+		pointer-events: none;
+	}
+
+	/* Keep card content above the accent ring. */
+	.pathway-card > * {
+		position: relative;
+		z-index: 1;
+	}
+
+	.pathway-card:hover {
 		border-color: rgba(226, 96, 151, 0.32);
 		box-shadow: var(--shadow-lift);
-		transform: translateY(-2px);
+		transform: translateY(-3px);
+	}
+
+	.pathway-card:hover::after {
+		opacity: 0.9;
 	}
 
 	.pathway-mark {
@@ -74,7 +103,7 @@ const linkAttrs = href && isExternalUrl(href) ? { target: "_blank", rel: "noopen
 		border: 1px solid rgba(40, 156, 176, 0.22);
 		border-radius: 50%;
 		background: rgba(255, 255, 255, 0.62);
-		color: var(--color-spectra-teal);
+		color: var(--color-spectra-teal-ink);
 		font-size: 0.72rem;
 		font-weight: 800;
 		letter-spacing: 0.08em;
@@ -83,7 +112,7 @@ const linkAttrs = href && isExternalUrl(href) ? { target: "_blank", rel: "noopen
 
 	p {
 		margin: 0 0 var(--space-xs);
-		color: var(--color-spectra-teal);
+		color: var(--color-spectra-teal-ink);
 		font-size: 0.72rem;
 		font-weight: 800;
 		letter-spacing: 0.12em;
@@ -109,7 +138,7 @@ const linkAttrs = href && isExternalUrl(href) ? { target: "_blank", rel: "noopen
 	strong {
 		align-self: end;
 		margin-top: var(--space-8);
-		color: var(--color-spectra-teal);
+		color: var(--color-spectra-teal-ink);
 		font-size: 0.86rem;
 		font-weight: 800;
 		line-height: 1;

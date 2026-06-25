@@ -86,7 +86,7 @@ main > section + section.section {
 
 .eyebrow {
 	margin: 0 0 var(--space-8);
-	color: var(--color-spectra-teal);
+	color: var(--color-spectra-teal-ink);
 	font-size: 0.76rem;
 	font-weight: 700;
 	letter-spacing: 0.14em;

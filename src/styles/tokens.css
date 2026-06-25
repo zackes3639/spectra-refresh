@@ -4,6 +4,9 @@
 	--color-botanical-sage: #6e8792;
 	--color-deep-evergreen: #1f3e4a;
 	--color-spectra-teal: #289cb0;
+	/* AA-safe deep teal for small teal TEXT (eyebrows, marks, inline CTAs);
+	   the brighter --color-spectra-teal stays for fills/borders/gradients. */
+	--color-spectra-teal-ink: #15707f;
 	--color-spectra-mint: #36b3a7;
 	--color-spectra-aqua: #d7eff4;
 	--color-spectra-pink: #e26097;

@@ -6,6 +6,7 @@ import { widont } from "../utils/typography";
 interface Props {
 	title: string;
 	titleLines?: string[];
+	eyebrow?: string;
 	copy: string;
 	copyHtml?: string;
 	primaryHref?: string;
@@ -29,6 +30,7 @@ interface Props {
 const {
 	title,
 	titleLines,
+	eyebrow,
 	copy,
 	copyHtml,
 	primaryHref,
@@ -66,6 +68,7 @@ const mediaStyle = [
 <section class:list={["page-hero", `media-${mediaType}`, `variant-${variant}`, hideMedia && "hide-media"]} aria-labelledby="page-hero-title">
 	<div class="container page-hero-grid">
 		<div class="page-hero-copy">
+			{eyebrow && <p class="eyebrow hero-eyebrow">{eyebrow}</p>}
 			<h1 aria-label={titleLines ? titleLines.join(" ") : undefined} class:list={[titleLines && "stacked-title"]} id="page-hero-title">
 				{
 					titleLines
@@ -219,13 +222,35 @@ const mediaStyle = [
 		max-width: 35rem;
 	}
 
+	/* About-only hero: tighter rhythm and a more balanced portrait/text split. */
+	.variant-story {
+		padding-top: clamp(var(--space-32), 4vw, var(--space-48));
+	}
+
 	.variant-story .page-hero-grid {
 		align-items: center;
+		gap: clamp(var(--space-32), 4vw, var(--space-56));
+	}
+
+	.variant-story .page-hero-media {
+		min-height: clamp(20rem, 34vw, 28rem);
+	}
+
+	.variant-story .page-hero-copy p {
+		margin-top: var(--space-16);
+	}
+
+	.variant-story .page-hero-actions {
+		margin-top: var(--space-24);
 	}
 
 	.variant-story h1 {
 		max-width: 100%;
 		white-space: nowrap;
+	}
+
+	.hero-eyebrow {
+		margin-bottom: var(--space-12);
 	}
 
 	h1 {
@@ -689,6 +714,10 @@ const mediaStyle = [
 	@media (min-width: 900px) {
 		.page-hero-grid {
 			grid-template-columns: minmax(0, 1fr) minmax(22rem, 0.72fr);
+		}
+
+		.variant-story .page-hero-grid {
+			grid-template-columns: minmax(0, 1fr) minmax(20rem, 0.82fr);
 		}
 	}
 

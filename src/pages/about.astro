@@ -7,6 +7,7 @@ import PageHero from "../components/PageHero.astro";
 import PathwayCard from "../components/PathwayCard.astro";
 import SectionIntro from "../components/SectionIntro.astro";
 import TimelineList from "../components/TimelineList.astro";
+import type { IconMarkName } from "../components/IconMark.astro";
 import { siteLinks } from "../data/site";
 
 const missionParagraphs = [
@@ -54,23 +55,27 @@ const professionalBackground = [
 		value: "Triple board-certified",
 		label: "Physician expertise",
 		copy: "Internal medicine, integrative medicine, and pediatrics expertise",
+		icon: "stethoscope",
 	},
 	{
 		value: "Founder",
 		label: "Spectra Wellness",
 		copy: "Created the organization that carries the dedicated practice destination",
+		icon: "building",
 	},
 	{
 		value: "Educator",
 		label: "Public teaching",
 		copy: "Translates root-cause concepts into practical guidance",
+		icon: "graduation",
 	},
 	{
 		value: "Speaker",
 		label: "Health and leadership audiences",
 		copy: "Presents for wellness, media, and leadership communities",
+		icon: "microphone",
 	},
-];
+] satisfies Array<{ value: string; label: string; copy: string; icon: IconMarkName }>;
 
 const nextPaths = [
 	{
@@ -96,11 +101,18 @@ const nextPaths = [
 	description="Meet Dr. Lisa Koche, triple-board-certified physician, founder, speaker, educator, and health literacy advocate"
 	currentPath="/about"
 >
+	<script is:inline>
+		// Set the reveal flag before first paint so animated sections start hidden
+		// (prevents a flash). The IntersectionObserver is wired up at the end of the page.
+		document.documentElement.classList.add("reveal-ready");
+	</script>
+
 	<!-- TODO: replace the hero headshot with a retouched portrait that has no legacy Spectra logo.
 	     Drop the new file at public/images/dr-lisa-koche-headshot.jpeg, run `npm run optimize:images`,
 	     and update imageWidth/imageHeight below if the new dimensions differ. -->
 	<PageHero
 		title="About Dr Lisa"
+		eyebrow="Meet Dr. Lisa"
 		copy="Triple board-certified physician, founder, educator, speaker, and advocate helping people understand their bodies with more clarity and context"
 		primaryHref="/resources"
 		primaryLabel="Explore Resources"
@@ -120,7 +132,7 @@ const nextPaths = [
 	/>
 
 	<section class="section" aria-labelledby="mission-title">
-		<div class="container editorial-grid mission-grid">
+		<div class="container editorial-grid mission-grid" data-reveal>
 			<div class="copy-stack mission-copy">
 				<SectionIntro
 					id="mission-title"
@@ -137,7 +149,7 @@ const nextPaths = [
 	</section>
 
 	<section class="section section-soft" aria-labelledby="story-title">
-		<div class="container story-layout">
+		<div class="container story-layout" data-reveal>
 			<SectionIntro
 				id="story-title"
 				eyebrow="Story"
@@ -149,7 +161,7 @@ const nextPaths = [
 	</section>
 
 	<section class="section" aria-labelledby="values-title">
-		<div class="container">
+		<div class="container" data-reveal>
 			<SectionIntro
 				id="values-title"
 				eyebrow="Values"
@@ -164,29 +176,19 @@ const nextPaths = [
 	</section>
 
 	<section class="section section-soft" aria-labelledby="background-title">
-		<div class="container background-layout">
-			<div class="copy-stack">
-				<SectionIntro
-					id="background-title"
-					eyebrow="Professional Background"
-					title="Medical credentials with real-world leadership"
-					copy="A concise view of Dr. Lisa's training, founder role, and public-facing expertise"
-				/>
-				<div class="spectra-handoff">
-					<h3>Spectra Wellness has its own destination</h3>
-					<p>
-						This site stays focused on Dr. Lisa herself. For office details and appointment information,
-						continue to the dedicated Spectra Wellness site
-					</p>
-					<a class="button button-secondary" href={siteLinks.spectraWellness} target="_blank" rel="noopener noreferrer">Open Spectra Wellness</a>
-				</div>
-			</div>
+		<div class="container background-layout" data-reveal>
+			<SectionIntro
+				id="background-title"
+				eyebrow="Professional Background"
+				title="Medical credentials with real-world leadership"
+				copy="A concise view of Dr. Lisa's training, founder role, and public-facing expertise"
+			/>
 			<MetricStrip items={professionalBackground} ariaLabel="Dr. Lisa professional background" />
 		</div>
 	</section>
 
 	<section class="section" aria-labelledby="next-title">
-		<div class="container">
+		<div class="container" data-reveal>
 			<SectionIntro
 				id="next-title"
 				eyebrow="Next Steps"
@@ -206,24 +208,31 @@ const nextPaths = [
 		</div>
 	</section>
 
-	<CTASection
-		eyebrow=""
-		title="Choose your next step"
-		copy="Explore Dr. Lisa's resources, invite her to speak, or continue to Spectra Wellness for practice details"
-		compactLayout={true}
-		primaryHref="/speaking"
-		primaryLabel="Invite Dr. Lisa"
-		secondaryHref={siteLinks.spectraWellness}
-		secondaryLabel="Spectra Wellness"
-	/>
+	<div data-reveal>
+		<CTASection
+			eyebrow="Get Started"
+			title="Choose your next step"
+			copy="Explore Dr. Lisa's resources or invite her to speak"
+			compactLayout={true}
+			primaryHref="/speaking"
+			primaryLabel="Invite Dr. Lisa"
+			secondaryHref="/resources"
+			secondaryLabel="Explore Resources"
+		/>
+	</div>
 </Layout>
 
 <style>
-	.editorial-grid,
-	.background-layout {
+	.editorial-grid {
 		display: grid;
 		gap: clamp(var(--space-32), 6vw, var(--space-80));
 		align-items: center;
+	}
+
+	/* Stacked: section heading above the full-width credential row. */
+	.background-layout {
+		display: grid;
+		gap: clamp(var(--space-32), 4vw, var(--space-48));
 	}
 
 	.copy-stack,
@@ -238,8 +247,7 @@ const nextPaths = [
 		max-width: var(--max-text-width);
 	}
 
-	.paragraph-stack p,
-	.spectra-handoff p {
+	.paragraph-stack p {
 		margin: 0;
 		color: var(--color-muted);
 		font-size: clamp(1rem, 1.15vw, 1.12rem);
@@ -257,33 +265,6 @@ const nextPaths = [
 		margin-inline: auto;
 	}
 
-	.spectra-handoff {
-		display: grid;
-		gap: var(--space-sm);
-		align-items: start;
-		max-width: 34rem;
-		padding: clamp(var(--space-24), 2.6vw, var(--space-32));
-		border: 1px solid var(--color-border);
-		border-radius: var(--radius-lg);
-		background:
-			linear-gradient(180deg, rgba(255, 255, 255, 0.86), rgba(247, 252, 254, 0.66)),
-			var(--gradient-spectrum-soft);
-		box-shadow: var(--shadow-card);
-	}
-
-	.spectra-handoff h3 {
-		margin: 0;
-		font-family: var(--font-display);
-		font-size: clamp(1.45rem, 2.2vw, 1.95rem);
-		font-weight: 400;
-		line-height: 1.16;
-	}
-
-	.spectra-handoff .button {
-		justify-self: start;
-		margin-top: var(--space-xs);
-	}
-
 	@media (min-width: 760px) {
 		.value-grid,
 		.next-grid {
@@ -295,16 +276,54 @@ const nextPaths = [
 		.mission-grid {
 			grid-template-columns: minmax(0, 1fr) minmax(22rem, 0.72fr);
 		}
-
-		.background-layout {
-			grid-template-columns: minmax(18rem, 0.56fr) minmax(0, 1fr);
-			align-items: start;
-		}
 	}
 
-	@media (max-width: 759px) {
-		.spectra-handoff .button {
-			width: 100%;
+	/* Scroll-reveal entrance animation. Sections start hidden only once the
+	   `reveal-ready` flag is set by JS, so no-JS users always see content. */
+	.reveal-ready [data-reveal] {
+		opacity: 0;
+		transform: translateY(18px);
+		transition:
+			opacity 600ms ease,
+			transform 600ms ease;
+		will-change: opacity, transform;
+	}
+
+	.reveal-ready [data-reveal].is-visible {
+		opacity: 1;
+		transform: none;
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.reveal-ready [data-reveal] {
+			opacity: 1 !important;
+			transform: none !important;
+			transition: none !important;
 		}
 	}
 </style>
+
+<script>
+	// Reveal each [data-reveal] block as it scrolls into view. The `reveal-ready`
+	// class is set inline in <head>-order above so content starts hidden without a flash;
+	// if IntersectionObserver is unavailable we simply show everything.
+	const revealEls = document.querySelectorAll("[data-reveal]");
+
+	if (!("IntersectionObserver" in window)) {
+		revealEls.forEach((el) => el.classList.add("is-visible"));
+	} else {
+		const observer = new IntersectionObserver(
+			(entries, obs) => {
+				for (const entry of entries) {
+					if (entry.isIntersecting) {
+						entry.target.classList.add("is-visible");
+						obs.unobserve(entry.target);
+					}
+				}
+			},
+			{ rootMargin: "0px 0px -10% 0px", threshold: 0.1 },
+		);
+
+		revealEls.forEach((el) => observer.observe(el));
+	}
+</script>
