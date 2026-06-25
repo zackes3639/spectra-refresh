@@ -1,5 +1,7 @@
 # build output
 dist/
+# design-sync upload artifact (regenerated from src/styles + ds-bundle build)
+ds-bundle/
 # generated types
 .astro/
 

@@ -1,0 +1,10 @@
+/* Dr. Lisa Koche / Spectra Wellness — design-system entry stylesheet.
+   Every design receives this file's transitive @import closure, so the
+   brand fonts, tokens, and base/utility layer all flow from here.
+
+   NOTE: the source site does not self-host fonts; Fraunces + Manrope are
+   pulled from Google Fonts here so the brand type renders in Claude Design. */
+
+@import url("https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Manrope:wght@400;500;600;700&display=swap");
+@import url("./tokens/tokens.css");
+@import url("./base.css");

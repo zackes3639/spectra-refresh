@@ -1,0 +1,7 @@
+{
+  "projectId": "a979f58c-d60f-499a-9cd1-d46e57747bb5",
+  "projectName": "Dr. Lisa Koche Design System",
+  "shape": "off-script-tokens-only",
+  "localDir": "./ds-bundle",
+  "note": "Off-script tokens/styles-only import. This repo is an Astro static site (.astro HTML-templating components, no React runtime, no Storybook), so the standard converter (package-build.mjs) cannot bundle it. Do NOT run the converter — see .design-sync/NOTES.md before any future sync."
+}

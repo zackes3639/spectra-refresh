@@ -1,0 +1,284 @@
+/* Base + utility layer for the Dr. Lisa Koche / Spectra design system.
+   Faithfully extracted from src/styles/global.css. Tokens are imported
+   separately by styles.css, so the original `@import "./tokens.css"` is omitted here. */
+
+* {
+	box-sizing: border-box;
+}
+
+html {
+	scroll-behavior: smooth;
+}
+
+body {
+	margin: 0;
+	/* Brand canvas tone only. The source site layers a five-blob spectrum wash
+	   on <body>; it is intentionally omitted here so designs start on a clean
+	   surface and opt into spectrum backgrounds via gradient tokens or .section-soft. */
+	background: var(--color-warm-clinical-white);
+	color: var(--color-text);
+	font-family: var(--font-body);
+	font-size: var(--body-font-size);
+	line-height: var(--body-line-height);
+	text-rendering: optimizeLegibility;
+}
+
+body::selection {
+	background: rgba(80, 166, 163, 0.32);
+}
+
+a {
+	color: inherit;
+	text-decoration: none;
+}
+
+img,
+svg {
+	display: block;
+	max-width: 100%;
+}
+
+button,
+input,
+textarea,
+select {
+	font: inherit;
+}
+
+/* Global keyboard focus ring — applies to every interactive element
+   (nav links, buttons, cards, summary, form controls) via the tokens.
+   The outline follows each element's own border-radius. */
+:focus-visible {
+	outline: var(--focus-ring-width) solid var(--focus-ring-color);
+	outline-offset: var(--focus-ring-offset);
+}
+
+.site-shell {
+	overflow: hidden;
+}
+
+.container {
+	width: min(100% - (var(--gutter) * 2), var(--container));
+	margin-inline: auto;
+}
+
+.container-narrow {
+	width: min(100% - (var(--gutter) * 2), var(--container-narrow));
+	margin-inline: auto;
+}
+
+.section {
+	padding-block: clamp(var(--space-40), 5vw, var(--space-64));
+}
+
+main > section + section.section {
+	padding-top: clamp(var(--space-56), 6vw, var(--space-80));
+}
+
+.section-soft {
+	background:
+		radial-gradient(circle at 8% 18%, rgba(80, 166, 163, 0.1), transparent 18rem),
+		radial-gradient(circle at 92% 82%, rgba(216, 76, 159, 0.08), transparent 20rem),
+		rgba(255, 255, 255, 0.5);
+	border-block: 1px solid rgba(80, 166, 163, 0.12);
+}
+
+.eyebrow {
+	margin: 0 0 var(--space-8);
+	color: var(--color-spectra-teal);
+	font-size: 0.76rem;
+	font-weight: 700;
+	letter-spacing: 0.14em;
+	text-transform: uppercase;
+}
+
+.section-heading {
+	margin: 0;
+	font-family: var(--font-display);
+	font-size: clamp(1.9rem, 3.8vw, 4.1rem);
+	font-weight: 400;
+	letter-spacing: 0;
+	line-height: var(--heading-line-height);
+}
+
+.section-copy {
+	margin: var(--space-16) 0 0;
+	max-width: min(42rem, var(--max-text-width));
+	color: var(--color-muted);
+	font-size: clamp(1rem, 1.25vw, 1.125rem);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	scroll-margin-top: clamp(6rem, 12vw, 8rem);
+	text-wrap: balance;
+}
+
+p,
+li {
+	text-wrap: pretty;
+}
+
+.text-measure {
+	max-width: var(--max-text-width);
+}
+
+.nowrap {
+	white-space: nowrap;
+}
+
+.button {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	min-height: var(--space-48);
+	padding: var(--space-12) var(--space-24);
+	border: 1px solid transparent;
+	border-radius: var(--radius-pill);
+	font-size: clamp(0.84rem, 0.32vw + 0.72rem, 0.94rem);
+	font-weight: 700;
+	line-height: 1;
+	transition:
+		transform var(--transition),
+		background-color var(--transition),
+		border-color var(--transition),
+		color var(--transition),
+		box-shadow var(--transition);
+}
+
+.button:hover {
+	transform: translateY(-1px);
+}
+
+.button-primary {
+	background: linear-gradient(130deg, var(--color-spectra-teal), var(--color-oxygen-blue));
+	color: var(--color-warm-clinical-white);
+	box-shadow: 0 14px 28px rgba(40, 156, 176, 0.22);
+}
+
+.button-primary:hover {
+	background: var(--gradient-spectrum);
+	box-shadow: var(--shadow-spectrum);
+}
+
+.button-secondary {
+	border-color: rgba(40, 156, 176, 0.42);
+	color: var(--color-deep-evergreen);
+	background: rgba(255, 255, 255, 0.62);
+}
+
+.button-secondary:hover {
+	background: rgba(220, 239, 238, 0.72);
+	border-color: rgba(216, 76, 159, 0.34);
+}
+
+.card {
+	position: relative;
+	overflow: hidden;
+	background:
+		linear-gradient(180deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.76)),
+		var(--gradient-spectrum-soft);
+	border: 1px solid var(--color-border);
+	border-radius: var(--radius-lg);
+	backdrop-filter: blur(4px);
+	box-shadow: var(--shadow-card);
+	transition:
+		transform var(--transition),
+		border-color var(--transition),
+		box-shadow var(--transition);
+}
+
+.card:hover {
+	transform: translateY(-3px);
+	border-color: rgba(216, 76, 159, 0.32);
+	box-shadow: var(--shadow-lift);
+}
+
+.card::before {
+	position: absolute;
+	inset: 0 0 auto;
+	height: 0.24rem;
+	background: var(--gradient-spectrum);
+	content: "";
+	opacity: 0.55;
+}
+
+.spectrum-mark {
+	display: inline-block;
+	width: var(--space-40);
+	aspect-ratio: 1;
+	border-radius: 50%;
+	background:
+		radial-gradient(circle at 30% 28%, var(--color-spectra-sun) 0 14%, transparent 15%),
+		radial-gradient(circle at 70% 28%, var(--color-spectra-pink) 0 14%, transparent 15%),
+		radial-gradient(circle at 30% 70%, var(--color-spectra-teal) 0 14%, transparent 15%),
+		radial-gradient(circle at 70% 70%, var(--color-spectra-violet) 0 14%, transparent 15%),
+		radial-gradient(circle at 50% 50%, var(--color-oxygen-blue) 0 15%, transparent 16%);
+	box-shadow: 0 10px 22px rgba(80, 166, 163, 0.2);
+}
+
+.grid {
+	display: grid;
+	gap: var(--space-lg);
+}
+
+.two-column {
+	display: grid;
+	gap: clamp(2rem, 6vw, 5rem);
+	align-items: center;
+}
+
+.placeholder-note {
+	color: var(--color-subtle);
+	font-size: 0.76rem;
+	letter-spacing: 0.1em;
+	text-transform: uppercase;
+}
+
+.visually-hidden {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	margin: -1px;
+	overflow: hidden;
+	clip: rect(0, 0, 0, 0);
+	white-space: nowrap;
+	border: 0;
+}
+
+@media (min-width: 760px) {
+	.two-column {
+		grid-template-columns: minmax(0, 1fr) minmax(20rem, 0.82fr);
+	}
+}
+
+@media (max-width: 760px) {
+	.section {
+		padding-block: clamp(var(--space-24), 6vw, var(--space-40));
+	}
+
+	main > section + section.section {
+		padding-top: var(--space-40);
+	}
+
+	.container,
+	.container-narrow {
+		width: min(100% - (var(--gutter) * 1.4), var(--container));
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	*,
+	*::before,
+	*::after {
+		scroll-behavior: auto !important;
+		transition-duration: 0.01ms !important;
+		animation-duration: 0.01ms !important;
+		animation-iteration-count: 1 !important;
+	}
+}
