@@ -2,47 +2,37 @@
 
 ## Project Purpose
 
-This project is a local-first static concept site for DrLisaKoche.com. It is intended to explore a premium physician authority and longevity medicine brand presence before any production infrastructure is added.
+This is the refresh draft of DrLisaKoche.com — the personal-brand site for Dr. Lisa Saff Koche, MD (physician, founder of Spectra Wellness, educator, speaker). It deploys to dr-lisa-koche-site.vercel.app via `npx vercel --prod --yes` (pushes to main do NOT auto-deploy).
 
-## Current Phase
+## Brand Relationship
 
-The current phase is a premium homepage concept and reusable design system. This is not a full production build.
+Dr. Lisa is the founder and visionary of Spectra Wellness. This site shares Spectra's design system — "Vivid Spectrum on Porcelain," documented in `/Users/zackarysimon/spectra_web/design.md` and `brand.md` — but anchors on the **warm end of the spectrum (orchid + violet)** where the clinic site anchors on leaf/lagoon/azure. Shared: porcelain surfaces, ink/muted text, hairline rules, Fraunces + Manrope, the 5/7-stripe spectrum strip, ◆ markers, mist section rooms, flat hairline cards, white pill CTAs in a spectrum ring. The one deliberately cool room on the homepage is the `#spectra` section (lagoon), citing the family brand.
+
+Follow spectra_web's design.md rules: no gradient washes, no glows, no coral, AA contrast (deep shades for small text; display shades for large serif type only), reduced-motion guards, no two adjacent sections sharing a surface, each mist room's tint matching its section's accent hue.
 
 ## Tech Stack
 
-- Astro
-- Static site output
-- Clean CSS architecture with centralized tokens and global styles
+- Next.js 16 (App Router, Turbopack) + React 19 + Tailwind CSS v4 — mirrors the spectra_web repo
+- Static export (`output: "export"`, trailing slashes, unoptimized images) to `out/`
+- Tokens in `src/app/globals.css`; primitives ported from spectra_web in `src/components/home/primitives.tsx`
+- Content lives in typed data files under `src/data/` (site, home, speaking, legacy-redirects)
+
+## Structure
+
+- `/` — long-scroll anchored homepage (hero → trust → #story → #about → #press → #work → #spectra → #stories → #contact → violet-deep final band)
+- `/speaking/` — the one deep subpage (violet anchor, sticky scrollspy subnav, single CTA: "Invite Dr. Lisa to Speak")
+- `/privacy/`, `/terms/`, `/disclaimer/` — legal placeholders pending counsel review
+- `src/app/[...legacyPath]/` — static-export redirects for every retired multi-page route (old Astro-era URLs → home anchors or spectrawellness.com)
 
 ## Scope Guardrails
 
-- Do not add a CMS yet.
-- Do not add backend APIs.
-- Do not add authentication, databases, patient portals, or patient systems.
-- Do not add deployment configuration unless explicitly requested.
-- Do not over-engineer v1.
-
-## Build Principles
-
-- Preserve a premium, calm, editorial wellness aesthetic.
-- Prioritize reusable components and design tokens.
-- Maintain strong responsive behavior across mobile, tablet, and desktop.
-- Keep accessibility and semantic HTML in mind.
-- Avoid generic startup design patterns or loud wellness cliches.
+- No CMS, backend APIs, auth, databases, or patient systems.
+- Patient-facing clinical CTAs route to Spectra Wellness properties; speaking CTAs route to drlisakoche.com/speaker/.
+- Healthcare copy discipline per spectra_web/brand.md: no guaranteed results, no diagnosis claims, testimonials framed as perspective.
+- Copy marked `TODO: real content` (press logos, credentials wording, testimonials, stage photography) needs verification before launch — do not remove the markers without supplying verified content.
 
 ## Workflow Expectations
 
-- Make small, coherent changes.
-- Keep files organized by role and responsibility.
-- Prefer reusable components over repeated markup.
-- Use tasteful placeholder copy, not lorem ipsum.
-- Clearly comment where final brand imagery or finalized copy should replace placeholders.
-- Prevent orphan/widow text in UI copy and headings.
-- Avoid line wraps that leave only 2-3 words on a new line; rewrite or rebalance copy to maintain clean visual rhythm.
-
-## Definition Of Done For This Iteration
-
-- Local Astro site runs successfully.
-- Homepage is fully assembled from reusable components.
-- Styles are centralized through tokens and global CSS.
-- The result visually matches the defined luxury longevity moodboard direction.
+- Make small, coherent changes; prefer the existing primitives and data files.
+- Verify mobile (375px) and desktop (1280px) behavior before considering design work done.
+- `npm run build` must pass (static export). Preview with any static server over `out/`.
