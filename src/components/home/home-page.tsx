@@ -318,7 +318,7 @@ function SpectraSection() {
               <SecondaryButton
                 href={links.spectraWellness}
                 rel="noreferrer"
-                surface="lagoon-mist"
+                surface="white"
                 target="_blank"
                 variant="ring"
               >
