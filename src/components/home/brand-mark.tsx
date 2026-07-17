@@ -10,6 +10,13 @@ export function BrandMark() {
       return;
     }
 
+    // Preserve the standard home-link behavior from subpages. Only intercept
+    // the click when the visitor is already on the homepage so we can remove a
+    // stale section fragment while scrolling back to the top.
+    if (window.location.pathname !== "/") {
+      return;
+    }
+
     event.preventDefault();
     window.scrollTo({ top: 0 });
     history.replaceState(null, "", window.location.pathname + window.location.search);

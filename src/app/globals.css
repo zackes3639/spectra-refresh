@@ -90,7 +90,7 @@ details > summary {
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  section {
+  [data-reveal="true"] {
     animation: section-fade-up 0.7s ease both;
     animation-timeline: view();
     animation-range: entry 0% cover 22%;
