@@ -40,6 +40,7 @@ export function Section({
 
   return (
     <section
+      data-reveal="true"
       className={`relative py-20 sm:py-24 ${tones[tone]} ${className}`}
       {...props}
     />

@@ -23,7 +23,8 @@ import {
   SectionHeading,
 } from "./primitives";
 import { SiteHeader } from "./site-header";
-import { AnnouncementBar, SiteFooter } from "./site-chrome";
+import { MobileStickyCta } from "./mobile-sticky-cta";
+import { AnnouncementBar, SiteFooter, SkipLink } from "./site-chrome";
 
 // Warm-first accent cycles — orchid/violet lead on Dr. Lisa's site, where the
 // clinic site leads with leaf/lagoon/azure.
@@ -300,7 +301,7 @@ function SpectraSection() {
           <div>
             <SectionHeading
               eyebrow="The practice"
-              eyebrowColor="var(--lagoon-deep)"
+              eyebrowColor="var(--ink)"
               title={
                 <>
                   Founder &amp; visionary of{" "}
@@ -453,7 +454,7 @@ function ContactSection() {
 
 function FinalCta() {
   return (
-    <section className="bg-[var(--violet-deep)] py-24 sm:py-28">
+    <section className="bg-[var(--violet-deep)] py-24 sm:py-28" id="home-invite">
       <Container>
         <div className="mx-auto max-w-4xl text-center">
           <h2 className="font-serif text-5xl leading-[1.02] font-[380] text-[var(--cream)] sm:text-[4.6rem]">
@@ -491,9 +492,10 @@ function FinalCta() {
 export function HomePage() {
   return (
     <>
+      <SkipLink />
       <AnnouncementBar />
       <SiteHeader />
-      <main>
+      <main id="main-content" tabIndex={-1}>
         <HeroSection />
         <TrustStrip />
         <StorySection />
@@ -505,14 +507,13 @@ export function HomePage() {
         <ContactSection />
         <FinalCta />
       </main>
-      <a
-        className="fixed bottom-4 left-4 right-4 z-40 inline-flex min-h-12 items-center justify-center rounded-full bg-[var(--violet-deep)] px-6 py-3 text-sm font-semibold text-white min-[900px]:hidden"
+      <MobileStickyCta
+        finalId="home-invite"
+        heroId="home"
         href={links.speakingInquiry}
-        rel="noreferrer"
-        target="_blank"
       >
         Invite Dr. Lisa to Speak
-      </a>
+      </MobileStickyCta>
       <SiteFooter />
     </>
   );

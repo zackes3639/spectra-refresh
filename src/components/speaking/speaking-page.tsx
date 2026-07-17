@@ -11,7 +11,12 @@ import {
   SectionHeading,
 } from "@/components/home/primitives";
 import { SiteHeader } from "@/components/home/site-header";
-import { AnnouncementBar, SiteFooter } from "@/components/home/site-chrome";
+import { MobileStickyCta } from "@/components/home/mobile-sticky-cta";
+import {
+  AnnouncementBar,
+  SiteFooter,
+  SkipLink,
+} from "@/components/home/site-chrome";
 import { ArrowUpRightIcon } from "@/components/home/icons";
 import {
   experienceSteps,
@@ -24,7 +29,6 @@ import {
   topics,
 } from "@/data/speaking";
 import { SpeakingSubnav } from "./speaking-subnav";
-import { SpeakingStickyCta } from "./sticky-cta";
 
 const statAccents = ["var(--violet)", "var(--orchid)", "var(--azure)"];
 const formatAccents = ["var(--violet)", "var(--orchid)", "var(--azure)", "var(--lagoon)"];
@@ -93,7 +97,6 @@ function SpeakingHero() {
           {speakingStats.map((stat, index) => (
             <div className="text-center" key={stat.label}>
               <p
-                aria-hidden="true"
                 className="font-serif text-4xl italic leading-none font-[380] sm:text-5xl"
                 style={{ color: statAccents[index % statAccents.length] }}
               >
@@ -346,10 +349,11 @@ function FinalInviteBand() {
 export function SpeakingPage() {
   return (
     <>
+      <SkipLink />
       <AnnouncementBar />
       <SiteHeader />
       <SpeakingSubnav />
-      <main>
+      <main id="main-content" tabIndex={-1}>
         <SpeakingHero />
         <TopicsSection />
         <FormatsSection />
@@ -358,7 +362,13 @@ export function SpeakingPage() {
         <BookingSection />
         <FinalInviteBand />
       </main>
-      <SpeakingStickyCta />
+      <MobileStickyCta
+        finalId="invite"
+        heroId="overview"
+        href={inviteCta.href}
+      >
+        {inviteCta.label}
+      </MobileStickyCta>
       <SiteFooter />
     </>
   );

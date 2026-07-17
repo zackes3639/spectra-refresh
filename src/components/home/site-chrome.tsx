@@ -12,6 +12,17 @@ import { BrandMark } from "./brand-mark";
 import { ArrowRightIcon, ArrowUpRightIcon } from "./icons";
 import { Container, SpectrumStrip } from "./primitives";
 
+export function SkipLink() {
+  return (
+    <a
+      className="fixed -top-20 left-4 z-[100] rounded-full border border-[var(--hairline)] bg-white px-5 py-3 text-sm font-semibold text-[var(--ink)] focus:top-4 focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--ink)] focus-visible:ring-offset-2"
+      href="#main-content"
+    >
+      Skip to main content
+    </a>
+  );
+}
+
 export function AnnouncementBar() {
   return (
     <div className="bg-[var(--ink)] text-white">
@@ -20,7 +31,7 @@ export function AnnouncementBar() {
           <span>Now booking speaking engagements, podcasts, and media.</span>
           <Link
             className="hidden items-center gap-1 text-[var(--azure-bright)] underline-offset-4 transition hover:underline sm:inline-flex"
-            href="/speaking/"
+            href="/speaking/#topics"
           >
             See topics
             <ArrowRightIcon className="h-3.5 w-3.5" />
@@ -53,7 +64,7 @@ export function AnnouncementBar() {
 
 export function SiteFooter() {
   return (
-    <footer className="border-t border-[var(--hairline)] bg-white">
+    <footer className="border-t border-[var(--hairline)] bg-white" id="site-footer">
       <Container className="py-14">
         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-[1.4fr_0.7fr_0.75fr_0.75fr_1fr]">
           <div className="sm:col-span-2 lg:col-span-1">

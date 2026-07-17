@@ -1,5 +1,9 @@
 import { SiteHeader } from "@/components/home/site-header";
-import { AnnouncementBar, SiteFooter } from "@/components/home/site-chrome";
+import {
+  AnnouncementBar,
+  SiteFooter,
+  SkipLink,
+} from "@/components/home/site-chrome";
 import { Container, Eyebrow } from "@/components/home/primitives";
 
 type LegalPageProps = {
@@ -12,9 +16,10 @@ type LegalPageProps = {
 export function LegalPage({ title, paragraphs }: LegalPageProps) {
   return (
     <>
+      <SkipLink />
       <AnnouncementBar />
       <SiteHeader />
-      <main>
+      <main id="main-content" tabIndex={-1}>
         <section className="bg-[var(--porcelain)] py-20 sm:py-24">
           <Container className="max-w-[820px]">
             <Eyebrow>Legal review placeholder</Eyebrow>
